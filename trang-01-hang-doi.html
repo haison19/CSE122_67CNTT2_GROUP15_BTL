@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixFlow · Hàng đợi công việc</title>
+
+  <!-- TRANG 01: HANG DOI CONG VIEC (theo hinh anh mau 01) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+  <div class="nen-chinh">
+
+    <!-- ============ SIDEBAR ============ -->
+    <aside class="thanh-ben" id="thanhBen">
+      <div class="thuong-hieu">
+        <span class="logo-nen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </span>
+        <h1 class="ten-thuong-hieu">FixFlow</h1>
+      </div>
+
+      <p class="dong-truong" id="dongTruong">Kỹ thuật viên</p>
+
+      <nav class="danh-muc">
+        <a class="muc-menu" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+          Tổng quan
+        </a>
+
+        <a class="muc-menu dang-chon" href="trang-01-hang-doi.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/>
+          </svg>
+          Hàng đợi
+        </a>
+
+        <a class="muc-menu" href="trang-02-dang-sua.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+          Đang sửa
+        </a>
+
+        <a class="muc-menu" href="trang-03-lich-su.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+          </svg>
+          Lịch sử
+        </a>
+
+        <a class="muc-menu" href="trang-04-checklist.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l2 2 4-4"/><rect x="3" y="4" width="18" height="16" rx="2.5"/>
+          </svg>
+          Checklist
+        </a>
+
+        <a class="muc-menu" href="trang-05-thong-ke.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
+          </svg>
+          Thống kê
+        </a>
+      </nav>
+
+      <button class="muc-menu tro-giup" data-trang="Trợ giúp 24/7">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>
+        </svg>
+        Trợ giúp 24/7
+      </button>
+    </aside>
+
+    <div class="nen-phu" id="nenPhu"></div>
+
+    <!-- ============ NOI DUNG ============ -->
+    <div class="khu-chinh">
+
+      <header class="thanh-tren">
+        <button class="nut-bieu-tuong nut-menu" id="nutMenu" aria-label="Mở menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+
+        <label class="o-tim-kiem" for="oTimKiem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/>
+          </svg>
+          <input type="text" id="oTimKiem" placeholder="Tìm ticket, thiết bị, người dùng...">
+        </label>
+
+        <div class="ben-phai-thanh-tren">
+          <button class="nut-bieu-tuong co-cham-do" id="nutThongBao" aria-label="Thông báo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>
+            </svg>
+          </button>
+          <span class="anh-dai-dien" id="anhDaiDien">BQ</span>
+          <span class="ten-nguoi-dung" id="tenNguoiDung">Bùi Huy Quân</span>
+        </div>
+      </header>
+
+      <main class="noi-dung">
+
+        <!-- Tieu de trang + chuyen che do -->
+        <section class="khu-tieu-de-trang">
+          <div>
+            <h2 class="ten-trang">Hàng đợi công việc</h2>
+            <p class="phu-de-trang" id="phuDeHangDoi">5 ticket cần ưu tiên hôm nay</p>
+          </div>
+
+          <div class="nhom-che-do">
+            <button class="nut-che-do dang-chon" id="nutKanban">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <rect x="3" y="4" width="5" height="16" rx="1.5"/><rect x="10" y="4" width="5" height="11" rx="1.5"/><rect x="17" y="4" width="4" height="7" rx="1.5"/>
+              </svg>
+              Kanban
+            </button>
+            <button class="nut-che-do" id="nutDanhSach">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/>
+              </svg>
+              Danh sách
+            </button>
+          </div>
+        </section>
+
+        <!-- Bo loc -->
+        <section class="khung-loc">
+          <label class="o-tim-kiem o-tim-kiem-loc" for="tuKhoaHangDoi">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/>
+            </svg>
+            <input type="text" id="tuKhoaHangDoi" placeholder="Tìm kiếm...">
+          </label>
+
+          <select class="o-chon" id="locDanhMuc">
+            <option value="">Danh mục</option>
+            <option>Điện lạnh</option>
+            <option>Mạng máy tính</option>
+            <option>Thiết bị trình chiếu</option>
+            <option>Văn phòng</option>
+          </select>
+
+          <select class="o-chon" id="locUuTien">
+            <option value="">Ưu tiên</option>
+            <option>Khẩn</option>
+            <option>Cao</option>
+            <option>Trung bình</option>
+            <option>Thấp</option>
+          </select>
+
+          <button class="nut-de" id="nutDatLai">Đặt lại</button>
+        </section>
+
+        <!-- 3 cot Kanbang + bang danh sach -->
+        <div class="luoi-hang-doi">
+          <div>
+            <div class="khung-kenh" id="khungKanban">
+              <section class="cot-kenh">
+                <h3 class="tieu-de-cot">Chờ nhận (<span id="soChoNhanCot">11</span>)</h3>
+                <div id="cotChoNhan"></div>
+              </section>
+
+              <section class="cot-kenh">
+                <h3 class="tieu-de-cot">Đang xử lý (<span id="soDangXuLyCot">2</span>)</h3>
+                <div id="cotDangXuLy"></div>
+              </section>
+
+              <section class="cot-kenh">
+                <h3 class="tieu-de-cot">Hoàn thành (<span id="soHoanThanhCot">0</span>)</h3>
+                <div id="cotHoanThanh"></div>
+              </section>
+            </div>
+
+            <!-- Che do danh sach (an mac dinh) -->
+            <div class="the" id="khungBangHangDoi" hidden>
+              <div class="dau-the">
+                <h3 class="tieu-de-the">Danh sách ticket</h3>
+                <span class="nhan-so" id="soDongBang">0 ticket</span>
+              </div>
+              <div class="bang-boc">
+                <table class="bang">
+                  <thead>
+                    <tr>
+                      <th>Mã</th><th>Sự cố</th><th>Thiết bị · Địa điểm</th>
+                      <th>Mức độ</th><th>Thời gian</th><th>Trạng thái</th><th></th>
+                    </tr>
+                  </thead>
+                  <tbody id="bangHangDoi"></tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel chi tiet -->
+          <aside class="khung-chi-tiet" id="khungChiTiet">
+            <p class="thong-diep-trong">Chọn một ticket bên trái để xem chi tiết.</p>
+          </aside>
+        </div>
+
+      </main>
+    </div>
+  </div>
+
+  <div class="thong-bao" id="thongBao"></div>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
