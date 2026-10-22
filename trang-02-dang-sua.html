@@ -3,10 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>FixFlow · Đang sửa</title>
+  <title>FixFlow · Đang sửa TK-2025-001</title>
 
-  <!-- TRANG 02: DANG SUA (noi dung mac dinh la ticket TK-2025-001,
-       se duoc cap nhat dong theo ticket vua chon o trang Hang doi) -->
+  <!-- TRANG 02: DANG SUA - XU LY SU CO (theo hinh anh mau 02) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="css/style.css">
@@ -15,9 +14,8 @@
 <body>
   <div class="nen-chinh">
 
-    <!-- ============ SIDEBAR ============ -->
     <aside class="thanh-ben" id="thanhBen">
-      <div class="thuong-hieu">
+      <a class="thuong-hieu" href="index.html">
         <span class="logo-nen">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
@@ -25,7 +23,7 @@
           </svg>
         </span>
         <h1 class="ten-thuong-hieu">FixFlow</h1>
-      </div>
+      </a>
 
       <p class="dong-truong" id="dongTruong">Kỹ thuật viên</p>
 
@@ -84,7 +82,6 @@
 
     <div class="nen-phu" id="nenPhu"></div>
 
-    <!-- ============ NOI DUNG ============ -->
     <div class="khu-chinh">
 
       <header class="thanh-tren">
@@ -107,102 +104,50 @@
               <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>
             </svg>
           </button>
-          <span class="anh-dai-dien" id="anhDaiDien">BQ</span>
-          <span class="ten-nguoi-dung" id="tenNguoiDung">Bùi Huy Quân</span>
+          <span class="anh-dai-dien" id="anhDaiDien">TB</span>
+          <!-- Anh mau 02 hien "Trần Thị B" nen dung data-ten-khac -->
+          <span class="ten-nguoi-dung" id="tenNguoiDung" data-ten-khac="Trần Thị B">Trần Thị B</span>
         </div>
       </header>
 
       <main class="noi-dung">
 
-        <!-- Duong dan + tieu de trang -->
+        <!-- Duong dan + tieu de -->
+        <p class="duong-dan"><a href="trang-02-dang-sua.html">Đang sửa</a> / TK-2025-001</p>
+
         <section class="khu-tieu-de-trang">
           <div>
-            <p class="duong-dan">Đang sửa / <span id="duongDanMa">TK-2025-001</span></p>
-            <h2 class="ten-trang" id="tieuDeDangSua">Máy lạnh phòng 101 không mát</h2>
-            <p class="phu-de-trang" id="phuDeDangSua">TK-2025-001 · AC-023 · Ưu tiên cao</p>
+            <h2 class="ten-trang">Máy lạnh phòng 101 không mát</h2>
+            <p class="phu-de-trang">TK-2025-001 · AC-023 · Ưu tiên cao</p>
           </div>
-
-          <span class="the-muc-do muc-cao" id="nhanMucDoDangSua">Đang xử lý</span>
+          <span class="the-muc-do muc-trung-binh">Đang xử lý</span>
         </section>
 
         <div class="luoi-2-cot">
-
-          <!-- Cot trai: thong tin su co + lich su thiet bi -->
+          <!-- Cot trai -->
           <div>
             <article class="the">
               <div class="dau-the">
                 <h3 class="tieu-de-the">Thông tin sự cố</h3>
+                <span class="ghi-chu">Phòng 101 – Tòa A</span>
               </div>
-
-              <div class="dong-thong-so"><span>Vị trí</span><strong id="viTriSuCo">Phòng 101 – Tòa A</strong></div>
-              <div class="dong-thong-so"><span>Thiết bị</span><strong id="thietBiSuCo">AC-023</strong></div>
-              <div class="dong-thong-so"><span>Người yêu cầu</span><strong id="nguoiYeuCauSuCo">Nguyễn Văn A</strong></div>
-
-              <p class="nhan-nhap">Mô tả sự cố</p>
-              <p class="mo-ta-su-co" id="moTaSuCo">Máy vẫn chạy, có gió nhưng không làm lạnh. Có tiếng rung nhẹ.</p>
+              <p class="mo-ta-su-co">Máy chạy có gió nhưng không mát; xuất hiện tiếng rung nhẹ từ dàn lạnh.</p>
             </article>
 
-            <article class="the" style="margin-top:20px">
-              <div class="dau-the">
-                <h3 class="tieu-de-the" id="tieuDeLichSuThietBi">Lịch sử thiết bị AC-023</h3>
-              </div>
-              <ul class="lich-su-thiet-bi" id="lichSuThietBi"></ul>
-            </article>
-          </div>
-
-          <!-- Cot phai: dong ho + checklist xu ly -->
-          <div>
+            <!-- Checklist AI -->
             <article class="the">
               <div class="dau-the">
-                <h3 class="tieu-de-the">Thời gian đã xử lý</h3>
-              </div>
-              <p class="dong-ho-dem" id="thoiGianDaXuLy">01:24:18</p>
-            </article>
-
-            <!-- Checklist AI: goi y mo phong + checklist dang xu ly -->
-            <article class="the" style="margin-top:20px">
-              <div class="dau-the">
                 <h3 class="tieu-de-the tieu-de-ai">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                       stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>
-                    <path d="M18 15l.9 2.1L21 18l-2.1.9L18 21l-.9-2.1L15 18l2.1-.9z"/>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                    <path d="M12 3l1.9 4.8L18.7 9.7l-4.8 1.9L12 16.4l-1.9-4.8L5.3 9.7l4.8-1.9z"/>
+                    <path d="M18 15l.8 2.2L21 18l-2.2.8L18 21l-.8-2.2L15 18l2.2-.8z"/>
                   </svg>
                   Checklist AI đề xuất
                 </h3>
-                <span class="nhan nhan-tim" id="nhanDoTinCay">85% tin cậy</span>
+                <span class="nhan nhan-tim">85% tin cậy</span>
               </div>
-
-              <p class="ghi-chu">Gợi ý được mô phỏng từ dữ liệu mẫu của FixFlow, không gọi AI thật.</p>
-
-              <div class="khung-vong" style="margin-top:12px">
-                <div class="vong-tron" id="vongTienDo">
-                  <span class="chu-vong" id="soTienDo">0/5</span>
-                </div>
-                <div>
-                  <p class="ten-buoc" id="phanTramChecklist">0% checklist</p>
-                  <p class="ghi-chu">Đánh dấu từng bước đã hoàn thành</p>
-                </div>
-              </div>
-
-              <div class="hop-ai" id="hopGoiYAI">
-                <div class="dau-hop-goi-y">
-                  <span class="dong-ai">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-                         stroke-linecap="round" stroke-linejoin="round">
-                      <path d="M12 3l1.9 5.1L19 10l-5.1 1.9L12 17l-1.9-5.1L5 10l5.1-1.9z"/>
-                    </svg>
-                    Gợi ý từ hệ thống
-                  </span>
-                  <span class="nhan nhan-tim" id="soGoiY">5 bước</span>
-                </div>
-                <ul class="danh-sach-goi-y" id="danhSachGoiYAI"></ul>
-              </div>
-
-              <p class="trang-thai-goi-y" id="trangThaiGoiYAI">Chưa áp dụng gợi ý nào.</p>
 
               <ul class="danh-sach-buoc" id="danhSachBuocXuLy"></ul>
-              <p class="loi-checklist" id="loiChecklist" hidden></p>
 
               <button class="nut-them-buoc" id="nutThemBuoc">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -211,34 +156,53 @@
                 Thêm bước
               </button>
 
-              <div class="hang-nut hang-nut-ai">
-                <button class="nut-chinh nut-vua nut-ai" id="nutChapNhan">Chấp nhận</button>
-                <button class="nut-phu nut-ai" id="nutTaoLai">Tạo lại</button>
-                <button class="nut-de nut-ai" id="nutTuChoiChecklist">Từ chối</button>
-                <button class="nut-de nut-ai" id="nutSuaChecklist">Sửa</button>
-                <button class="nut-de nut-ai" id="nutDungThuCong">Dùng thủ công</button>
+              <div class="hang-nut">
+                <button class="nut-chinh nut-vua" id="nutChapNhan">Chấp nhận</button>
+                <button class="nut-phu nut-vua" id="nutTaoLai">Tạo lại</button>
+                <button class="nut-de" id="nutTuChoiChecklist">Từ chối</button>
+                <button class="nut-de" id="nutSuaChecklist">Sửa</button>
+                <button class="nut-de" id="nutDungThuCong">Dừng thủ công</button>
+              </div>
+            </article>
+
+            <article class="the">
+              <label class="nhan-nhap" for="ghiChuSuaChua">Ghi chú sửa chữa</label>
+              <textarea class="o-nhap o-dong o-vung-text" id="ghiChuSuaChua">Đã đo áp suất gas, phát hiện thiếu gas nhẹ. Tiến hành vệ sinh và nạp bổ sung.</textarea>
+              <div class="hang-nut">
+                <button class="nut-chinh nut-vua" id="nutLuuGhiChu">Lưu ghi chú</button>
               </div>
             </article>
           </div>
+
+          <!-- Cot phai -->
+          <div>
+            <article class="the">
+              <div class="khung-vong">
+                <div class="vong-tron" id="vongTienDo"><span class="chu-vong" id="soTienDo">3/5</span></div>
+                <div>
+                  <h4 class="tieu-de-the">Tiến độ xử lý</h4>
+                  <p class="ghi-chu" id="phanTramChecklist">60% checklist</p>
+                </div>
+              </div>
+            </article>
+
+            <article class="the">
+              <h4 class="tieu-de-the">Thời gian &amp; SLA</h4>
+              <div class="dong-thong-so"><span>Đã xử lý</span><strong id="thoiGianDaXuLy">01:24:18</strong></div>
+              <div class="dong-thong-so"><span>Còn lại</span><strong class="chu-canh-bao">3 giờ 40 phút</strong></div>
+              <div class="dong-thong-so"><span>Hạn SLA</span><strong>14:00 hôm nay</strong></div>
+            </article>
+
+            <article class="the">
+              <h4 class="tieu-de-the">Lịch sử thiết bị AC-023</h4>
+              <ul class="lich-su-thiet-bi">
+                <li>14/08 · Vệ sinh định kỳ</li>
+                <li>03/06 · Thay cảm biến nhiệt</li>
+                <li>22/02 · Nạp gas lạnh</li>
+              </ul>
+            </article>
+          </div>
         </div>
-
-        <!-- Ghi chu sua chua -->
-        <article class="the" style="margin-top:20px">
-          <div class="dau-the">
-            <h3 class="tieu-de-the">Ghi chú sửa chữa</h3>
-            <span class="ghi-chu" id="trangThaiGhiChu">Chưa có ghi chú</span>
-          </div>
-
-          <label class="nhan-nhap" for="ghiChuSuaChua">Ghi chú</label>
-          <textarea class="o-nhap o-dong o-vung-text" id="ghiChuSuaChua" rows="5"
-                    placeholder="Nhập ghi chú quá trình xử lý: phụ tùng đã thay, tình trạng thiết bị sau khi sửa..."></textarea>
-
-          <div class="hang-nut" style="margin-top:12px">
-            <button class="nut-chinh nut-vua" id="nutLuuGhiChu">Cập nhật</button>
-            <button class="nut-phu" id="nutTamDung">Tạm dừng</button>
-            <button class="nut-chinh nut-vua nut-hoan-thanh" id="nutHoanThanh">Hoàn thành</button>
-          </div>
-        </article>
 
       </main>
     </div>
