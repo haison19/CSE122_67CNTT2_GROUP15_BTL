@@ -8,23 +8,8 @@
   <!-- TRANG 05: THONG KE HIEU SUAT (theo hinh anh mau 05) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <!-- Ap dung che do sang/toi truoc khi ve trang de khong bi nhay mau -->
-  <script>
-    (function () {
-      var giaoDien = "sang";
-      try {
-        var daLuu = localStorage.getItem("fixflowGiaoDien");
-        if (daLuu === "toi" || daLuu === "sang") {
-          giaoDien = daLuu;
-        } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-          giaoDien = "toi";
-        }
-      } catch (loi) {
-        // Trinh duyet chan localStorage -> giu mac dinh la che do sang
-      }
-      document.documentElement.setAttribute("data-giao-dien", giaoDien);
-    })();
-  </script>
+  <!-- Ap dung che do sang/toi som (chay trong script.js bang defer, khong nhay mau) -->
+  <script src="js/script.js" defer></script>
 
   <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/responsive.css">
@@ -280,6 +265,5 @@
 
   <div class="thong-bao" id="thongBao"></div>
 
-  <script src="js/script.js"></script>
 </body>
 </html>

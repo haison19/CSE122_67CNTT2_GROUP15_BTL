@@ -675,10 +675,28 @@ function hienThiThongTinNguoiDung() {
 }
 
 
+// ---------- CHE DO SANG / TOI (AP DUNG SOM TRUOC KHI VE KHUNG HINH) ----------
+// Che do SANG la che do mac dinh. Neu nguoi dung da chon "toi" truoc do
+// (luu trong localStorage), dung lai lua chon do. Khoi nay chay ngay khi
+// script.js duoc nap (bang defer trong <head>) de tranh nhay mau.
+
+(function () {
+  var giaoDien = "sang";
+  try {
+    var daLuu = localStorage.getItem("fixflowGiaoDien");
+    if (daLuu === "toi" || daLuu === "sang") {
+      giaoDien = daLuu;
+    }
+  } catch (loi) {
+    // Trinh duyet chan localStorage -> giu mac dinh la che do sang
+  }
+  document.documentElement.setAttribute("data-giao-dien", giaoDien);
+})();
+
 // ---------- 10c. Che do sang / toi ----------
-// Thuoc tinh data-giao-dien tren the <html> da duoc dat som trong <head> cua
-// tung trang (tranh nhay mau). O day chi doc lai, doi khi bam nut va luu lua
-// chon vao localStorage de cac trang khac dung cung che do.
+// Thuoc tinh data-giao-dien tren the <html> da duoc dat som o dau file nay.
+// O day chi doc lai, doi khi bam nut va luu lua chon vao localStorage de cac
+// trang khac dung cung che do.
 
 const KHOA_GIAO_DIEN = "fixflowGiaoDien";
 const GIAO_DIEN_SANG = "sang";
@@ -689,15 +707,7 @@ function docGiaoDienDaLuu() {
     const daLuu = localStorage.getItem(KHOA_GIAO_DIEN);
     if (daLuu === GIAO_DIEN_TOI || daLuu === GIAO_DIEN_SANG) return daLuu;
   } catch (loi) {
-    // Trinh duyet chan localStorage -> theo cai dat he dieu hanh ben duoi
-  }
-
-  try {
-    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
-      return GIAO_DIEN_TOI;
-    }
-  } catch (loi) {
-    // Khong ho tro matchMedia -> mac dinh che do sang
+    // Trinh duyet chan localStorage -> mac dinh che do sang
   }
 
   return GIAO_DIEN_SANG;

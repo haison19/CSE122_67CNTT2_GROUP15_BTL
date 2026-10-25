@@ -1700,9 +1700,10 @@ input:disabled {
    Bat tat bang thuoc tinh data-giao-dien tren the <html>:
      <html data-giao-dien="sang">   giao dien sang (mac dinh)
      <html data-giao-dien="toi">    giao dien toi
-   Script trong <head> cua tung trang dat thuoc tinh nay truoc khi
-   ve khung hinh dau tien (tranh nhay mau), script.js lo phan bam nut
+   Script.js (nap bang defer trong <head>) dat thuoc tinh nay som truoc khi
+   ve khung hinh dau tien (tranh nhay mau) va lo phan bam nut
    va luu lua chon vao localStorage (khoa "fixflowGiaoDien").
+   Che do mac dinh: SANG (khong theo cai dat he dieu hanh).
 
    Chi can dinh nghia lai cac bien mau o :root, khong lap lai style
    cua tung thanh phan -> ca 6 trang tu doi mau theo.
