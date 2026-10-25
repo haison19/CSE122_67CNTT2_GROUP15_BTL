@@ -1,66 +1,76 @@
 
-# 🛠️ FixFlow - Hệ thống Quản lý & Điều phối Bảo trì Thiết bị
+# FixFlow – Technician
 
-**FixFlow** là hệ thống hỗ trợ quản lý, điều phối công việc bảo trì và sửa chữa thiết bị dành cho kỹ thuật viên và bộ phận vận hành. Dự án giúp tối ưu hóa quy trình tiếp nhận sự cố, theo dõi tiến độ xử lý và đánh giá hiệu suất làm việc.
+## 1. Giới thiệu
 
----
+FixFlow là hệ thống hỗ trợ quản lý các yêu cầu sửa chữa và bảo trì thiết bị.
 
-## 📌 Thông tin Đề tài
-* **Tên đề tài:** Hệ thống Quản lý & Điều phối Công việc Bảo trì / Sửa chữa Thiết bị (FixFlow)
-* **Trang đã thực hiện:** Trang Tổng quan (Dashboard) dành cho Kỹ thuật viên 
+Phần Technician (Kỹ thuật viên) giúp kỹ thuật viên theo dõi công việc, tiếp nhận yêu cầu, thực hiện sửa chữa và cập nhật trạng thái xử lý.
 
----
+## 2. Đối tượng sử dụng
 
-## 🎯 Mục đích của Trang Tổng quan
-* **Dành cho Kỹ thuật viên:** Theo dõi, tiếp nhận và quản lý danh sách các công việc/ticket bảo trì được giao trong ngày theo mức độ ưu tiên.
-* **Đánh giá hiệu suất:** Theo dõi các chỉ số làm việc cá nhân (số công việc hoàn thành, thời gian xử lý trung bình, tỷ lệ tuân thủ cam kết chất lượng SLA).
+- Kỹ thuật viên bảo trì và sửa chữa thiết bị.
 
----
+## 3. Danh sách 6 trang
 
-## ✨ Các Chức năng Chính
+### 3.1. Dashboard – Tổng quan
+- Hiển thị tổng quan công việc.
+- Thống kê số lượng yêu cầu theo trạng thái.
+- Theo dõi tình hình xử lý công việc.
 
+### 3.2. Queue – Hàng đợi
+- Hiển thị danh sách yêu cầu sửa chữa.
+- Tìm kiếm và lọc yêu cầu.
+- Xem thông tin yêu cầu.
+- Cho phép bắt đầu xử lý yêu cầu.
 
-1. **Quản lý Danh sách Công việc / Ticket hôm nay:**
-   * Hiển thị mốc thời gian, tên sự cố, mã thiết bị và vị trí/phòng ban.
-   * Phân loại mức độ ưu tiên trực quan (Khẩn, Cao, Trung bình, Thấp).
+### 3.3. In Progress – Đang sửa
+- Hiển thị yêu cầu đang được xử lý.
+- Theo dõi tiến độ sửa chữa.
+- Quản lý checklist công việc.
+- Ghi chú quá trình sửa chữa.
+- Cập nhật trạng thái hoàn thành.
 
+### 3.4. Repair Details – Chi tiết sửa chữa
+- Hiển thị thông tin chi tiết của yêu cầu.
+- Xem thông tin thiết bị và mô tả sự cố.
+- Theo dõi thông tin cần thiết trước khi sửa chữa.
 
-2. **Bảng điều khiển & Tương tác:**
-   * Thanh tìm kiếm nhanh ticket, thiết bị hoặc người dùng.
-   * Chuyển đổi trạng thái làm việc cá nhân (*Rảnh / Bận / Không online*).
-   * Thanh điều hướng sidebar truy cập các chức năng: *Hàng đợi, Đang sửa, Lịch sử, Checklist, Thống kê*.
-   * Chuyển đổi giao diện **Sáng / Tối** bằng nút mặt trăng – mặt trời trên thanh trên cùng; lựa chọn được ghi nhớ (`localStorage`) và áp dụng cho cả 6 trang.
+### 3.5. AI Suggestions – AI đề xuất
+- Hiển thị các bước sửa chữa được đề xuất.
+- Cho phép xem xét và chỉnh sửa checklist đề xuất.
+- Hỗ trợ kỹ thuật viên tham khảo hướng xử lý.
 
----
+### 3.6. Profile – Hồ sơ cá nhân
+- Hiển thị thông tin kỹ thuật viên.
+- Xem thông tin tài khoản cá nhân.
+- Cập nhật thông tin cá nhân nếu chức năng được hỗ trợ.
 
-## 🛠️ Công nghệ Sử dụng
+## 4. Công nghệ sử dụng
 
-* **Front-end:**
-  * `HTML5`: Cấu trúc semantic cho trang web.
-  * `CSS3`: Thiết kế giao diện Dashboard hiện đại, linh hoạt với Flexbox & CSS Grid.
-    * `css/style.css`: toàn bộ style dùng chung (biến màu, layout, component) + bảng màu **chế độ tối** qua `html[data-giao-dien="toi"]`.
-    * `css/responsive.css`: các khối `@media` (1280 / 1100 / 900 / 560px), tách riêng cho dễ bảo trì — **luôn nạp sau** `style.css`.
-  * `JavaScript`: Xử lý tương tác người dùng và hiển thị dữ liệu/biểu đồ.
-* **Môi trường phát triển:**
-  * **Visual Studio Code** với Extension **Live Server**.
-  * **Git / GitHub** quản lý mã nguồn và phiên bản.
+- HTML: Xây dựng cấu trúc giao diện.
+- CSS: Thiết kế giao diện và bố cục.
+- JavaScript: Xử lý tương tác và chức năng trên trang.
 
----
+## 5. Cách chạy dự án
 
+1. Mở thư mục dự án bằng Visual Studio Code.
+2. Mở file `index.html` bằng trình duyệt.
+3. Có thể sử dụng Live Server để chạy giao diện trong quá trình phát triển.
 
+## 6. Phạm vi triển khai
 
----
+Phần Technician tập trung vào giao diện và các chức năng hỗ trợ kỹ thuật viên xử lý yêu cầu sửa chữa.
 
-## 🧪 Kiểm thử
+Nếu chưa có backend hoặc dịch vụ AI thực tế, dữ liệu và chức năng đề xuất được mô phỏng bằng JavaScript và dữ liệu mẫu.
 
-Bộ kiểm thử tự động (Playwright + Microsoft Edge) gồm **35 test** đi hết luồng *Hàng đợi → Đang sửa → Lịch sử*, kiểm tra cả việc lưu dữ liệu bằng `localStorage`:
+## 7. Vai trò trong hệ thống
 
-```powershell
-python -m pip install playwright
-python tests/kiem_thu_ui.py
-```
+Technician là một trong bốn luồng của FixFlow, bên cạnh:
+- User – Người dùng.
+- Administrator – Quản trị viên.
+- Manager – Quản lý.
 
-Kết quả mới nhất: **35/35 PASS** — xem chi tiết cách chạy, bảng kết quả, hạn chế đã biết và checklist kiểm thử thủ công trong [TESTING.md](TESTING.md).
 
 ---
 
