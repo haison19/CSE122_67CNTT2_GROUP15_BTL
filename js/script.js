@@ -141,12 +141,7 @@ function layChuCaiDau(ten) {
   return (tuDau.charAt(0) + tuCuoi.charAt(0)).toUpperCase();
 }
 
-// ---------- 2b. Truyen ticket tu trang 01 sang trang 02 bang localStorage ----------
-// localStorage la "bo nho nho" cua trinh duyet: du lieu duoc luu theo tung ten khoa
-// (key) va VAN CON sau khi tai lai trang hoac chuyen sang trang khac cung ten mien.
-// Vi localStorage chi luu duoc CHUOI, ta dung JSON.stringify() khi luu va
-// JSON.parse() khi doc lai. Neu trinh duyet chan localStorage (che do rieng tu,
-// mo file truc tiep bang file://...) thi try/catch giup website van chay binh thuong.
+
 
 const KHOA_TICKET_DANG_XU_LY = "fixflowTicketDangXuLy";
 
@@ -756,10 +751,6 @@ function khoiTaoGiaoDien() {
   }
 }
 
-// ---------- 10b. Xoa du lieu localStorage cua phien ban du lieu mau cu ----------
-// Moi khi du lieu mau thay doi (vi du: dua cac ticket "Hoàn thành" ve "Chờ nhận"),
-// tang PHIEN_BAN_DU_LIEU_MAU len 1. Lan chay dau tien sau khi tang se xoa du lieu da luu
-// cua ban cu; neu khong xoa, apDungDuLieuDaLuu() se ghi de trang thai cu len du lieu moi.
 const PHIEN_BAN_DU_LIEU_MAU = "3";
 const KHOA_PHIEN_BAN_DU_LIEU = "fixflowPhienBanDuLieu";
 
@@ -1054,6 +1045,7 @@ const danhGiaGanDay = [
    TRANG 01 - HANG DOI CONG VIEC
    ========================================================= */
 
+// CHỨC NĂNG 1: Tìm kiếm và lọc ticket theo từ khóa, danh mục và mức độ ưu tiên
 function layHangDoiDaLoc() {
   const oTuKhoa = document.getElementById("tuKhoaHangDoi");
   const oDanhMuc = document.getElementById("locDanhMuc");
@@ -1079,6 +1071,7 @@ function layHangDoiDaLoc() {
   return ketQua;
 }
 
+// CHỨC NĂNG 2: Tạo thẻ ticket hiển thị thông tin và nút thao tác
 function taoTheTicketHangDoi(ticket) {
   const the = document.createElement("div");
   the.className = "the-ticket";
@@ -1150,6 +1143,7 @@ function taoTheTicketHangDoi(ticket) {
   return the;
 }
 
+// CHỨC NĂNG 3: Hiển thị ticket theo trạng thái và cập nhật số lượng từng cột
 function hienThiHangDoi() {
   const danhSach = layHangDoiDaLoc();
 
@@ -1167,17 +1161,17 @@ function hienThiHangDoi() {
 
   for (let i = 0; i < danhSach.length; i++) {
     const ticket = danhSach[i];
-    const the = taoTheTicketHangDoi(ticket);   // LUU Y: bien ten la "the", khong co dau
+    const the = taoTheTicketHangDoi(ticket);
 
     if (ticket.trangThai === "Chờ nhận") {
       oChoNhan.appendChild(the);
       soCho = soCho + 1;
     } else if (ticket.trangThai === "Đang xử lý" || ticket.trangThai === "Tạm dừng") {
-      // "Tạm dừng" van la ticket dang lam do, khong duoc dem vao cot Hoan thanh
+      // "Tạm dừng" vẫn là ticket đang làm, không được đếm vào cột Hoàn thành
       oDangXuLy.appendChild(the);
       soDang = soDang + 1;
     } else {
-      oHoanThanh.appendChild(the);             // SUA LOI: truoc do viet "thẻ" -> loi
+      oHoanThanh.appendChild(the);
       soXong = soXong + 1;
     }
   }
@@ -1194,6 +1188,7 @@ function hienThiHangDoi() {
   hienThiBangHangDoi(danhSach);
 }
 
+// CHỨC NĂNG 4: Hiển thị danh sách ticket dưới dạng bảng
 function hienThiBangHangDoi(danhSach) {
   const oBang = document.getElementById("bangHangDoi");
   if (!oBang) return;
@@ -1250,6 +1245,7 @@ function hienThiBangHangDoi(danhSach) {
   }
 }
 
+// CHỨC NĂNG 5: Mở khung chi tiết của ticket được chọn
 function moChiTietHangDoi(ticket) {
   ticketDangChonHangDoi = ticket;
   const oKhung = document.getElementById("khungChiTiet");
@@ -1295,10 +1291,11 @@ function moChiTietHangDoi(ticket) {
   }
 }
 
+// CHỨC NĂNG 6: Xử lý thao tác Nhận việc, Tiếp tục hoặc Xem chi tiết
 function xuLyNutHangDoi(ticket) {
   if (ticket.trangThai === "Chờ nhận") {
     ticket.trangThai = "Đang xử lý";
-    // Luong 1 - "Nhận việc": lưu ticket để trang Đang sửa đọc lại sau khi chuyển trang
+    // Luồng 1 - "Nhận việc": lưu ticket để trang Đang sửa đọc lại sau khi chuyển trang
     luuTicketDangXuLy(ticket);
     hienThiHangDoi();
     moChiTietHangDoi(ticket);
@@ -1307,8 +1304,8 @@ function xuLyNutHangDoi(ticket) {
   }
 
   if (ticket.trangThai === "Đang xử lý" || ticket.trangThai === "Tạm dừng") {
-    // Luong 2 - "Tiếp tục": lưu ticket trước khi mở trang Đang sửa
-    // (ticket đang tạm dừng vẫn mở lại được, tiến độ checklist giữ nguyên)
+    // Luồng 2 - "Tiếp tục": lưu ticket trước khi mở trang Đang sửa
+    // Ticket đang tạm dừng vẫn mở lại được, tiến độ checklist giữ nguyên
     luuTicketDangXuLy(ticket);
     window.location.href = "fixing.html";
     return;
@@ -1317,6 +1314,7 @@ function xuLyNutHangDoi(ticket) {
   moChiTietHangDoi(ticket);
 }
 
+// CHỨC NĂNG 7: Bắt đầu xử lý ticket và chuyển sang trang Đang sửa
 function batDauXuLy(ticket) {
   if (ticket.trangThai === "Hoàn thành") {
     hienThongBao("Ticket đã hoàn thành, không thể xử lý lại.");
@@ -1327,12 +1325,13 @@ function batDauXuLy(ticket) {
     ticket.statusCode = "in_progress";
     hienThiHangDoi();
   }
-  // Luong 3 - "Bắt đầu xử lý": lưu ticket trước khi mở trang Đang sửa
+  // Luồng 3 - "Bắt đầu xử lý": lưu ticket trước khi mở trang Đang sửa
   luuTicketDangXuLy(ticket);
   hienThongBao("Chuyển sang bước xử lý của ticket " + ticket.ma);
   window.location.href = "fixing.html";
 }
 
+// CHỨC NĂNG 8: Từ chối ticket sau khi chọn lý do
 function tuChoiTicket(ticket) {
   const oLyDo = document.getElementById("lyDoTuChoi");
   const lyDo = oLyDo.value;
@@ -1356,8 +1355,7 @@ function tuChoiTicket(ticket) {
   hienThongBao("Đã từ chối ticket " + ticket.ma + " với lý do: " + lyDo);
 }
 
-// SUA LOI: dung style.display thay cho thuoc tinh [hidden]
-// vi CSS .khung-kenh { display: grid } se ghi de [hidden]
+// CHỨC NĂNG 9: Chuyển đổi giữa chế độ xem Kanban và chế độ danh sách
 function chuyenCheDoHangDoi(cheDo) {
   const oKanban = document.getElementById("khungKanban");
   const oBang = document.getElementById("khungBangHangDoi");
@@ -1378,6 +1376,7 @@ function chuyenCheDoHangDoi(cheDo) {
   }
 }
 
+// CHỨC NĂNG 10: Khởi tạo trang Hàng đợi và thiết lập các sự kiện
 function khoiTaoHangDoi() {
   const oKanban = document.getElementById("khungKanban");
   const oBang = document.getElementById("khungBangHangDoi");
@@ -1401,11 +1400,11 @@ function khoiTaoHangDoi() {
   document.getElementById("nutKanban").addEventListener("click", function () {
     chuyenCheDoHangDoi("kanban");
   });
+
   document.getElementById("nutDanhSach").addEventListener("click", function () {
     chuyenCheDoHangDoi("danh-sach");
   });
 }
-
 
 /* =========================================================
    TRANG 02 - DANG SUA

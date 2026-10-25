@@ -1,21 +1,4 @@
-/* =========================================================
-   FIXFLOW - RESPONSIVE
-   Tách từ style.css để dễ bảo trì: file này CHỈ chứa các khối
-   @media (giao diện theo kích thước màn hình).
 
-   BẮT BUỘC nạp SAU style.css trong mọi trang HTML:
-       <link rel="stylesheet" href="css/style.css">
-       <link rel="stylesheet" href="css/responsive.css">
-
-   Các khối được xếp theo bề rộng GIẢM DẦN (1280 -> 1100 -> 900 -> 560).
-   Thứ tự này rất quan trọng: khi một màn hình khớp nhiều khối
-   (ví dụ 500px khớp cả 1100px và 560px) thì khối nằm SAU sẽ thắng.
-   ========================================================= */
-
-/* =========================================================
-   1. MÁY TÍNH BẢNG LỚN / LAPTOP NHỎ (<= 1280px)
-   Hàng đợi và các lưới 3 cột xếp lại
-   ========================================================= */
 
 @media (max-width: 1280px) {
   .luoi-hang-doi {
@@ -32,10 +15,6 @@
   }
 }
 
-/* =========================================================
-   2. MÁY TÍNH BẢNG (<= 1100px)
-   Thống kê 2 cột, danh sách + biểu đồ xếp dọc, kênh & lưới 2 cột về 1 cột
-   ========================================================= */
 
 @media (max-width: 1100px) {
   .luoi-thong-ke {
@@ -50,17 +29,13 @@
     grid-template-columns: minmax(0, 1fr);
   }
 
-  /* minmax(0, 1fr) chu khong phai 1fr: 1fr co min-content tu dong,
-     nen bang .bang (min-width: 680px) se day cot rong ra va lam tran ngang trang */
+  
   .luoi-2-cot {
     grid-template-columns: minmax(0, 1fr);
   }
 }
 
-/* =========================================================
-   3. ĐIỆN THOẠI NGANG / MÁY TÍNH BẢNG DỌC (<= 900px)
-   Sidebar thành ngăn kéo trượt, thu gọn thanh trên, bộ lọc giãn hết bề ngang
-   ========================================================= */
+
 
 @media (max-width: 900px) {
   .thanh-ben {
@@ -115,10 +90,7 @@
   }
 }
 
-/* =========================================================
-   4. ĐIỆN THOẠI DỌC (<= 560px)
-   Thống kê 1 cột, dòng việc gói lại, các nút giãn hết bề ngang
-   ========================================================= */
+
 
 @media (max-width: 560px) {
   .luoi-thong-ke {
