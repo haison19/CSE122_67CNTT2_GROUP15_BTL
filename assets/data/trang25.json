@@ -1,0 +1,17 @@
+{
+    "devices":  25,
+    "ticketThisMonth":  234,
+    "roleCounts":  {
+                       "Kỹ thuật viên":  7,
+                       "Quản trị viên":  6,
+                       "Nhân viên":  7
+                   },
+    "activeCategories":  14,
+    "users":  20,
+    "ticketGrowth":  12,
+    "deviceStatuses":  {
+                           "Hoạt động":  15,
+                           "Bảo trì":  8,
+                           "Ngừng hoạt động":  2
+                       }
+}
