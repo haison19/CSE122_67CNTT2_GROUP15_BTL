@@ -1,6 +1,6 @@
 /* =========================================================
    FIXFLOW - JAVASCRIPT DUNG CHUNG CHO 6 TRANG
-   index.html (Tong quan) + trang-01..trang-05
+   index.html (Tong quan) + queue.html .. analytics.html
    THU TU QUAN TRONG: du lieu -> ham -> khoiTaoTrang(); o cuoi file
    ========================================================= */
 
@@ -152,6 +152,7 @@ const KHOA_TICKET_DANG_XU_LY = "fixflowTicketDangXuLy";
 
 function luuTicketDangXuLy(ticket) {
   try {
+    // Lưu cả ticket đã chọn để trang Đang sửa hiển thị đúng dữ liệu của ticket đó.
     localStorage.setItem(KHOA_TICKET_DANG_XU_LY, JSON.stringify(ticket));
   } catch (loi) {
     // Khong luu duoc thi bo qua, trang 02 se hien noi dung mac dinh
@@ -296,6 +297,8 @@ function apDungDuLieuDaLuu() {
     if (ticketHangDoi === null) continue;
 
     ticketHangDoi.trangThai = duLieu.trangThai;
+    ticketHangDoi.statusCode = duLieu.statusCode ||
+      (duLieu.trangThai === "Hoàn thành" ? "completed" : "in_progress");
 
     if (duLieu.trangThai === "Hoàn thành") {
       // Trang Tong quan: danh dau viec cung thiet bi la da hoan thanh
@@ -671,11 +674,83 @@ function hienThiThongTinNguoiDung() {
   }
 }
 
+
+// ---------- 10c. Che do sang / toi ----------
+// Thuoc tinh data-giao-dien tren the <html> da duoc dat som trong <head> cua
+// tung trang (tranh nhay mau). O day chi doc lai, doi khi bam nut va luu lua
+// chon vao localStorage de cac trang khac dung cung che do.
+
+const KHOA_GIAO_DIEN = "fixflowGiaoDien";
+const GIAO_DIEN_SANG = "sang";
+const GIAO_DIEN_TOI = "toi";
+
+function docGiaoDienDaLuu() {
+  try {
+    const daLuu = localStorage.getItem(KHOA_GIAO_DIEN);
+    if (daLuu === GIAO_DIEN_TOI || daLuu === GIAO_DIEN_SANG) return daLuu;
+  } catch (loi) {
+    // Trinh duyet chan localStorage -> theo cai dat he dieu hanh ben duoi
+  }
+
+  try {
+    if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+      return GIAO_DIEN_TOI;
+    }
+  } catch (loi) {
+    // Khong ho tro matchMedia -> mac dinh che do sang
+  }
+
+  return GIAO_DIEN_SANG;
+}
+
+function capNhatNutGiaoDien(giaoDien) {
+  const dangToi = giaoDien === GIAO_DIEN_TOI;
+  const nhan = dangToi ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối";
+  const cacNut = document.querySelectorAll(".nut-giao-dien");
+
+  for (let i = 0; i < cacNut.length; i++) {
+    cacNut[i].setAttribute("aria-pressed", dangToi ? "true" : "false");
+    cacNut[i].setAttribute("aria-label", nhan);
+    cacNut[i].setAttribute("title", nhan);
+  }
+}
+
+function apDungGiaoDien(giaoDien) {
+  const hopLe = giaoDien === GIAO_DIEN_TOI ? GIAO_DIEN_TOI : GIAO_DIEN_SANG;
+  document.documentElement.setAttribute("data-giao-dien", hopLe);
+  capNhatNutGiaoDien(hopLe);
+  return hopLe;
+}
+
+function doiGiaoDien() {
+  const hienTai = document.documentElement.getAttribute("data-giao-dien");
+  const moi = hienTai === GIAO_DIEN_TOI ? GIAO_DIEN_SANG : GIAO_DIEN_TOI;
+  apDungGiaoDien(moi);
+
+  try {
+    localStorage.setItem(KHOA_GIAO_DIEN, moi);
+  } catch (loi) {
+    // Khong luu duoc thi van doi giao dien cho trang hien tai
+  }
+
+  hienThongBao(moi === GIAO_DIEN_TOI ? "Đã bật chế độ tối." : "Đã chuyển sang chế độ sáng.");
+}
+
+function khoiTaoGiaoDien() {
+  const hienTai = document.documentElement.getAttribute("data-giao-dien") || docGiaoDienDaLuu();
+  apDungGiaoDien(hienTai);
+
+  const cacNut = document.querySelectorAll(".nut-giao-dien");
+  for (let i = 0; i < cacNut.length; i++) {
+    cacNut[i].addEventListener("click", doiGiaoDien);
+  }
+}
+
 // ---------- 10b. Xoa du lieu localStorage cua phien ban du lieu mau cu ----------
 // Moi khi du lieu mau thay doi (vi du: dua cac ticket "Hoàn thành" ve "Chờ nhận"),
 // tang PHIEN_BAN_DU_LIEU_MAU len 1. Lan chay dau tien sau khi tang se xoa du lieu da luu
 // cua ban cu; neu khong xoa, apDungDuLieuDaLuu() se ghi de trang thai cu len du lieu moi.
-const PHIEN_BAN_DU_LIEU_MAU = "2";
+const PHIEN_BAN_DU_LIEU_MAU = "3";
 const KHOA_PHIEN_BAN_DU_LIEU = "fixflowPhienBanDuLieu";
 
 function xoaDuLieuMauCu() {
@@ -693,6 +768,9 @@ function xoaDuLieuMauCu() {
 }
 
 function khoiTaoTrang() {
+  // Ap dung che do sang/toi truoc khi ve cac thanh phan con lai
+  khoiTaoGiaoDien();
+
   hienThiThongTinNguoiDung();
 
   // Xoa du lieu cua phien ban du lieu mau cu (neu co) truoc khi doc du lieu da luu
@@ -1036,7 +1114,7 @@ function taoTheTicketHangDoi(ticket) {
 
   const oNut = document.createElement("button");
   oNut.className = "nut-chinh nut-nho";
-  if (ticket.trangThai === "Đang xử lý") {
+  if (ticket.trangThai === "Đang xử lý" || ticket.trangThai === "Tạm dừng") {
     oNut.textContent = "Tiếp tục";
   } else if (ticket.trangThai === "Hoàn thành") {
     oNut.className = "nut-phu nut-nho";
@@ -1084,7 +1162,8 @@ function hienThiHangDoi() {
     if (ticket.trangThai === "Chờ nhận") {
       oChoNhan.appendChild(the);
       soCho = soCho + 1;
-    } else if (ticket.trangThai === "Đang xử lý") {
+    } else if (ticket.trangThai === "Đang xử lý" || ticket.trangThai === "Tạm dừng") {
+      // "Tạm dừng" van la ticket dang lam do, khong duoc dem vao cot Hoan thanh
       oDangXuLy.appendChild(the);
       soDang = soDang + 1;
     } else {
@@ -1167,6 +1246,7 @@ function moChiTietHangDoi(ticket) {
   if (!oKhung) return;
 
   let html = "";
+  const daXong = ticket.trangThai === "Hoàn thành";
   html += '<span class="the-muc-do muc-trung-binh mau-ticket-lon">' + ticket.ma + "</span>";
   html += '<h3 class="tieu-de-ct">' + ticket.tenSuCo + "</h3>";
   html += '<p class="mo-ta-ct">' + ticket.moTa + "</p>";
@@ -1174,7 +1254,11 @@ function moChiTietHangDoi(ticket) {
   html += '<div class="dong-ct"><span>Vị trí</span><strong>' + ticket.diaDiem + "</strong></div>";
   html += '<div class="dong-ct"><span>Người yêu cầu</span><strong>' + ticket.nguoiYeuCau + "</strong></div>";
   html += '<div class="dong-ct"><span>SLA</span><strong class="chu-canh-bao">' + ticket.thongTinThoiGian + "</strong></div>";
-  html += '<button class="nut-chinh" id="nutBatDauXuLy" style="width:100%;margin-top:18px">▶ Bắt đầu xử lý</button>';
+  if (daXong) {
+    html += '<p class="ghi-chu" style="margin-top:18px">Ticket đã hoàn thành, chỉ có thể xem lại.</p>';
+  } else {
+    html += '<button class="nut-chinh" id="nutBatDauXuLy" style="width:100%;margin-top:18px">▶ Bắt đầu xử lý</button>';
+  }
   html += '<button class="nut-phu" id="nutTuChoi" style="width:100%;margin-top:10px">✕ Từ chối</button>';
   html += '<label class="nhan-nhap" for="lyDoTuChoi">Lý do từ chối</label>';
   html += '<select class="o-chon o-dong" id="lyDoTuChoi">';
@@ -1187,12 +1271,18 @@ function moChiTietHangDoi(ticket) {
 
   oKhung.innerHTML = html;
 
-  document.getElementById("nutBatDauXuLy").addEventListener("click", function () {
-    batDauXuLy(ticket);
-  });
-  document.getElementById("nutTuChoi").addEventListener("click", function () {
-    tuChoiTicket(ticket);
-  });
+  const oNutBatDau = document.getElementById("nutBatDauXuLy");
+  if (oNutBatDau) {
+    oNutBatDau.addEventListener("click", function () {
+      batDauXuLy(ticket);
+    });
+  }
+  const oNutTuChoi = document.getElementById("nutTuChoi");
+  if (oNutTuChoi) {
+    oNutTuChoi.addEventListener("click", function () {
+      tuChoiTicket(ticket);
+    });
+  }
 }
 
 function xuLyNutHangDoi(ticket) {
@@ -1206,10 +1296,11 @@ function xuLyNutHangDoi(ticket) {
     return;
   }
 
-  if (ticket.trangThai === "Đang xử lý") {
+  if (ticket.trangThai === "Đang xử lý" || ticket.trangThai === "Tạm dừng") {
     // Luong 2 - "Tiếp tục": lưu ticket trước khi mở trang Đang sửa
+    // (ticket đang tạm dừng vẫn mở lại được, tiến độ checklist giữ nguyên)
     luuTicketDangXuLy(ticket);
-    window.location.href = "trang-02-dang-sua.html";
+    window.location.href = "fixing.html";
     return;
   }
 
@@ -1217,14 +1308,19 @@ function xuLyNutHangDoi(ticket) {
 }
 
 function batDauXuLy(ticket) {
+  if (ticket.trangThai === "Hoàn thành") {
+    hienThongBao("Ticket đã hoàn thành, không thể xử lý lại.");
+    return;
+  }
   if (ticket.trangThai === "Chờ nhận") {
     ticket.trangThai = "Đang xử lý";
+    ticket.statusCode = "in_progress";
     hienThiHangDoi();
   }
   // Luong 3 - "Bắt đầu xử lý": lưu ticket trước khi mở trang Đang sửa
   luuTicketDangXuLy(ticket);
   hienThongBao("Chuyển sang bước xử lý của ticket " + ticket.ma);
-  window.location.href = "trang-02-dang-sua.html";
+  window.location.href = "fixing.html";
 }
 
 function tuChoiTicket(ticket) {
@@ -1334,31 +1430,83 @@ function saoChepChecklist(danhSachGoc) {
 
 // Du lieu mac dinh cho ticket chua tung duoc mo tren trinh duyet nay
 function taoDuLieuTicketMacDinh(ticket) {
+  // Goi y AI sinh theo tung ticket (quy tac mo phong trong generateChecklist)
+  const goiYDeXuat = ticket ? generateChecklist(ticket) : saoChepChecklist(CHECKLIST_MAC_DINH);
+
+  const tenGoiY = [];
+  for (let i = 0; i < goiYDeXuat.length; i++) {
+    tenGoiY.push(goiYDeXuat[i].ten);
+  }
+
+  // Ticket binh thuong: checklist bat dau trong de nguoi dung chu dong bam
+  // "Chap nhan" dua goi y AI vao hoac tu "Them buoc".
+  // Ticket da hoan thanh tu truoc (khong co du lieu luu): nap san va danh dau xong het.
+  let checklistBanDau = [];
+  if (ticket === null) {
+    checklistBanDau = saoChepChecklist(CHECKLIST_MAC_DINH);
+  } else if (ticket.trangThai === "Hoàn thành") {
+    for (let i = 0; i < tenGoiY.length; i++) {
+      checklistBanDau.push({ ten: tenGoiY[i], xong: true });
+    }
+  }
+
   return {
+    // UI dùng tiếng Việt; statusCode giúp dữ liệu dễ kiểm tra theo yêu cầu đề bài.
     trangThai: ticket ? ticket.trangThai : "Đang xử lý",
+    statusCode: ticket && ticket.trangThai === "Hoàn thành" ? "completed" : "in_progress",
     ghiChu: "",
-    checklist: saoChepChecklist(CHECKLIST_MAC_DINH),
+    checklist: checklistBanDau,
     batDau: Date.now() - THOI_GIAN_XU_LY_BAN_DAU * 1000,
     giayDaXuLy: 0,
     thoiDiemHoanThanh: "",
     thoiGianXuLy: 0,
-    goiYAI: goiYBuocAI.slice(),
+    goiYAI: tenGoiY,
     soLanTaoLai: 0,
     trangThaiGoiYAI: "moi"
   };
 }
 
 function daHoanThanh() {
-  return duLieuTicketDangSua !== null && duLieuTicketDangSua.trangThai === "Hoàn thành";
+  return duLieuTicketDangSua !== null &&
+    (duLieuTicketDangSua.trangThai === "Hoàn thành" || duLieuTicketDangSua.statusCode === "completed");
+}
+
+// Checklist mô phỏng theo quy tắc, không gọi AI API hay backend thật.
+function generateChecklist(ticket) {
+  const tenSuCo = (ticket.tenSuCo || "").toLowerCase();
+  const maThietBi = (ticket.maThietBi || "").toUpperCase();
+  let danhSach = null;
+
+  if (tenSuCo.indexOf("máy lạnh") !== -1 || maThietBi.indexOf("AC-") === 0) {
+    danhSach = ["Kiểm tra nguồn điện và chế độ làm lạnh", "Kiểm tra bộ lọc gió", "Kiểm tra dàn nóng và dàn lạnh", "Kiểm tra tình trạng gas lạnh", "Chạy thử máy và xác nhận khả năng làm mát"];
+  } else if (tenSuCo.indexOf("router") !== -1 || maThietBi.indexOf("RT-") === 0) {
+    danhSach = ["Kiểm tra nguồn điện", "Kiểm tra cáp mạng và đèn tín hiệu WAN", "Kiểm tra kết nối giữa router và modem", "Kiểm tra cấu hình mạng", "Thử kết nối lại sau khi xử lý"];
+  } else if (tenSuCo.indexOf("máy in") !== -1 || maThietBi.indexOf("PR-") === 0) {
+    danhSach = ["Kiểm tra nguồn điện và trạng thái máy in", "Kiểm tra cáp hoặc kết nối Wi-Fi", "Kiểm tra hàng đợi in", "Kiểm tra driver và cấu hình máy in", "In thử để xác nhận hoạt động"];
+  } else if (tenSuCo.indexOf("máy tính") !== -1 || maThietBi.indexOf("PC-") === 0) {
+    danhSach = ["Kiểm tra nguồn điện và dây kết nối", "Kiểm tra bộ sạc hoặc nguồn máy", "Kiểm tra dấu hiệu khởi động", "Kiểm tra các thành phần phần cứng cơ bản", "Khởi động thử để xác nhận kết quả"];
+  }
+
+  if (danhSach === null) {
+    danhSach = ["Xác nhận tình trạng thiết bị", "Kiểm tra nguồn điện và kết nối", "Kiểm tra các bộ phận liên quan", "Thực hiện xử lý phù hợp", "Chạy thử và ghi nhận kết quả"];
+  }
+
+  const ketQua = [];
+  for (let i = 0; i < danhSach.length; i++) {
+    ketQua.push({ ten: danhSach[i], xong: false });
+  }
+  return ketQua;
 }
 
 // Mo trang Dang sua hoac thao tac tren checklist = ky thuat vien da nhan ticket,
 // nen nhan trang thai khong duoc giu o "Chờ nhận" nhu luc con trong Hang doi
 function danhDauDaNhanTicket() {
   if (duLieuTicketDangSua === null) return;
+  if (daHoanThanh()) return;
   if (duLieuTicketDangSua.trangThai !== "Chờ nhận") return;
 
   duLieuTicketDangSua.trangThai = "Đang xử lý";
+  duLieuTicketDangSua.statusCode = "in_progress";
   capNhatNhanTrangThai();
 }
 
@@ -1367,6 +1515,11 @@ function luuDuLieuDangSua() {
   if (duLieuTicketDangSua === null) return;
   danhDauDaNhanTicket();
   duLieuTicketDangSua.checklist = danhSachBuocChecklist;
+  if (duLieuTicketDangSua.trangThai === "Hoàn thành") {
+    duLieuTicketDangSua.statusCode = "completed";
+  } else if (duLieuTicketDangSua.trangThai === "Đang xử lý") {
+    duLieuTicketDangSua.statusCode = "in_progress";
+  }
   luuDuLieuTicket(maTicketDangSua, duLieuTicketDangSua);
 }
 
@@ -1385,6 +1538,10 @@ function hienThiChecklistXuLy() {
   if (!oDanhSach) return;
 
   oDanhSach.innerHTML = "";
+  const oLoi = document.getElementById("loiChecklist");
+  if (oLoi && danhSachBuocChecklist.length > 0) {
+    oLoi.hidden = true;
+  }
 
   if (danhSachBuocChecklist.length === 0) {
     const oTrong = document.createElement("li");
@@ -1534,10 +1691,11 @@ function capNhatTienDoXuLy() {
   }
 }
 
-// So giay da xu ly: ticket dang chay thi tinh tu luc bat dau, dang tam dung thi lay so da luu
+// So giay da xu ly: ticket dang chay thi tinh tu luc bat dau,
+// ticket tam dung hoac da hoan thanh thi lay so giay da chot truoc do
 function layGiayDaXuLy() {
   if (duLieuTicketDangSua === null) return 0;
-  if (duLieuTicketDangSua.trangThai === "Tạm dừng") {
+  if (duLieuTicketDangSua.trangThai === "Tạm dừng" || daHoanThanh()) {
     return duLieuTicketDangSua.giayDaXuLy || 0;
   }
   if (!duLieuTicketDangSua.batDau) return 0;
@@ -1595,6 +1753,8 @@ function capNhatNhanTrangThai() {
   if (!oNhan || duLieuTicketDangSua === null || ticket === null) return;
 
   ticket.trangThai = duLieuTicketDangSua.trangThai;
+  ticket.statusCode = duLieuTicketDangSua.statusCode ||
+    (ticket.trangThai === "Hoàn thành" ? "completed" : "in_progress");
   oNhan.textContent = duLieuTicketDangSua.trangThai;
   oNhan.className = "the-muc-do " + layLopMucDo(ticket.mucDo);
 }
@@ -1663,19 +1823,28 @@ function capNhatThongTinDangSua(ticket) {
 
   // Nhan trang thai / muc do o goc phai tieu de (doi ca mau theo muc do)
   const oNhan = document.getElementById("nhanMucDoDangSua");
-  oNhan.textContent = ticket.trangThai;
-  oNhan.className = "the-muc-do " + layLopMucDo(ticket.mucDo);
+  if (oNhan) {
+    oNhan.textContent = ticket.trangThai;
+    oNhan.className = "the-muc-do " + layLopMucDo(ticket.mucDo);
+  }
 }
 
 // ---------- Goi y AI (mo phong bang du lieu mau, khong goi AI that) ----------
 
 function taoDanhSachGoiYAI(soLan) {
+  const ticket = layTicketTheoMa(maTicketDangSua);
+  const goiYTheoTicket = ticket ? generateChecklist(ticket).map(function (buoc) { return buoc.ten; }) : goiYBuocAI;
   if (soLan === 0) {
-    return goiYBuocAI.slice();
+    return goiYTheoTicket.slice();
   }
 
-  // Lan tao lai thu n: giu 2 goi y goc, thay 3 goi y con lai bang kho goi y
-  const ketQua = [goiYBuocAI[0], goiYBuocAI[1]];
+  // Lan tao lai thu n: giu 2 goi y goc cua chinh ticket nay, thay 3 goi y con lai
+  // bang kho goi y bo sung de danh sach van sat voi thiet bi dang sua
+  const ketQua = [];
+  ketQua.push(goiYTheoTicket[0]);
+  if (goiYTheoTicket.length > 1) {
+    ketQua.push(goiYTheoTicket[1]);
+  }
   for (let i = 0; i < 3; i++) {
     ketQua.push(khoGoiYThem[(soLan * 3 + i) % khoGoiYThem.length]);
   }
@@ -1975,6 +2144,14 @@ function hoanThanhXuLy() {
     return;
   }
 
+  // Dieu kien 2: khong cho phep hoan thanh lai neu da hoan thanh
+  // (daHoanThanh() duoc kiem tra o dau ham, nhung kiem tra lai de phong ngu
+  //  truong hop trang thai thay doi giua khi nguoi dung giu nut bam)
+  if (daHoanThanh()) {
+    hienThongBao("Ticket " + maTicketDangSua + " đã được hoàn thành trước đó.");
+    return;
+  }
+
   // Dieu kien 2: tat ca cac buoc phai duoc danh dau da xong
   let soChuaXong = 0;
   for (let i = 0; i < danhSachBuocChecklist.length; i++) {
@@ -2005,48 +2182,58 @@ function hoanThanhXuLy() {
   if (!dongY) return;
 
   // Chot so lieu truoc khi doi trang thai
+  duLieuTicketDangSua.giayDaXuLy = layGiayDaXuLy();
   duLieuTicketDangSua.thoiGianXuLy = tinhSoGioXuLy();
   duLieuTicketDangSua.ghiChu = ghiChuHienTai;
   duLieuTicketDangSua.thoiDiemHoanThanh = new Date().toLocaleString("vi-VN");
   duLieuTicketDangSua.trangThai = "Hoàn thành";
+  duLieuTicketDangSua.statusCode = "completed";
   duLieuTicketDangSua.batDau = 0;
 
   luuDuLieuDangSua();
   dungDongHoXuLy();
+  capNhatDongHo();
   capNhatNhanTrangThai();
-  capNhatTrangThaiNut();
+  // Ve lai checklist de checkbox va bieu tuong sua-xoa bi khoa ngay, khong doi tai trang
+  hienThiChecklistXuLy();
   capNhatTrangThaiGhiChu("Đã chốt ghi chú khi hoàn thành");
   hienThongBao("Đã hoàn thành ticket " + maTicketDangSua + ". Đang mở Lịch sử sửa chữa…");
 
   // Cho nguoi dung kip doc thong bao roi moi chuyen trang
   setTimeout(function () {
-    window.location.href = "trang-03-lich-su.html";
+    window.location.href = "history.html";
   }, 900);
 }
 
 function khoiTaoDangSua() {
-  // Doc ticket ma nguoi dung vua chon o trang Hang doi (neu co)
-  const ticketDangXuLy = docTicketDangXuLy();
+  // Ưu tiên mã trên URL, sau đó mới dùng ticket đã lưu từ trang Hàng đợi.
+  const maTrenUrl = new URLSearchParams(window.location.search).get("ticket");
+  const ticketDaLuu = docTicketDangXuLy();
+  const maDuocChon = maTrenUrl || (ticketDaLuu ? ticketDaLuu.ma : "TK-2025-001");
+  const ticketDangXuLy = layTicketTheoMa(maDuocChon);
 
-  if (ticketDangXuLy) {
-    maTicketDangSua = ticketDangXuLy.ma;
-    capNhatThongTinDangSua(ticketDangXuLy);
-    hienThongBao("Đang xử lý: " + ticketDangXuLy.ma + " · " + ticketDangXuLy.maThietBi);
-  } else {
-    // Chua tung chon ticket nao: giu nguyen noi dung mac dinh TK-2025-001 / thiet bi AC-023
-    maTicketDangSua = "TK-2025-001";
-    const ticketMacDinh = layTicketTheoMa(maTicketDangSua);
-    if (ticketMacDinh !== null) {
-      capNhatThongTinDangSua(ticketMacDinh);
-    }
-    hienThiLichSuThietBi("AC-023");
+  if (ticketDangXuLy === null) {
+    maTicketDangSua = maDuocChon;
+    const oTieuDe = document.getElementById("tieuDeDangSua");
+    const oMoTa = document.getElementById("moTaSuCo");
+    if (oTieuDe) oTieuDe.textContent = "Không tìm thấy ticket";
+    if (oMoTa) oMoTa.textContent = "Mã ticket không hợp lệ hoặc ticket không còn tồn tại.";
+    hienThongBao("Không tìm thấy ticket: " + maDuocChon);
+    return;
   }
+
+  maTicketDangSua = ticketDangXuLy.ma;
+  capNhatThongTinDangSua(ticketDangXuLy);
+  hienThongBao("Đang xử lý: " + ticketDangXuLy.ma + " · " + ticketDangXuLy.maThietBi);
 
   // Nap du lieu da luu cua ticket (checklist, ghi chu, trang thai, dong ho)
   duLieuTicketDangSua = docDuLieuTicket(maTicketDangSua);
   if (duLieuTicketDangSua === null) {
-    duLieuTicketDangSua = taoDuLieuTicketMacDinh(layTicketTheoMa(maTicketDangSua));
+    duLieuTicketDangSua = taoDuLieuTicketMacDinh(ticketDangXuLy);
     luuDuLieuTicket(maTicketDangSua, duLieuTicketDangSua);
+  }
+  if (!duLieuTicketDangSua.statusCode) {
+    duLieuTicketDangSua.statusCode = duLieuTicketDangSua.trangThai === "Hoàn thành" ? "completed" : "in_progress";
   }
 
   danhSachBuocChecklist = duLieuTicketDangSua.checklist;
@@ -2068,7 +2255,9 @@ function khoiTaoDangSua() {
   }
 
   // Vao trang Dang sua tuc la ticket da duoc nhan: bo trang thai "Chờ nhận" va luu lai
-  danhDauDaNhanTicket();
+  if (!daHoanThanh()) {
+    danhDauDaNhanTicket();
+  }
   luuDuLieuDangSua();
   capNhatNhanTrangThai();
   hienThiChecklistXuLy();

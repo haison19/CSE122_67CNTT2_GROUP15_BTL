@@ -20,11 +20,52 @@
   --mau-trung-binh: #2563eb;
   --mau-thap: #5b6b82;
 
+  /* Màu nền phụ: hover, dòng bảng, cột kanban, ô nhập... */
+  --mau-nen-phu: #f2f5f9;
+  --mau-nen-nhat: #f7f9fc;
+  --mau-nen-nhat-2: #e8edf5;
+  --mau-nen-xanh-nhat: #dce6f5;
+
+  /* Màu nhấn phụ */
+  --mau-khan-dam: #b7271d;
+  --mau-xanh-dam: #1d4fd8;
+  --mau-vien-dam: #c6d6ee;
+  --mau-mui-ten: #b7c2d1;
+
+  /* Xanh lá (hoàn thành / đúng hạn) */
+  --mau-la: #1b8a4b;
+  --mau-la-dam: #16713e;
+  --mau-la-nhat: #dcf6e5;
+  --mau-la-vien: #b9e6c9;
+
+  /* Đỏ (khẩn cấp / lỗi) */
+  --mau-do-dam: #c0392b;
+  --mau-do-nhat: #fdecec;
+  --mau-do-nhat-hover: #fbdedd;
+  --mau-do-nhat-dam: #fbd5d2;
+  --mau-do-vien: #f7c9c9;
+  --mau-lo: #b42318;
+  --mau-lo-nen: #fff1f0;
+
+  /* Cam (mức cao) */
+  --mau-cam-nhat: #fff2df;
+  --mau-cam-nhat-dam: #ffedcf;
+
+  /* Tím (gợi ý AI) */
+  --mau-tim: #7c3aed;
+  --mau-tim-nhat: #ede4ff;
+  --mau-tim-vien: #e4d9fb;
+  --mau-tim-nen: #f3edff;
+  --mau-tim-vien-dam: #ddd0fb;
+
   /* Kích thước */
   --ban-kinh: 16px;
   --ban-kinh-nho: 10px;
   --rong-sidebar: 260px;
   --bong-the: 0 6px 18px rgba(16, 36, 62, 0.06);
+
+  /* Thanh cuon va control mac dinh cua trinh duyet theo dung che do mau */
+  color-scheme: light;
 }
 
 * {
@@ -173,7 +214,7 @@ button {
   gap: 10px;
   padding: 11px 16px;
   border-radius: 12px;
-  background: #f2f5f9;
+  background: var(--mau-nen-phu);
   color: var(--mau-chu-phu);
 }
 
@@ -215,7 +256,7 @@ button {
 }
 
 .nut-bieu-tuong:hover {
-  background: #f2f5f9;
+  background: var(--mau-nen-phu);
 }
 
 .nut-bieu-tuong svg {
@@ -225,6 +266,20 @@ button {
 
 .nut-menu {
   display: none;
+}
+
+/* Nút chuyển chế độ sáng / tối: đang ở chế độ sáng thì hiện mặt trăng,
+   đang ở chế độ tối thì hiện mặt trời (bảng màu xem khối cuối file) */
+.nut-giao-dien .bieu-tuong-toi {
+  display: none;
+}
+
+html[data-giao-dien="toi"] .nut-giao-dien .bieu-tuong-sang {
+  display: none;
+}
+
+html[data-giao-dien="toi"] .nut-giao-dien .bieu-tuong-toi {
+  display: block;
 }
 
 /* Chấm đỏ báo thông báo */
@@ -237,14 +292,14 @@ button {
   height: 8px;
   border-radius: 50%;
   background: var(--mau-khan);
-  border: 2px solid #ffffff;
+  border: 2px solid var(--mau-the);
 }
 
 .anh-dai-dien {
   width: 42px;
   height: 42px;
   border-radius: 50%;
-  background: #dce6f5;
+  background: var(--mau-nen-xanh-nhat);
   color: var(--mau-navy);
   font-size: 14px;
   font-weight: 600;
@@ -305,12 +360,12 @@ button {
 }
 
 .nut-trang-thai:hover {
-  background: #f2f5f9;
+  background: var(--mau-nen-phu);
 }
 
 .nut-trang-thai.dang-chon {
-  background: #dcf6e5;
-  color: #1b8a4b;
+  background: var(--mau-la-nhat);
+  color: var(--mau-la);
   font-weight: 600;
 }
 
@@ -362,7 +417,7 @@ button {
 }
 
 .bieu-tuong-cam {
-  background: #fff2df;
+  background: var(--mau-cam-nhat);
   color: var(--mau-cao);
 }
 
@@ -372,12 +427,12 @@ button {
 }
 
 .bieu-tuong-xanh-la {
-  background: #dcf6e5;
-  color: #1b8a4b;
+  background: var(--mau-la-nhat);
+  color: var(--mau-la);
 }
 
 .bieu-tuong-xam {
-  background: #eef2f8;
+  background: var(--mau-nen-nhat-2);
   color: var(--mau-thap);
 }
 
@@ -428,7 +483,7 @@ button {
   gap: 16px;
   padding: 16px;
   border-radius: 12px;
-  background: #f7f9fc;
+  background: var(--mau-nen-nhat);
   cursor: pointer;
 }
 
@@ -437,16 +492,16 @@ button {
 }
 
 .dong-viec:hover {
-  background: #eef2f9;
+  background: var(--mau-nen-nhat-2);
 }
 
 /* Dòng mức Khẩn được tô nền đỏ nhạt như ảnh mẫu */
 .dong-khan {
-  background: #fdecec;
+  background: var(--mau-do-nhat);
 }
 
 .dong-khan:hover {
-  background: #fbdedd;
+  background: var(--mau-do-nhat-hover);
 }
 
 .gio {
@@ -485,12 +540,12 @@ button {
 }
 
 .muc-khan {
-  background: #fbd5d2;
+  background: var(--mau-do-nhat-dam);
   color: var(--mau-khan);
 }
 
 .muc-cao {
-  background: #ffedcf;
+  background: var(--mau-cam-nhat-dam);
   color: var(--mau-cao);
 }
 
@@ -500,7 +555,7 @@ button {
 }
 
 .muc-thap {
-  background: #eaeff6;
+  background: var(--mau-nen-nhat-2);
   color: var(--mau-thap);
 }
 
@@ -508,8 +563,8 @@ button {
 .mui-ten {
   width: 8px;
   height: 8px;
-  border-top: 2px solid #b7c2d1;
-  border-right: 2px solid #b7c2d1;
+  border-top: 2px solid var(--mau-mui-ten);
+  border-right: 2px solid var(--mau-mui-ten);
   transform: rotate(45deg);
   flex-shrink: 0;
 }
@@ -518,7 +573,7 @@ button {
   padding: 20px;
   text-align: center;
   color: var(--mau-chu-phu);
-  background: #f7f9fc;
+  background: var(--mau-nen-nhat);
   border-radius: 12px;
 }
 
@@ -545,7 +600,7 @@ button {
   width: 100%;
   max-width: 34px;
   border-radius: 8px 8px 4px 4px;
-  background: #dce6f8;
+  background: var(--mau-nen-xanh-nhat);
 }
 
 .cot.hien-tai {
@@ -573,8 +628,8 @@ button {
 }
 
 .nhan-xanh-la {
-  background: #dcf6e5;
-  color: #1b8a4b;
+  background: var(--mau-la-nhat);
+  color: var(--mau-la);
 }
 
 .nhan-xanh {
@@ -632,7 +687,7 @@ button {
   height: 34px;
   border: none;
   border-radius: 10px;
-  background: #f2f5f9;
+  background: var(--mau-nen-phu);
   font-size: 20px;
   line-height: 1;
   color: var(--mau-chu);
@@ -680,7 +735,7 @@ button {
 }
 
 .nut-chinh:hover {
-  background: #1d4fd8;
+  background: var(--mau-xanh-dam);
 }
 
 /* ====== Hộp thông báo nhỏ (toast) ====== */
@@ -713,104 +768,6 @@ button {
   inset: 0;
   background: rgba(16, 36, 62, 0.4);
   z-index: 50;
-}
-
-/* =========================================================
-   Responsive
-   ========================================================= */
-
-/* Tablet: thống kê 2 cột, danh sách và biểu đồ xếp dọc */
-@media (max-width: 1100px) {
-  .luoi-thong-ke {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .luoi-noi-dung {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-/* Điện thoại: sidebar thành ngăn kéo trượt */
-@media (max-width: 900px) {
-  .thanh-ben {
-    position: fixed;
-    left: -280px;
-    top: 0;
-    z-index: 60;
-    transition: left 0.25s;
-  }
-
-  body.mo-thanh-ben .thanh-ben {
-    left: 0;
-  }
-
-  body.mo-thanh-ben .nen-phu {
-    display: block;
-  }
-
-  .nut-menu {
-    display: flex;
-  }
-
-  .thanh-tren {
-    padding: 0 16px;
-    height: 70px;
-  }
-
-  .ten-nguoi-dung {
-    display: none;
-  }
-
-  .noi-dung {
-    padding: 20px 16px;
-  }
-
-  .loi-chao {
-    font-size: 23px;
-  }
-}
-
-/* Điện thoại nhỏ: thống kê 1 cột, dòng việc gói lại */
-@media (max-width: 560px) {
-  .luoi-thong-ke {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .khu-chao {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .chon-trang-thai {
-    justify-content: space-between;
-  }
-
-  .nut-trang-thai {
-    flex: 1;
-  }
-
-  .the {
-    padding: 18px;
-  }
-
-  .dong-viec {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .thong-tin-viec {
-    flex-basis: 100%;
-    order: 2;
-  }
-
-  .the-muc-do {
-    margin-left: auto;
-    order: 3;
-  }
-
-  .mui-ten {
-    order: 4;
-  }
 }
 
 /* =========================================================
@@ -884,7 +841,7 @@ a {
 }
 
 .nut-che-do:hover {
-  background: #f2f5f9;
+  background: var(--mau-nen-phu);
 }
 
 .nut-che-do.dang-chon {
@@ -960,7 +917,7 @@ a {
 }
 
 .nut-phu:hover {
-  background: #f2f5f9;
+  background: var(--mau-nen-phu);
 }
 
 .nut-phu svg,
@@ -981,7 +938,7 @@ a {
 }
 
 .nut-de:hover {
-  background: #f2f5f9;
+  background: var(--mau-nen-phu);
   color: var(--mau-chu);
 }
 
@@ -997,7 +954,23 @@ a {
 }
 
 .nut-do:hover {
-  background: #b7271d;
+  background: var(--mau-khan-dam);
+}
+
+.thong-bao-loi {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--mau-lo-nen);
+  color: var(--mau-lo);
+  font-size: 14px;
+}
+
+button:disabled,
+textarea:disabled,
+input:disabled {
+  cursor: not-allowed;
+  opacity: 0.6;
 }
 
 .nut-vua {
@@ -1023,8 +996,8 @@ a {
 }
 
 .nhan-tim {
-  background: #ede4ff;
-  color: #7c3aed;
+  background: var(--mau-tim-nhat);
+  color: var(--mau-tim);
 }
 
 .nhan-so {
@@ -1046,7 +1019,7 @@ a {
   text-align: left;
   font-size: 13px;
   color: var(--mau-chu-phu);
-  background: #f7f9fc;
+  background: var(--mau-nen-nhat);
   white-space: nowrap;
 }
 
@@ -1057,7 +1030,7 @@ a {
 }
 
 .bang tbody tr:hover {
-  background: #f7f9fc;
+  background: var(--mau-nen-nhat);
 }
 
 .ma-ticket {
@@ -1092,7 +1065,7 @@ a {
   margin-top: 8px;
   font-size: 13px;
   font-weight: 600;
-  color: #1b8a4b;
+  color: var(--mau-la);
 }
 
 /* ===== TRANG 01 - HANG DOI ===== */
@@ -1110,7 +1083,7 @@ a {
 }
 
 .cot-kenh {
-  background: #f7f9fc;
+  background: var(--mau-nen-nhat);
   border: 1px solid var(--mau-vien);
   border-radius: var(--ban-kinh);
   padding: 16px;
@@ -1138,7 +1111,7 @@ a {
 }
 
 .the-ticket:hover {
-  border-color: #c6d6ee;
+  border-color: var(--mau-vien-dam);
 }
 
 .dong-giua {
@@ -1252,7 +1225,7 @@ a {
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #7c3aed;
+  color: var(--mau-tim);
 }
 
 .tieu-de-ai svg {
@@ -1275,13 +1248,13 @@ a {
   padding: 12px 14px;
   border: 1px solid var(--mau-vien);
   border-radius: 10px;
-  background: #f7f9fc;
+  background: var(--mau-nen-nhat);
   margin-bottom: 10px;
 }
 
 .dong-buoc.da-xong {
-  background: #dcf6e5;
-  border-color: #b9e6c9;
+  background: var(--mau-la-nhat);
+  border-color: var(--mau-la-vien);
 }
 
 .dong-buoc input[type="checkbox"] {
@@ -1313,7 +1286,7 @@ a {
 }
 
 .dau-keo {
-  color: #b7c2d1;
+  color: var(--mau-mui-ten);
   font-size: 15px;
   cursor: grab;
   user-select: none;
@@ -1334,7 +1307,7 @@ a {
 }
 
 .nut-nho-bieu-tuong:hover {
-  background: #e8edf5;
+  background: var(--mau-nen-nhat-2);
   color: var(--mau-chu);
 }
 
@@ -1358,7 +1331,7 @@ a {
 }
 
 .nut-them-buoc:hover {
-  background: #f2f5f9;
+  background: var(--mau-nen-phu);
 }
 
 .nut-them-buoc svg {
@@ -1392,8 +1365,8 @@ a {
   gap: 10px;
   padding: 9px 12px;
   border-radius: 9px;
-  background: #ffffff;
-  border: 1px solid #e4d9fb;
+  background: var(--mau-the);
+  border: 1px solid var(--mau-tim-vien);
   font-size: 14px;
 }
 
@@ -1406,8 +1379,8 @@ a {
   height: 22px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: #ede4ff;
-  color: #7c3aed;
+  background: var(--mau-tim-nhat);
+  color: var(--mau-tim);
   font-size: 12px;
   font-weight: 700;
   display: flex;
@@ -1434,9 +1407,9 @@ a {
   margin-top: 10px;
   padding: 10px 14px;
   border-radius: 9px;
-  background: #fdeaea;
-  border: 1px solid #f7c9c9;
-  color: #c0392b;
+  background: var(--mau-do-nhat);
+  border: 1px solid var(--mau-do-vien);
+  color: var(--mau-do-dam);
   font-size: 13.5px;
   font-weight: 600;
 }
@@ -1457,11 +1430,11 @@ a {
 }
 
 .nut-hoan-thanh {
-  background: #1b8a4b;
+  background: var(--mau-la);
 }
 
 .nut-hoan-thanh:hover {
-  background: #16713e;
+  background: var(--mau-la-dam);
 }
 
 .nut-chinh:disabled,
@@ -1483,7 +1456,7 @@ a {
   height: 118px;
   flex-shrink: 0;
   border-radius: 50%;
-  background: conic-gradient(var(--mau-xanh) 0% 60%, #dce6f8 60% 100%);
+  background: conic-gradient(var(--mau-xanh) 0% 60%, var(--mau-nen-xanh-nhat) 60% 100%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1559,12 +1532,12 @@ a {
 }
 
 .ket-qua-som {
-  color: #1b8a4b;
+  color: var(--mau-la);
   font-weight: 600;
 }
 
 .ket-qua-tre {
-  color: #c0392b;
+  color: var(--mau-do-dam);
   font-weight: 600;
 }
 
@@ -1598,7 +1571,7 @@ a {
   align-items: center;
   padding: 13px 14px;
   border-radius: 10px;
-  background: #f7f9fc;
+  background: var(--mau-nen-nhat);
   font-weight: 600;
   font-size: 14px;
 }
@@ -1622,7 +1595,7 @@ a {
 }
 
 .muc-mau:hover {
-  background: #f2f5f9;
+  background: var(--mau-nen-phu);
 }
 
 .muc-mau.dang-chon {
@@ -1639,9 +1612,9 @@ a {
 .hop-ai {
   margin: 18px 0;
   padding: 16px;
-  border: 1px solid #ddd0fb;
+  border: 1px solid var(--mau-tim-vien-dam);
   border-radius: 12px;
-  background: #f3edff;
+  background: var(--mau-tim-nen);
 }
 
 .dong-ai {
@@ -1649,7 +1622,7 @@ a {
   align-items: center;
   gap: 8px;
   font-weight: 600;
-  color: #7c3aed;
+  color: var(--mau-tim);
   margin-bottom: 6px;
 }
 
@@ -1690,7 +1663,7 @@ a {
 .thanh-tien-do {
   height: 9px;
   border-radius: 999px;
-  background: #e8edf5;
+  background: var(--mau-nen-nhat-2);
   overflow: hidden;
 }
 
@@ -1723,75 +1696,109 @@ a {
 }
 
 /* =========================================================
-   Responsive bo sung
+   CHE DO SANG / TOI
+   Bat tat bang thuoc tinh data-giao-dien tren the <html>:
+     <html data-giao-dien="sang">   giao dien sang (mac dinh)
+     <html data-giao-dien="toi">    giao dien toi
+   Script trong <head> cua tung trang dat thuoc tinh nay truoc khi
+   ve khung hinh dau tien (tranh nhay mau), script.js lo phan bam nut
+   va luu lua chon vao localStorage (khoa "fixflowGiaoDien").
+
+   Chi can dinh nghia lai cac bien mau o :root, khong lap lai style
+   cua tung thanh phan -> ca 6 trang tu doi mau theo.
    ========================================================= */
 
-/* May tinh bang: hang doi va cac luoi 3 cot xep lai */
-@media (max-width: 1280px) {
-  .luoi-hang-doi {
-    grid-template-columns: minmax(0, 1fr);
-  }
+html[data-giao-dien="toi"] {
+  /* Thanh cuon va control mac dinh (select, checkbox...) dung tong toi */
+  color-scheme: dark;
 
-  .khung-chi-tiet {
-    position: static;
-  }
+  /* Nen va chu */
+  --mau-navy: #0b1220;
+  --mau-navy-dam: #060b14;
+  --mau-nen: #0d1523;
+  --mau-the: #151f31;
+  --mau-vien: #24334a;
+  --mau-chu: #e8eefb;
+  --mau-chu-phu: #94a5be;
 
-  .luoi-3-cot,
-  .luoi-3-cot-hang {
-    grid-template-columns: minmax(0, 1fr);
-  }
+  /* Mau nhan */
+  --mau-xanh: #4b8bf5;
+  --mau-xanh-nhat: rgba(75, 139, 245, 0.18);
+  --mau-khan: #ff7b6e;
+  --mau-khan-dam: #e75c4f;
+  --mau-cao: #ffab3d;
+  --mau-trung-binh: #6ba2ff;
+  --mau-thap: #9dabc2;
+
+  /* Nen phu */
+  --mau-nen-phu: #1b2739;
+  --mau-nen-nhat: #182337;
+  --mau-nen-nhat-2: #212f45;
+  --mau-nen-xanh-nhat: #24344d;
+
+  --mau-xanh-dam: #7ab0ff;
+  --mau-vien-dam: #35507a;
+  --mau-mui-ten: #4d6183;
+
+  /* Xanh la */
+  --mau-la: #4ad489;
+  --mau-la-dam: #37b972;
+  --mau-la-nhat: rgba(74, 212, 137, 0.16);
+  --mau-la-vien: rgba(74, 212, 137, 0.38);
+
+  /* Do */
+  --mau-do-dam: #ff9d94;
+  --mau-do-nhat: rgba(255, 123, 110, 0.14);
+  --mau-do-nhat-hover: rgba(255, 123, 110, 0.22);
+  --mau-do-nhat-dam: rgba(255, 123, 110, 0.28);
+  --mau-do-vien: rgba(255, 123, 110, 0.35);
+  --mau-lo: #ff9d94;
+  --mau-lo-nen: rgba(255, 123, 110, 0.13);
+
+  /* Cam */
+  --mau-cam-nhat: rgba(255, 171, 61, 0.16);
+  --mau-cam-nhat-dam: rgba(255, 171, 61, 0.24);
+
+  /* Tim */
+  --mau-tim: #b79dff;
+  --mau-tim-nhat: rgba(150, 108, 255, 0.22);
+  --mau-tim-vien: rgba(150, 108, 255, 0.32);
+  --mau-tim-nen: rgba(150, 108, 255, 0.13);
+  --mau-tim-vien-dam: rgba(150, 108, 255, 0.42);
+
+  --bong-the: 0 6px 18px rgba(0, 0, 0, 0.42);
 }
 
-@media (max-width: 1100px) {
-  .khung-kenh {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  /* minmax(0, 1fr) chu khong phai 1fr: 1fr co min-content tu dong,
-     nen bang .bang (min-width: 680px) se day cot rong ra va lam tran ngang trang */
-  .luoi-2-cot {
-    grid-template-columns: minmax(0, 1fr);
-  }
+/* Vai chi tiet can chinh rieng cho nen toi (do tuong phan cua chu / nut) */
+html[data-giao-dien="toi"] .thanh-ben {
+  border-right: 1px solid var(--mau-vien);
 }
 
-/* Dien thoai */
-@media (max-width: 900px) {
-  .ten-trang {
-    font-size: 24px;
-  }
-
-  .khung-loc .o-chon {
-    width: 100%;
-  }
-
-  .khung-loc .nut-de {
-    width: 100%;
-    text-align: center;
-    background: #f2f5f9;
-  }
+html[data-giao-dien="toi"] .anh-dai-dien {
+  color: #cfe0ff;
 }
 
-@media (max-width: 560px) {
-  .nhom-che-do {
-    width: 100%;
-  }
+html[data-giao-dien="toi"] .thong-bao {
+  background: #24334a;
+}
 
-  .nut-che-do {
-    flex: 1;
-    justify-content: center;
-  }
+html[data-giao-dien="toi"] .nut-do {
+  background: #c8402f;
+}
 
-  .hang-nut .nut-chinh,
-  .hang-nut .nut-phu,
-  .hang-nut .nut-do,
-  .hang-nut .nut-de {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-  }
+html[data-giao-dien="toi"] .nut-hoan-thanh {
+  background: #1f9d57;
+}
 
-  .khung-vong {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+html[data-giao-dien="toi"] .nut-hoan-thanh:hover {
+  background: #1b8a4b;
+}
+
+html[data-giao-dien="toi"] .nen-mo {
+  background: rgba(0, 0, 0, 0.6);
+}
+
+/* Doi mau mem khi bam nut chuyen che do */
+body {
+  transition: background-color 0.25s, color 0.25s;
 }

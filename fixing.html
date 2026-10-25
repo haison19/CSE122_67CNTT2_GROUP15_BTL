@@ -8,7 +8,26 @@
   <!-- TRANG 02: DANG SUA - XU LY SU CO (theo hinh anh mau 02) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Ap dung che do sang/toi truoc khi ve trang de khong bi nhay mau -->
+  <script>
+    (function () {
+      var giaoDien = "sang";
+      try {
+        var daLuu = localStorage.getItem("fixflowGiaoDien");
+        if (daLuu === "toi" || daLuu === "sang") {
+          giaoDien = daLuu;
+        } else if (window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches) {
+          giaoDien = "toi";
+        }
+      } catch (loi) {
+        // Trinh duyet chan localStorage -> giu mac dinh la che do sang
+      }
+      document.documentElement.setAttribute("data-giao-dien", giaoDien);
+    })();
+  </script>
+
   <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
 </head>
 
 <body>
@@ -36,35 +55,35 @@
           Tổng quan
         </a>
 
-        <a class="muc-menu" href="trang-01-hang-doi.html">
+        <a class="muc-menu" href="queue.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/>
           </svg>
           Hàng đợi
         </a>
 
-        <a class="muc-menu dang-chon" href="trang-02-dang-sua.html">
+        <a class="muc-menu dang-chon" href="fixing.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
           </svg>
           Đang sửa
         </a>
 
-        <a class="muc-menu" href="trang-03-lich-su.html">
+        <a class="muc-menu" href="history.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
           </svg>
           Lịch sử
         </a>
 
-        <a class="muc-menu" href="trang-04-checklist.html">
+        <a class="muc-menu" href="checklist.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
             <path d="M9 11l2 2 4-4"/><rect x="3" y="4" width="18" height="16" rx="2.5"/>
           </svg>
           Checklist
         </a>
 
-        <a class="muc-menu" href="trang-05-thong-ke.html">
+        <a class="muc-menu" href="analytics.html">
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
             <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
           </svg>
@@ -99,28 +118,40 @@
         </label>
 
         <div class="ben-phai-thanh-tren">
+          <button class="nut-bieu-tuong nut-giao-dien" id="nutGiaoDien" type="button"
+                  aria-label="Chuyển chế độ sáng/tối" aria-pressed="false"
+                  title="Chuyển sang chế độ tối">
+            <svg class="bieu-tuong-sang" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+            </svg>
+            <svg class="bieu-tuong-toi" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4.2"/>
+              <path d="M12 2.6v2.2M12 19.2v2.2M4.3 4.3l1.6 1.6M18.1 18.1l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.3 19.7l1.6-1.6M18.1 5.9l1.6-1.6"/>
+            </svg>
+          </button>
           <button class="nut-bieu-tuong co-cham-do" id="nutThongBao" aria-label="Thông báo">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
               <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>
             </svg>
           </button>
-          <span class="anh-dai-dien" id="anhDaiDien">TB</span>
-          <!-- Anh mau 02 hien "Trần Thị B" nen dung data-ten-khac -->
-          <span class="ten-nguoi-dung" id="tenNguoiDung" data-ten-khac="Trần Thị B">Trần Thị B</span>
+          <span class="anh-dai-dien" id="anhDaiDien">BQ</span>
+          <span class="ten-nguoi-dung" id="tenNguoiDung">Bùi Huy Quân</span>
         </div>
       </header>
 
       <main class="noi-dung">
 
         <!-- Duong dan + tieu de -->
-        <p class="duong-dan"><a href="trang-02-dang-sua.html">Đang sửa</a> / TK-2025-001</p>
+        <p class="duong-dan"><a href="fixing.html">Đang sửa</a> / <span id="duongDanMa">TK-2025-001</span></p>
 
         <section class="khu-tieu-de-trang">
           <div>
-            <h2 class="ten-trang">Máy lạnh phòng 101 không mát</h2>
-            <p class="phu-de-trang">TK-2025-001 · AC-023 · Ưu tiên cao</p>
+            <h2 class="ten-trang" id="tieuDeDangSua">Máy lạnh không mát</h2>
+            <p class="phu-de-trang" id="phuDeDangSua">TK-2025-001 · AC-023 · Ưu tiên cao</p>
           </div>
-          <span class="the-muc-do muc-trung-binh">Đang xử lý</span>
+          <span class="the-muc-do muc-trung-binh" id="nhanMucDoDangSua">Đang xử lý</span>
         </section>
 
         <div class="luoi-2-cot">
@@ -129,9 +160,11 @@
             <article class="the">
               <div class="dau-the">
                 <h3 class="tieu-de-the">Thông tin sự cố</h3>
-                <span class="ghi-chu">Phòng 101 – Tòa A</span>
+                <span class="ghi-chu" id="viTriSuCo">Phòng 101</span>
               </div>
-              <p class="mo-ta-su-co">Máy chạy có gió nhưng không mát; xuất hiện tiếng rung nhẹ từ dàn lạnh.</p>
+              <p class="mo-ta-su-co" id="moTaSuCo">Máy vẫn chạy, có gió nhưng không làm lạnh. Có tiếng rung nhẹ.</p>
+              <div class="dong-thong-so"><span>Thiết bị</span><strong id="thietBiSuCo">AC-023</strong></div>
+              <div class="dong-thong-so"><span>Người yêu cầu</span><strong id="nguoiYeuCauSuCo">Nguyễn Văn A</strong></div>
             </article>
 
             <!-- Checklist AI -->
@@ -144,10 +177,22 @@
                   </svg>
                   Checklist AI đề xuất
                 </h3>
-                <span class="nhan nhan-tim">85% tin cậy</span>
+                <span class="nhan nhan-tim" id="nhanDoTinCay">85% tin cậy</span>
+              </div>
+
+              <p class="ghi-chu trang-thai-goi-y" id="trangThaiGoiYAI">Chưa áp dụng gợi ý nào.</p>
+
+              <!-- Hop goi y AI: hien khi chua ap dung (hoac vua bam "Tao lai") -->
+              <div id="hopGoiYAI">
+                <div class="dau-hop-goi-y">
+                  <p class="dong-ai">Gợi ý cho ticket này</p>
+                  <span class="nhan nhan-xanh" id="soGoiY">0 bước</span>
+                </div>
+                <ul class="danh-sach-goi-y" id="danhSachGoiYAI"></ul>
               </div>
 
               <ul class="danh-sach-buoc" id="danhSachBuocXuLy"></ul>
+              <p class="thong-bao-loi" id="loiChecklist" hidden></p>
 
               <button class="nut-them-buoc" id="nutThemBuoc">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
@@ -161,7 +206,7 @@
                 <button class="nut-phu nut-vua" id="nutTaoLai">Tạo lại</button>
                 <button class="nut-de" id="nutTuChoiChecklist">Từ chối</button>
                 <button class="nut-de" id="nutSuaChecklist">Sửa</button>
-                <button class="nut-de" id="nutDungThuCong">Dừng thủ công</button>
+                <button class="nut-de" id="nutDungThuCong">Dùng thủ công</button>
               </div>
             </article>
 
@@ -170,6 +215,9 @@
               <textarea class="o-nhap o-dong o-vung-text" id="ghiChuSuaChua">Đã đo áp suất gas, phát hiện thiếu gas nhẹ. Tiến hành vệ sinh và nạp bổ sung.</textarea>
               <div class="hang-nut">
                 <button class="nut-chinh nut-vua" id="nutLuuGhiChu">Lưu ghi chú</button>
+                <button class="nut-do nut-vua" id="nutTamDung">Tạm dừng</button>
+                <button class="nut-chinh nut-vua" id="nutHoanThanh">Hoàn thành</button>
+                <span class="ghi-chu" id="trangThaiGhiChu">Chưa lưu</span>
               </div>
             </article>
           </div>
@@ -194,8 +242,8 @@
             </article>
 
             <article class="the">
-              <h4 class="tieu-de-the">Lịch sử thiết bị AC-023</h4>
-              <ul class="lich-su-thiet-bi">
+              <h4 class="tieu-de-the" id="tieuDeLichSuThietBi">Lịch sử thiết bị AC-023</h4>
+              <ul class="lich-su-thiet-bi" id="lichSuThietBi">
                 <li>14/08 · Vệ sinh định kỳ</li>
                 <li>03/06 · Thay cảm biến nhiệt</li>
                 <li>22/02 · Nạp gas lạnh</li>

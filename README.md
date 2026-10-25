@@ -29,6 +29,7 @@
    * Thanh tìm kiếm nhanh ticket, thiết bị hoặc người dùng.
    * Chuyển đổi trạng thái làm việc cá nhân (*Rảnh / Bận / Không online*).
    * Thanh điều hướng sidebar truy cập các chức năng: *Hàng đợi, Đang sửa, Lịch sử, Checklist, Thống kê*.
+   * Chuyển đổi giao diện **Sáng / Tối** bằng nút mặt trăng – mặt trời trên thanh trên cùng; lựa chọn được ghi nhớ (`localStorage`) và áp dụng cho cả 6 trang.
 
 ---
 
@@ -37,6 +38,8 @@
 * **Front-end:**
   * `HTML5`: Cấu trúc semantic cho trang web.
   * `CSS3`: Thiết kế giao diện Dashboard hiện đại, linh hoạt với Flexbox & CSS Grid.
+    * `css/style.css`: toàn bộ style dùng chung (biến màu, layout, component) + bảng màu **chế độ tối** qua `html[data-giao-dien="toi"]`.
+    * `css/responsive.css`: các khối `@media` (1280 / 1100 / 900 / 560px), tách riêng cho dễ bảo trì — **luôn nạp sau** `style.css`.
   * `JavaScript`: Xử lý tương tác người dùng và hiển thị dữ liệu/biểu đồ.
 * **Môi trường phát triển:**
   * **Visual Studio Code** với Extension **Live Server**.
@@ -45,6 +48,21 @@
 ---
 
 
+
+---
+
+## 🧪 Kiểm thử
+
+Bộ kiểm thử tự động (Playwright + Microsoft Edge) gồm **35 test** đi hết luồng *Hàng đợi → Đang sửa → Lịch sử*, kiểm tra cả việc lưu dữ liệu bằng `localStorage`:
+
+```powershell
+python -m pip install playwright
+python tests/kiem_thu_ui.py
+```
+
+Kết quả mới nhất: **35/35 PASS** — xem chi tiết cách chạy, bảng kết quả, hạn chế đã biết và checklist kiểm thử thủ công trong [TESTING.md](TESTING.md).
+
+---
 
 * **Figma Design:** [Xem bản thiết kế trên Figma](https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&p=f&t=wgEVbN2wAMDnNZtV-0)
 

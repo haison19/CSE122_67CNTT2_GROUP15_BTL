@@ -1,0 +1,186 @@
+/* =========================================================
+   FIXFLOW - RESPONSIVE
+   Tách từ style.css để dễ bảo trì: file này CHỈ chứa các khối
+   @media (giao diện theo kích thước màn hình).
+
+   BẮT BUỘC nạp SAU style.css trong mọi trang HTML:
+       <link rel="stylesheet" href="css/style.css">
+       <link rel="stylesheet" href="css/responsive.css">
+
+   Các khối được xếp theo bề rộng GIẢM DẦN (1280 -> 1100 -> 900 -> 560).
+   Thứ tự này rất quan trọng: khi một màn hình khớp nhiều khối
+   (ví dụ 500px khớp cả 1100px và 560px) thì khối nằm SAU sẽ thắng.
+   ========================================================= */
+
+/* =========================================================
+   1. MÁY TÍNH BẢNG LỚN / LAPTOP NHỎ (<= 1280px)
+   Hàng đợi và các lưới 3 cột xếp lại
+   ========================================================= */
+
+@media (max-width: 1280px) {
+  .luoi-hang-doi {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .khung-chi-tiet {
+    position: static;
+  }
+
+  .luoi-3-cot,
+  .luoi-3-cot-hang {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* =========================================================
+   2. MÁY TÍNH BẢNG (<= 1100px)
+   Thống kê 2 cột, danh sách + biểu đồ xếp dọc, kênh & lưới 2 cột về 1 cột
+   ========================================================= */
+
+@media (max-width: 1100px) {
+  .luoi-thong-ke {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .luoi-noi-dung {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .khung-kenh {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* minmax(0, 1fr) chu khong phai 1fr: 1fr co min-content tu dong,
+     nen bang .bang (min-width: 680px) se day cot rong ra va lam tran ngang trang */
+  .luoi-2-cot {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* =========================================================
+   3. ĐIỆN THOẠI NGANG / MÁY TÍNH BẢNG DỌC (<= 900px)
+   Sidebar thành ngăn kéo trượt, thu gọn thanh trên, bộ lọc giãn hết bề ngang
+   ========================================================= */
+
+@media (max-width: 900px) {
+  .thanh-ben {
+    position: fixed;
+    left: -280px;
+    top: 0;
+    z-index: 60;
+    transition: left 0.25s;
+  }
+
+  body.mo-thanh-ben .thanh-ben {
+    left: 0;
+  }
+
+  body.mo-thanh-ben .nen-phu {
+    display: block;
+  }
+
+  .nut-menu {
+    display: flex;
+  }
+
+  .thanh-tren {
+    padding: 0 16px;
+    height: 70px;
+  }
+
+  .ten-nguoi-dung {
+    display: none;
+  }
+
+  .noi-dung {
+    padding: 20px 16px;
+  }
+
+  .loi-chao {
+    font-size: 23px;
+  }
+
+  .ten-trang {
+    font-size: 24px;
+  }
+
+  .khung-loc .o-chon {
+    width: 100%;
+  }
+
+  .khung-loc .nut-de {
+    width: 100%;
+    text-align: center;
+    background: #f2f5f9;
+  }
+}
+
+/* =========================================================
+   4. ĐIỆN THOẠI DỌC (<= 560px)
+   Thống kê 1 cột, dòng việc gói lại, các nút giãn hết bề ngang
+   ========================================================= */
+
+@media (max-width: 560px) {
+  .luoi-thong-ke {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .khu-chao {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .chon-trang-thai {
+    justify-content: space-between;
+  }
+
+  .nut-trang-thai {
+    flex: 1;
+  }
+
+  .the {
+    padding: 18px;
+  }
+
+  .dong-viec {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .thong-tin-viec {
+    flex-basis: 100%;
+    order: 2;
+  }
+
+  .the-muc-do {
+    margin-left: auto;
+    order: 3;
+  }
+
+  .mui-ten {
+    order: 4;
+  }
+
+  .nhom-che-do {
+    width: 100%;
+  }
+
+  .nut-che-do {
+    flex: 1;
+    justify-content: center;
+  }
+
+  .hang-nut .nut-chinh,
+  .hang-nut .nut-phu,
+  .hang-nut .nut-do,
+  .hang-nut .nut-de {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .khung-vong {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
