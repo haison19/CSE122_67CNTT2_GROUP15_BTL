@@ -1463,7 +1463,7 @@ function taoDuLieuTicketMacDinh(ticket) {
   }
 
   return {
-    // UI dùng tiếng Việt; statusCode giúp dữ liệu dễ kiểm tra theo yêu cầu đề bài.
+    
     trangThai: ticket ? ticket.trangThai : "Đang xử lý",
     statusCode: ticket && ticket.trangThai === "Hoàn thành" ? "completed" : "in_progress",
     ghiChu: "",
