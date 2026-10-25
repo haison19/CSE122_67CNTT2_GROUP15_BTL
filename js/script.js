@@ -665,7 +665,7 @@ function hienThiThongTinNguoiDung() {
 
   const oDongTruong = document.getElementById("dongTruong");
   if (oDongTruong) {
-    
+
     oDongTruong.textContent = tenVaiTro;
   }
 }
@@ -1378,6 +1378,8 @@ function chuyenCheDoHangDoi(cheDo) {
 }
 
 // CHỨC NĂNG 10: Khởi tạo trang Hàng đợi và thiết lập các sự kiện
+ 
+//hello
 function khoiTaoHangDoi() {
   const oKanban = document.getElementById("khungKanban");
   const oBang = document.getElementById("khungBangHangDoi");
