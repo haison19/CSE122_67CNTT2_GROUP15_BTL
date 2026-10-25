@@ -665,10 +665,11 @@ function hienThiThongTinNguoiDung() {
 
   const oDongTruong = document.getElementById("dongTruong");
   if (oDongTruong) {
+    
     oDongTruong.textContent = tenVaiTro;
   }
 }
-
+//hello
 
 // ---------- CHE DO SANG / TOI (AP DUNG SOM TRUOC KHI VE KHUNG HINH) ----------
 // Che do SANG la che do mac dinh. Neu nguoi dung da chon "toi" truoc do
