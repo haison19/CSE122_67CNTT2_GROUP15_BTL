@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixFlow - Bảng Phân Công</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="21.css">
+<style type="text/tailwindcss">
+    @layer components {
+        .a { @apply bg-slate-50 text-slate-800 antialiased h-screen overflow-hidden; }
+        .b { @apply w-64 bg-[#0B192C] text-slate-300 flex-col justify-between shrink-0 select-none; }
+        .c { @apply h-16 items-center px-6 space-x-3 border-b border-slate-800; }
+        .d { @apply w-8 h-8 rounded-lg bg-blue-600 items-center justify-center text-white font-bold text-lg shadow-md shadow-blue-500/30; }
+        .e { @apply text-xl font-bold tracking-wide text-white; }
+        .f { @apply p-4 mx-3 my-3 bg-slate-800/60 rounded-xl border border-slate-700/50 items-center space-x-3; }
+        .g { @apply w-9 h-9 rounded-lg bg-indigo-500/20 text-indigo-400 items-center justify-center font-semibold text-sm; }
+        .h { @apply overflow-hidden; }
+        .i { @apply text-xs text-slate-400; }
+        .j { @apply text-sm font-medium text-white truncate; }
+        .k { @apply px-3 space-y-1 mt-2; }
+        .l { @apply items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition; }
+        .m { @apply w-5; }
+        .n { @apply items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium bg-blue-600 text-white shadow-lg shadow-blue-600/30 transition; }
+        .o { @apply p-4 border-t border-slate-800; }
+        .p { @apply flex-1 flex-col min-w-0 overflow-hidden; }
+        .q { @apply h-16 bg-white border-b border-slate-200 items-center justify-between px-8 shrink-0; }
+        .r { @apply w-96 relative; }
+        .s { @apply absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm; }
+        .t { @apply w-full bg-slate-50 border border-slate-200 rounded-full pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition; }
+        .u { @apply items-center space-x-4; }
+        .v { @apply w-9 h-9 rounded-full bg-slate-50 border border-slate-200 items-center justify-center text-slate-600 hover:bg-slate-100 transition relative; }
+        .w { @apply text-sm; }
+        .x { @apply absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full; }
+        .y { @apply items-center space-x-3 pl-2 border-l border-slate-200; }
+        .z { @apply w-9 h-9 rounded-full bg-blue-100 text-blue-600 items-center justify-center font-semibold text-sm; }
+        .aa { @apply text-sm font-medium text-slate-700; }
+        .ab { @apply flex-1 overflow-x-auto overflow-y-auto p-8 bg-slate-50 flex-col; }
+        .ac { @apply items-center justify-between mb-6 shrink-0; }
+        .ad { @apply text-2xl font-bold text-slate-800; }
+        .ae { @apply text-sm text-slate-500 mt-0.5; }
+        .af { @apply px-4 py-2 bg-white border border-slate-200 rounded-xl text-sm font-medium text-slate-700 hover:bg-slate-50 transition shadow-sm items-center space-x-2; }
+        .ag { @apply text-xs; }
+        .ah { @apply space-x-6 pb-6 flex-1 items-start; }
+        .ai { @apply w-80 bg-slate-100/70 border border-slate-200/80 rounded-2xl p-4 flex-col shrink-0; }
+        .aj { @apply items-center justify-between mb-4 px-1; }
+        .ak { @apply items-center space-x-2; }
+        .al { @apply font-semibold text-sm text-slate-700; }
+        .am { @apply w-5 h-5 rounded-full bg-amber-500 text-white text-xs items-center justify-center font-bold; }
+        .an { @apply w-2.5 h-2.5 rounded-full bg-amber-500; }
+        .ao { @apply space-y-3 overflow-y-auto flex-1 pr-1 min-h-[200px]; }
+        .ap { @apply bg-white p-4 rounded-xl border border-slate-200/80 shadow-sm hover:shadow-md transition cursor-pointer; }
+        .aq { @apply items-center justify-between mb-2; }
+        .ar { @apply text-xs font-bold text-blue-600 group-hover:underline; }
+        .as { @apply px-2 py-0.5 bg-red-50 text-red-600 text-[11px] font-semibold rounded; }
+        .at { @apply text-sm font-medium text-slate-800 mb-2; }
+        .au { @apply text-xs text-slate-400 mb-3; }
+        .av { @apply items-center justify-between pt-2 border-t border-slate-100 text-xs text-slate-500; }
+        .aw { @apply text-amber-600 font-medium; }
+        .ax { @apply text-slate-300; }
+        .ay { @apply px-2 py-0.5 bg-rose-50 text-rose-600 text-[11px] font-semibold rounded; }
+        .az { @apply text-red-600 font-medium; }
+        .ba { @apply w-5 h-5 rounded-full bg-blue-500 text-white text-xs items-center justify-center font-bold; }
+        .bb { @apply px-2 py-0.5 bg-amber-50 text-amber-600 text-[11px] font-semibold rounded; }
+        .bc { @apply text-slate-600 font-medium; }
+        .bd { @apply w-5 h-5 rounded-full bg-emerald-500 text-white text-xs items-center justify-center font-bold; }
+        .be { @apply w-2.5 h-2.5 rounded-full bg-emerald-500; }
+        .bf { @apply px-2 py-0.5 bg-emerald-50 text-emerald-600 text-[11px] font-semibold rounded; }
+        .bg { @apply w-80 bg-white border border-slate-200/80 rounded-2xl p-4 flex-col shrink-0 shadow-sm; }
+        .bh { @apply font-semibold text-sm text-slate-800; }
+        .bi { @apply space-y-4 overflow-y-auto flex-1 pr-1; }
+        .bj { @apply p-3 bg-slate-50 rounded-xl border border-slate-100 cursor-pointer transition-colors; }
+        .bk { @apply text-sm font-semibold text-slate-800; }
+        .bl { @apply px-2 py-0.5 bg-emerald-50 text-emerald-600 text-xs font-medium rounded-full; }
+        .bm { @apply w-full bg-slate-200 h-2 rounded-full overflow-hidden mb-1; }
+        .bn { @apply bg-blue-600 h-full rounded-full; }
+        .bo { @apply text-[11px] text-slate-400; }
+        .bp { @apply px-2 py-0.5 bg-amber-50 text-amber-600 text-xs font-medium rounded-full; }
+        .bq { @apply bg-amber-500 h-full rounded-full; }
+        .br { @apply fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 justify-end transition-opacity; }
+        .bs { @apply w-[440px] bg-white h-full shadow-2xl flex-col border-l border-slate-200 transform transition-transform duration-300; }
+        .bt { @apply h-16 px-6 border-b border-slate-200 items-center justify-between shrink-0; }
+        .bu { @apply text-base font-bold text-slate-800; }
+        .bv { @apply w-8 h-8 rounded-full items-center justify-center text-slate-400 hover:bg-slate-100 hover:text-slate-600 transition; }
+        .bw { @apply p-6 overflow-y-auto flex-1 space-y-5; }
+        .bx { @apply p-4 bg-emerald-50/70 border border-emerald-200/80 rounded-2xl relative; }
+        .by { @apply items-center space-x-2 text-emerald-700 font-semibold text-xs mb-1; }
+        .bz { @apply text-sm font-bold text-slate-800 mb-0.5; }
+        .ca { @apply text-xs text-slate-600; }
+        .cb { @apply block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2; }
+        .cc { @apply w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500; }
+        .cd { @apply w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-2.5 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 resize-none; }
+        .ce { @apply p-6 border-t border-slate-200 bg-white shrink-0; }
+        .cf { @apply w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-lg shadow-blue-600/30 transition; }
+    }
+</style>
+</head>
+<body class="a flex">
+
+    <!-- SIDEBAR -->
+    <aside class="b flex">
+        <div>
+            <!-- Logo -->
+            <div class="c flex">
+                <div class="d flex">
+                    <span class="logo-nen">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+                            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z" />
+                        </svg>
+                    </span>
+                </div>
+                <span class="e">FixFlow</span>
+            </div>
+
+            <!-- Workspace Profile -->
+            <div class="f flex">
+                <div class="g flex">
+                    TH
+                </div>
+                <div class="h">
+                    <div class="i">Không gian làm việc</div>
+                    <div class="j">Trường Horizon - Quản lý</div>
+                </div>
+            </div>
+
+            <!-- Nav Menu -->
+            <nav class="k">
+                <a href="#" class="l flex">
+                    <i class="m fa-solid fa-chart-pie"></i>
+                    <span>Tổng quan</span>
+                </a>
+                <a href="#" class="l flex">
+                    <i class="m fa-solid fa-ticket"></i>
+                    <span>Quản lý Ticket</span>
+                </a>
+                <a href="#" class="n flex">
+                    <i class="m fa-solid fa-clipboard-list"></i>
+                    <span>Phân công</span>
+                </a>
+                <a href="#" class="l flex">
+                    <i class="m fa-solid fa-shield-halved"></i>
+                    <span>Giám sát SLA</span>
+                </a>
+                <a href="#" class="l flex">
+                    <i class="m fa-solid fa-triangle-exclamation"></i>
+                    <span>Phân tích lỗi</span>
+                </a>
+                <a href="#" class="l flex">
+                    <i class="m fa-solid fa-chart-line"></i>
+                    <span>Báo cáo</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Footer Sidebar -->
+        <div class="o">
+            <a href="#" class="l flex">
+                <i class="m fa-solid fa-circle-question"></i>
+                <span>Trợ giúp 24/7</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="p flex">
+        
+        <!-- HEADER -->
+        <header class="q flex">
+            <div class="r">
+                <i class="s fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Tìm ticket, thiết bị, người dùng..." class="t">
+            </div>
+
+            <div class="u flex">
+                <button class="v flex">
+                    <i class="w fa-regular fa-bell"></i>
+                    <span class="x"></span>
+                </button>
+                <div class="y flex">
+                    <div class="z flex">
+                        NV
+                    </div>
+                    <span class="aa">Nguyễn Văn A</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT CONTAINER -->
+        <main class="ab flex">
+            
+            <!-- PAGE TITLE & ACTIONS -->
+            <div class="ac flex">
+                <div>
+                    <h1 class="ad">Bảng Phân Công</h1>
+                    <p class="ae">Kéo thả ticket để điều phối đội kỹ thuật</p>
+                </div>
+                <button class="af flex">
+                    <i class="ag fa-solid fa-rotate"></i>
+                    <span>Làm mới</span>
+                </button>
+            </div>
+
+            <!-- BOARD CONTENT AREA -->
+            <div class="ah flex">
+                
+                <!-- COLUMN 1: Chờ phân công -->
+                <div class="ai flex">
+                    <div class="aj flex">
+                        <div class="ak flex">
+                            <span class="al">Chờ phân công</span>
+                            <span id="count-col-1" class="am flex">2</span>
+                        </div>
+                        <span class="an"></span>
+                    </div>
+
+                    <!-- Dropzone Container -->
+                    <div class="ao kanban-dropzone" id="col-1" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="dropTicket(event)">
+                        <!-- Ticket Card 1 -->
+                        <div draggable="true" ondragstart="dragStart(event)" onclick="openTicketDetail('TK-2025-001')" id="TK-2025-001" class="ap group">
+                            <div class="aq flex">
+                                <span class="ar">TK-2025-001</span>
+                                <span class="as">Cao</span>
+                            </div>
+                            <div class="at">Máy lạnh không mát</div>
+                            <div class="au">AC-023 • Phòng 101</div>
+                            <div class="av flex">
+                                <span class="aw">Còn 2h 15p</span>
+                                <i class="ax fa-solid fa-grip-vertical"></i>
+                            </div>
+                        </div>
+
+                        <!-- Ticket Card 2 -->
+                        <div draggable="true" ondragstart="dragStart(event)" onclick="openTicketDetail('TK-2025-014')" id="TK-2025-014" class="ap group">
+                            <div class="aq flex">
+                                <span class="ar">TK-2025-014</span>
+                                <span class="ay">Khẩn</span>
+                            </div>
+                            <div class="at">Router mất kết nối</div>
+                            <div class="au">AC-023 • Phòng 101</div>
+                            <div class="av flex">
+                                <span class="az">Còn 45p</span>
+                                <i class="ax fa-solid fa-grip-vertical"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUMN 2: Đã phân công – Đang chờ -->
+                <div class="ai flex">
+                    <div class="aj flex">
+                        <div class="ak flex">
+                            <span class="al">Đã phân công – Đang chờ</span>
+                            <span id="count-col-2" class="ba flex">2</span>
+                        </div>
+                    </div>
+
+                    <!-- Dropzone Container -->
+                    <div class="ao kanban-dropzone" id="col-2" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="dropTicket(event)">
+                        <div draggable="true" ondragstart="dragStart(event)" onclick="openTicketDetail('TK-2025-019')" id="TK-2025-019" class="ap group">
+                            <div class="aq flex">
+                                <span class="ar">TK-2025-019</span>
+                                <span class="bb">Trung bình</span>
+                            </div>
+                            <div class="at">Máy chiếu nhòe màu</div>
+                            <div class="au">AC-023 • Phòng 101</div>
+                            <div class="av flex">
+                                <span class="bc">Còn 22h</span>
+                                <i class="ax fa-solid fa-grip-vertical"></i>
+                            </div>
+                        </div>
+
+                        <div draggable="true" ondragstart="dragStart(event)" onclick="openTicketDetail('TK-2025-022')" id="TK-2025-022" class="ap group">
+                            <div class="aq flex">
+                                <span class="ar">TK-2025-022</span>
+                                <span class="as">Cao</span>
+                            </div>
+                            <div class="at">Rò nước máy lạnh</div>
+                            <div class="au">AC-023 • Phòng 101</div>
+                            <div class="av flex">
+                                <span class="bc">Còn 6h</span>
+                                <i class="ax fa-solid fa-grip-vertical"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- COLUMN 3: Đang xử lý -->
+                <div class="ai flex">
+                    <div class="aj flex">
+                        <div class="ak flex">
+                            <span class="al">Đang xử lý</span>
+                            <span id="count-col-3" class="bd flex">1</span>
+                        </div>
+                        <span class="be"></span>
+                    </div>
+
+                    <!-- Dropzone Container -->
+                    <div class="ao kanban-dropzone" id="col-3" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="dropTicket(event)">
+                        <div draggable="true" ondragstart="dragStart(event)" onclick="openTicketDetail('TK-2025-028')" id="TK-2025-028" class="ap group">
+                            <div class="aq flex">
+                                <span class="ar">TK-2025-028</span>
+                                <span class="bf">Thấp</span>
+                            </div>
+                            <div class="at">Máy in không nhận lệnh</div>
+                            <div class="au">AC-023 • Phòng 101</div>
+                            <div class="av flex">
+                                <span class="bc">Còn 68h</span>
+                                <i class="ax fa-solid fa-grip-vertical"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ĐỘI KỸ THUẬT PANEL -->
+                <div class="bg flex">
+                    <div class="aj flex">
+                        <span class="bh">Đội kỹ thuật</span>
+                    </div>
+
+                    <div class="bi">
+                        <!-- Nhân sự 1 -->
+                        <div class="bj technician-dropzone" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="assignTicketToTechnician(event, 'technician-1')">
+                            <div class="aq flex">
+                                <span class="bk">Trần Thị B</span>
+                                <span class="bl">Rảnh</span>
+                            </div>
+                            <div class="bm">
+                                <div id="technician-1-load-bar" class="bn" style="width: 40%;"></div>
+                            </div>
+                            <div id="technician-1-load" data-load="40" class="bo">Tải công việc 40%</div>
+                        </div>
+
+                        <!-- Nhân sự 2 -->
+                        <div class="bj technician-dropzone" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="assignTicketToTechnician(event, 'technician-2')">
+                            <div class="aq flex">
+                                <span class="bk">Lê Quốc C</span>
+                                <span class="bp">Bận</span>
+                            </div>
+                            <div class="bm">
+                                <div id="technician-2-load-bar" class="bq" style="width: 80%;"></div>
+                            </div>
+                            <div id="technician-2-load" data-load="80" class="bo">Tải công việc 80%</div>
+                        </div>
+
+                        <!-- Nhân sự 3 -->
+                        <div class="bj technician-dropzone" ondragover="allowDrop(event)" ondragleave="removeDropStyle(event)" ondrop="assignTicketToTechnician(event, 'technician-3')">
+                            <div class="aq flex">
+                                <span class="bk">Hoàng Nam</span>
+                                <span class="bl">Rảnh</span>
+                            </div>
+                            <div class="bm">
+                                <div id="technician-3-load-bar" class="bn" style="width: 20%;"></div>
+                            </div>
+                            <div id="technician-3-load" data-load="20" class="bo">Tải công việc 20%</div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- TICKET DETAIL / DISPATCH MODAL DRAWER (RIGHT PANEL) -->
+    <div id="ticketModal" class="br hidden flex">
+        <div class="bs flex translate-x-full" id="modalContent">
+            
+            <!-- Modal Header -->
+            <div class="bt flex">
+                <h2 id="modalTicketTitle" class="bu">Phân công TK-2025-001</h2>
+                <button onclick="closeTicketDetail()" class="bv flex">
+                    <i class="w fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Modal Body -->
+            <div class="bw">
+                
+                <!-- AI Suggestion Box -->
+                <div class="bx">
+                    <div class="by flex">
+                        <i class="fa-solid fa-wand-magic-sparkles"></i>
+                        <span>AI gợi ý tốt nhất</span>
+                    </div>
+                    <div class="bz">Trần Thị B</div>
+                    <div class="ca">Chuyên môn điện lạnh • đang rảnh • 92% đúng SLA</div>
+                </div>
+
+                <!-- Form Fields -->
+                <div>
+                    <label class="cb">Kỹ thuật viên</label>
+                    <select id="assignedTechnician" class="cc">
+                        <option value="technician-1">Trần Thị B</option>
+                        <option value="technician-2">Lê Quốc C</option>
+                        <option value="technician-3">Hoàng Nam</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="cb">Deadline</label>
+                    <input type="text" value="30/09/2025 · 14:00" class="cc">
+                </div>
+
+                <div>
+                    <label class="cb">Ưu tiên</label>
+                    <select class="cc">
+                        <option>Cao</option>
+                        <option>Trung bình</option>
+                        <option>Thấp</option>
+                        <option>Khẩn</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label class="cb">Ghi chú</label>
+                    <textarea rows="3" class="cd">Kiểm tra sớm trước giờ học</textarea>
+                </div>
+            </div>
+
+            <!-- Modal Footer -->
+            <div class="ce">
+                <button onclick="confirmTicketAssignment()" class="cf">
+                    Xác nhận phân công
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Custom JS File -->
+    <script src="21.js"></script>
+</body>
+</html>
