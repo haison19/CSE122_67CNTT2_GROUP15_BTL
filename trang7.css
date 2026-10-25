@@ -1,0 +1,50 @@
+@import url("trang26.css");
+
+.topbar-context { display:flex; align-items:center; gap:10px; color:#617088; font-size:12px; }
+.ten-thuong-hieu { font-size: 26px; }
+.breadcrumb-label,.topbar-divider { color:#9aa5b5; }
+.nav-count { display:inline-flex; align-items:center; justify-content:center; min-width:18px; height:18px; margin-left:auto; padding:0 5px; border-radius:10px; color:#fff; background:#3478ed; font-size:11px; font-weight:600; }
+.nav-count[hidden] { display:none; }
+.notifications-screen { max-width:1050px; margin:0 auto; }
+.screen-heading { display:flex; align-items:flex-end; justify-content:space-between; gap:15px; margin:13px 0 17px; }
+.screen-heading h1 { margin:0 0 5px; color:#1e2d47; font-size:22px; }
+.screen-heading p:not(.eyebrow) { color:#8792a4; font-size:12px; }
+.screen-heading p strong { color:#3478ed; font-weight:600; }
+.eyebrow { margin-bottom:5px; color:#3978ed; font-size:9px; font-weight:700; letter-spacing:.8px; }
+.text-action { padding:7px 0; border:0; color:#3478ed; background:none; cursor:pointer; font:inherit; font-size:10px; white-space:nowrap; }
+.text-action:hover { color:#1d4ed8; text-decoration:underline; }
+.panel-card { overflow:hidden; border:1px solid #e8edf4; border-radius:9px; background:#fff; box-shadow:0 2px 8px #17233c08; }
+.notification-toolbar { display:flex; align-items:center; justify-content:space-between; gap:10px; padding:0 15px; border-bottom:1px solid #edf0f5; }
+.notification-tabs { display:flex; gap:18px; }
+.notification-filter { position:relative; padding:12px 0; border:0; color:#7f8b9d; background:none; cursor:pointer; font:inherit; font-size:10px; }
+.notification-filter span { margin-left:3px; color:#99a4b3; }
+.notification-filter.active { color:#2563eb; font-weight:600; }
+.notification-filter.active::after { position:absolute; right:0; bottom:-1px; left:0; height:2px; background:#3478ed; content:""; }
+.notification-filter.active span { color:#3478ed; }
+.filter-select select { padding:6px 9px; border:1px solid #e5eaf1; border-radius:6px; color:#65738a; background:#fff; font:inherit; font-size:9px; }
+.notification-item { display:grid; grid-template-columns:30px minmax(0,1fr) auto; align-items:start; gap:10px; padding:13px 15px; border-bottom:1px solid #f0f2f6; transition:background .15s; }
+.notification-item:last-child { border-bottom:0; }
+.notification-item.unread { background:#f7faff; }
+.notification-item:hover { background:#f5f8fd; }
+.notification-icon { display:grid; place-items:center; width:28px; height:28px; border-radius:8px; color:#3478ed; background:#eaf1ff; font-size:12px; }
+.notification-icon.system { color:#835bd2; background:#f2edff; }
+.notification-item h2 { margin:1px 0 4px; color:#36455d; font-size:10px; font-weight:600; }
+.notification-item p { color:#758298; font-size:9px; line-height:1.55; }
+.notification-item time { display:block; margin-top:5px; color:#9aa4b2; font-size:8px; }
+.notification-indicator { width:6px; height:6px; margin-top:5px; border-radius:50%; background:#3478ed; }
+.notification-item:not(.unread) .notification-indicator { visibility:hidden; }
+.notification-item[hidden] { display:none; }
+.empty-state { padding:28px 12px; color:#929daf; text-align:center; font-size:11px; }
+.visually-hidden { position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; }
+@media(max-width:520px) { .screen-heading { align-items:flex-start; flex-direction:column; } .notification-item { grid-template-columns:28px minmax(0,1fr) 6px; padding:12px; } .ten-nguoi-dung { display:none; } }
+
+.app-main .screen-heading h1 { font-size:30px; }
+.app-main .screen-heading p:not(.eyebrow) { font-size:16px; }
+.app-main .eyebrow { font-size:13px; }
+.app-main .text-action { font-size:13px; }
+.app-main .notification-filter { font-size:13px; }
+.app-main .filter-select select { font-size:12px; }
+.app-main .notification-item h2 { font-size:14px; }
+.app-main .notification-item p { font-size:13px; }
+.app-main .notification-item time { font-size:11px; }
+.app-main .empty-state { font-size:14px; }

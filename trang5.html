@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixFlow – Hồ sơ cá nhân</title>
+  <link rel="stylesheet" href="trang5.css">
+</head>
+<body>
+  <aside class="thanh-ben">
+    <div class="dau-thanh-ben">
+      <div class="thuong-hieu"><span class="nen-logo" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg></span><div class="ten-thuong-hieu">FixFlow</div></div>
+      <p class="vai-tro-thuong-hieu">Trucking Horizon · Người yêu cầu</p>
+    </div>
+    <p class="tieu-de-muc-dieu-huong">Không gian làm việc</p>
+    <nav class="app-navigation" aria-label="Điều hướng chính">
+      <a class="muc-dieu-huong" href="#"><span class="bieu-tuong-dieu-huong">▦</span> Tổng quan</a>
+      <a class="muc-dieu-huong" href="#"><span class="bieu-tuong-dieu-huong">＋</span> Tạo Ticket</a>
+      <a class="muc-dieu-huong" href="#"><span class="bieu-tuong-dieu-huong">▤</span> Ticket của tôi</a>
+      <a class="muc-dieu-huong" href="#"><span class="bieu-tuong-dieu-huong">♧</span> Thông báo</a>
+      <a class="muc-dieu-huong dang-chon" href="#" aria-current="page"><span class="bieu-tuong-dieu-huong">♙</span> Hồ sơ</a>
+      <a class="muc-dieu-huong" href="#"><span class="bieu-tuong-dieu-huong">⚙</span> Cài đặt</a>
+    </nav>
+    <div class="sidebar-footer"><span class="sidebar-avatar">VA</span><span><strong>Nguyễn Văn A</strong><small>NGƯỜI YÊU CẦU</small></span></div>
+  </aside>
+  <main class="noi-dung-chinh app-main">
+    <header class="thanh-dau-trang">
+      <div class="topbar-context"><span class="breadcrumb-label">Không gian làm việc</span><span class="topbar-divider">/</span><span>Hồ sơ cá nhân</span></div>
+      <div class="cum-phai-dau-trang"><button class="nut-thong-bao" type="button" aria-label="Thông báo">♧<i class="cham-thong-bao"></i></button><div class="thong-tin-nguoi-dung"><div class="anh-dai-dien">VA</div><span class="ten-nguoi-dung">Nguyễn Văn A</span></div></div>
+    </header>
+    <section class="app-screen profile-screen">
+      <div class="screen-heading"><div><p class="eyebrow">TÀI KHOẢN CỦA BẠN</p><h1>Hồ sơ cá nhân</h1><p>Quản lý thông tin cá nhân và hoạt động tài khoản.</p></div></div>
+      <article class="profile-identity panel-card">
+        <div class="profile-avatar" id="profileAvatar">VA</div>
+        <div class="identity-details"><h2 id="profileDisplayName">Nguyễn Văn A</h2><p>Người yêu cầu · <span id="profileDisplayDepartment">Phòng Giáo vụ</span></p><span class="identity-email">✉ <span id="profileDisplayEmail">nguyenvana@fixflow.com</span></span></div>
+        <label class="upload-button" for="avatarUpload">Tải ảnh mới</label><input id="avatarUpload" type="file" accept="image/*" hidden>
+      </article>
+      <div class="profile-layout">
+        <article class="panel-card profile-card">
+          <div class="profile-tabs" role="tablist" aria-label="Thông tin hồ sơ">
+            <button class="profile-tab active" type="button" role="tab" aria-selected="true" data-tab="details">Thông tin cá nhân</button>
+            <button class="profile-tab" type="button" role="tab" aria-selected="false" data-tab="password">Mật khẩu</button>
+            <button class="profile-tab" type="button" role="tab" aria-selected="false" data-tab="activity">Hoạt động</button>
+          </div>
+          <form class="profile-form tab-panel" id="detailsPanel" data-panel="details">
+            <div class="profile-fields">
+              <label>Họ tên<input name="name" value="Nguyễn Văn A" required maxlength="80"></label>
+              <label>Mã nhân viên<input name="employeeId" value="NV-1024" readonly></label>
+              <label>Email<input name="email" type="email" value="nguyenvana@fixflow.com" required></label>
+              <label>Số điện thoại<input name="phone" type="tel" value="0912 345 678"></label>
+              <label class="field-wide">Phòng ban<input name="department" value="Phòng Giáo vụ"></label>
+            </div>
+            <div class="profile-form-footer"><p class="form-feedback" id="profileFeedback" role="status" aria-live="polite"></p><button class="primary-action" type="submit">Lưu thay đổi</button></div>
+          </form>
+          <form class="profile-form tab-panel" id="passwordPanel" data-panel="password" hidden>
+            <div class="profile-fields password-fields">
+              <label class="field-wide">Mật khẩu hiện tại<input name="currentPassword" type="password" required autocomplete="current-password"></label>
+              <label>Mật khẩu mới<input name="newPassword" type="password" minlength="8" required autocomplete="new-password"></label>
+              <label>Nhập lại mật khẩu mới<input name="confirmPassword" type="password" minlength="8" required autocomplete="new-password"></label>
+            </div>
+            <div class="profile-form-footer"><p class="form-feedback" id="passwordFeedback" role="status" aria-live="polite"></p><button class="primary-action" type="submit">Cập nhật mật khẩu</button></div>
+          </form>
+          <div class="tab-panel activity-panel" id="activityPanel" data-panel="activity" hidden>
+            <h2>Hoạt động tài khoản</h2><p class="activity-summary">Lịch sử hoạt động gần đây của bạn.</p>
+            <div class="timeline-item"><i></i><div><strong>Đăng nhập thành công</strong><small>Hôm nay, 08:42 · Chrome trên Windows</small></div></div>
+            <div class="timeline-item"><i></i><div><strong>Cập nhật thông tin hồ sơ</strong><small>Hôm qua, 15:20</small></div></div>
+            <div class="timeline-item"><i></i><div><strong>Tạo Ticket #TK-2025-001</strong><small>12/06/2025, 10:15</small></div></div>
+          </div>
+        </article>
+        <aside class="panel-card recent-activity"><div class="panel-title"><h2>Hoạt động gần đây</h2><a href="#activityPanel" data-open-activity>Xem tất cả</a></div>
+          <div class="recent-entry"><i>▤</i><div><strong>Tạo Ticket TK-2025-001</strong><small>Cho thiết bị máy chiếu</small><time>Hôm nay, 08:42</time></div></div>
+          <div class="recent-entry"><i>✓</i><div><strong>Ticket đã được cập nhật</strong><small>TK-2024-083 · Đã xử lý</small><time>Hôm qua, 14:10</time></div></div>
+          <div class="recent-entry"><i>♧</i><div><strong>Nhận thông báo mới</strong><small>Ticket của bạn đã được tiếp nhận</small><time>12/06/2025, 10:30</time></div></div>
+        </aside>
+      </div>
+    </section>
+  </main>
+  <script src="trang5.js" defer></script>
+</body>
+</html>
