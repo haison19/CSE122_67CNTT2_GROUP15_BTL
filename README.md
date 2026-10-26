@@ -63,13 +63,6 @@ Cách chạy bằng VS Code:
 3. Bấm chuột phải vào `index.html` → chọn **Open with Live Server**.
 4. Trình duyệt tự mở địa chỉ `http://127.0.0.1:5500/index.html`. Từ menu trái có thể mở 5 trang còn lại.
 
-Cách chạy không cần extension (nếu đã cài Python):
-
-```bash
-python -m http.server 8000
-# sau đó mở http://localhost:8000/index.html
-```
-
 ## 6. Cấu trúc thư mục
 
 ```text
