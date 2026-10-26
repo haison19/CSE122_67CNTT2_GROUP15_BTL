@@ -103,11 +103,14 @@ TH2/
 ---
 
 ## 8. Phạm vi triển khai & Vai trò hệ thống
-Phạm vi: Phân hệ Administrator tập trung vào giao diện quản trị và xử lý logic phía client. Toàn bộ dữ liệu được quản lý hợp nhất qua unified-data.js kết hợp với file JSON mẫu và localStorage.
-Vai trò: Administrator đóng vai trò trung tâm kết nối cùng các phân hệ khác:
-User – Người dùng gửi yêu cầu.
-Technician – Kỹ thuật viên xử lý sự cố.
-Manager – Quản lý giám sát và báo cáo.
-Figma Design: (https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&t=kWQW3sBJ7VZF1ZPi-0)
-GitHub Repository: https://github.com/haison19/CSE122_67CNTT2_GROUP15_BTL.git
-Link youtube: https://youtube.com/playlist?list=PLVtZqCVkOqS4&si=q40f5bgLTZG7Oodv
+## 8. Vai trò trong hệ thống
+- Administrator là phân hệ quản trị trung tâm của hệ thống FixFlow, đóng vai trò thiết lập cấu hình nền tảng và kiểm soát toàn bộ dữ liệu hệ thống[cite: 4].
+- Phân hệ này phối hợp chặt chẽ và hoạt động song song với 3 luồng chức năng còn lại[cite: 4]:
+  - **User** – Người dùng tạo và gửi các yêu cầu sửa chữa thiết bị[cite: 4].
+  - **Technician** – Kỹ thuật viên tiếp nhận, xử lý và báo cáo tiến độ khắc phục sự cố[cite: 4].
+  - **Manager** – Quản lý điều phối công việc và xem báo cáo phân tích[cite: 4].
+- **Tài nguyên dự án:**
+  - **Figma Design**: Xem bản thiết kế giao diện trên Figma(https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&t=kWQW3sBJ7VZF1ZPi-0)
+  - **Video Demo / Reference (YouTube)**: Xem video minh họa trên YouTube(https://youtube.com/playlist?list=PLVtZqCVkOqS4&si=q40f5bgLTZG7Oodv)
+  - **GitHub Repository**: Truy cập mã nguồn trên (https://github.com/haison19/CSE122_67CNTT2_GROUP15_BTL.git)
+
