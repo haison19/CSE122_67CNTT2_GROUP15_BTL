@@ -103,3 +103,4 @@ Technician – Kỹ thuật viên xử lý sự cố.
 Manager – Quản lý giám sát và báo cáo.
 Figma Design: https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&t=kWQW3sBJ7VZF1ZPi-0
 GitHub Repository: 
+Link youtube:https://youtube.com/playlist?list=PLVtZqCVkOqS4&si=q40f5bgLTZG7Oodv
