@@ -81,6 +81,7 @@ python -m http.server 8000
 ---
 
 ## 7. Cấu trúc thư mục
+```text
 TH2/
 ├── admin-system-manage.html          Trang Tổng quan / Quản lý hệ thống chính
 ├── js/
@@ -98,7 +99,7 @@ TH2/
         ├── issue-categories.json     Dữ liệu danh mục lỗi
         ├── sla-settings.json         Dữ liệu cấu hình SLA
         └── users.json                Dữ liệu danh sách người dùng
-
+```
 ---
 
 ## 8. Phạm vi triển khai & Vai trò hệ thống
