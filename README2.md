@@ -27,21 +27,15 @@ JSON mẫu.
 Dưới đây là cấu trúc chi tiết của form thao tác đang được triển khai trên phân hệ Kỹ thuật viên:
 Thành phần Form Kiểu dữ liệu / Control Mô tả chức năng
 
-Mã Ticket &amp; Thiết bị Readonly Text / Input Hiển thị mã định danh ticket
-(VD: TK-2025-001) và tên thiết bị liên quan.
+  Mã Ticket &amp; Thiết bị Readonly Text / Input Hiển thị mã định danh ticket(VD: TK-2025-001) và tên thiết bị liên quan.
 
-Trạng thái xử lý Dropdown (Select) Cho phép KTV chuyển đổi giữa
-các trạng thái: Chờ phân công,
-Đang xử lý, Chờ linh kiện, Hoàn thành.
+  Trạng thái xử lý Dropdown (Select) Cho phép KTV chuyển đổi giữa các trạng thái: Chờ phân công, Đang xử lý, Chờ linh kiện, Hoàn thành.
 
-Mức độ ưu tiên Dropdown (Select) Phân loại mức độ khẩn cấp của
-sự cố: Khẩn, Cao, Trung bình,Thấp.
+  Mức độ ưu tiên Dropdown (Select) Phân loại mức độ khẩn cấp củasự cố: Khẩn, Cao, Trung bình,Thấp.
 
-Ghi chú sửa chữa Textarea (Multi-line) Ghi lại chi tiết quá trình kiểm tra,
-nguyên nhân và giải pháp đã thực hiện.
+  Ghi chú sửa chữa Textarea (Multi-line) Ghi lại chi tiết quá trình kiểm tra, nguyên nhân và giải pháp đã thực hiện.
 
-Checklist bảo trì Checkbox List Danh sách các bước kiểm tra
-tiêu chuẩn cần hoàn thành trước khi nghiệm thu.
+  Checklist bảo trì Checkbox List Danh sách các bước kiểm tra tiêu chuẩn cần hoàn thành trước khi nghiệm thu.
 
 Figma Design: https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&t=jnF2FcK1VlykcEsI-0
 
