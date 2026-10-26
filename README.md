@@ -103,8 +103,8 @@ TH2/
 ---
 
 ## 8. Phạm vi triển khai & Vai trò hệ thống
-Phạm vi: Phân hệ Administrator tập trung vào giao diện quản trị và xử lý logic phía client. Toàn bộ dữ liệu được quản lý hợp nhất qua unified-data.js kết hợp với file JSON mẫu và localStorage[cite: 4].
-Vai trò: Administrator đóng vai trò trung tâm kết nối cùng các phân hệ khác[cite: 4]:
+Phạm vi: Phân hệ Administrator tập trung vào giao diện quản trị và xử lý logic phía client. Toàn bộ dữ liệu được quản lý hợp nhất qua unified-data.js kết hợp với file JSON mẫu và localStorage.
+Vai trò: Administrator đóng vai trò trung tâm kết nối cùng các phân hệ khác:
 User – Người dùng gửi yêu cầu.
 Technician – Kỹ thuật viên xử lý sự cố.
 Manager – Quản lý giám sát và báo cáo.
