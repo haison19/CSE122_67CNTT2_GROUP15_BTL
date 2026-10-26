@@ -1,116 +1,131 @@
-BTL-15 – FixFlow – Điều phối yêu cầu bảo trì thiết bị
-Học phần: PHÁT TRIỂN ỨNG DỤNG WEB CƠ BẢN – CSE122
-Nhóm thực hiện: 3 sinh viên
-Loại sản phẩm: Sản phẩm Web Frontend (nguyên mẫu) có nhiều vai trò, CRUD, responsive, tương tác JavaScript và trải nghiệm AI
-Nguyên tắc minh chứng: Mỗi giao diện thực tế đã được duyệt trong bảng kiểm kê màn hình = 1 video OBS có mặt sinh viên + commit/PR GitHub tương ứng.
-1. Lĩnh vực
-Bảo trì kỹ thuật / Field Service
-2. Tóm tắt sản phẩm
-FixFlow – Điều phối yêu cầu bảo trì thiết bị là một sản phẩm Frontend giải quyết bài toán thực tế trong lĩnh vực Bảo trì kỹ thuật / Field Service, được thiết kế như một mini-product có nhiều role, nhiều luồng nghiệp vụ và các tính năng AI có thể mô phỏng ngay ở phía Frontend.
-3. Ngữ cảnh
-Yêu cầu sửa chữa trong trường học/doanh nghiệp thường gửi qua điện thoại hoặc chat, thiếu lịch sử và SLA.
-4. Phát biểu vấn đề
-P1. Ticket thiếu thông tin chuẩn.
-P2. Khó phân công đúng kỹ thuật viên.
-P3. Người gửi không biết trạng thái.
-P4. Thiết bị lỗi lặp lại khó nhận biết.
-5. Mục tiêu
-O1. Biến bài toán thực tế thành một sản phẩm Frontend có hành trình người dùng rõ ràng.
-O2. Thiết kế đầy đủ giao diện cho từng vai trò, bảo đảm mỗi vai trò có ít nhất 3 màn hình.
-O3. Thể hiện các thao tác CRUD hoặc trạng thái nghiệp vụ phù hợp thay vì CRUD hình thức.
-O4. Sử dụng JavaScript/DOM cho tìm kiếm, lọc, kiểm tra hợp lệ, cửa sổ bật, thẻ, trạng thái và kết xuất dữ liệu.
-O5. Sử dụng JSON giả lập / LocalStorage / MockAPI / API công khai khi phù hợp.
-O6. Thiết kế ít nhất 3 trải nghiệm AI có thể mô phỏng được ở Frontend.
-O7. Tổ chức làm việc nhóm bằng Trello/Jira/Notion và Git/GitHub theo nhánh + yêu cầu hợp nhất.
-6. Các vai trò
-Vai trò
-Trách nhiệm chính
-Người yêu cầu
-Tạo và theo dõi ticket
-Kỹ thuật viên
-Nhận và xử lý ticket
-Quản lý bảo trì
-Phân công và theo dõi sla
-Quản trị viên
-Quản lý thiết bị và taxonomy
 
-7. Hành trình người dùng tổng quát
-Khám phá / đăng nhập
-↓
-Thực hiện nghiệp vụ chính theo vai trò
-↓
-Xem trạng thái / dữ liệu / phản hồi
-↓
-AI hỗ trợ phân tích hoặc gợi ý
-↓
-Người dùng Chấp nhận / Sửa / Từ chối / Lưu
-↓
-Vai trò vận hành duyệt / xử lý
-↓
-Bảng điều khiển / báo cáo / hoàn tất
+# FixFlow – Technician
+
+## 1. Giới thiệu
+
+FixFlow là hệ thống hỗ trợ quản lý các yêu cầu sửa chữa và bảo trì thiết bị.
+
+Phần Technician (Kỹ thuật viên) giúp kỹ thuật viên theo dõi công việc, tiếp nhận yêu cầu, thực hiện sửa chữa và cập nhật trạng thái xử lý.
+
+## 2. Đối tượng sử dụng
+
+- Kỹ thuật viên bảo trì và sửa chữa thiết bị.
+
+## 3. Danh sách 6 trang
+
+### 3.1. Dashboard – Tổng quan
+- Hiển thị tổng quan công việc.
+- Thống kê số lượng yêu cầu theo trạng thái.
+- Theo dõi tình hình xử lý công việc.
+
+### 3.2. Queue – Hàng đợi
+- Hiển thị danh sách yêu cầu sửa chữa.
+- Tìm kiếm và lọc yêu cầu.
+- Xem thông tin yêu cầu.
+- Cho phép bắt đầu xử lý yêu cầu.
+
+### 3.3. In Progress – Đang sửa
+- Hiển thị yêu cầu đang được xử lý.
+- Theo dõi tiến độ sửa chữa.
+- Quản lý checklist công việc.
+- Ghi chú quá trình sửa chữa.
+- Cập nhật trạng thái hoàn thành.
+
+### 3.4. Repair Details – Chi tiết sửa chữa
+- Hiển thị thông tin chi tiết của yêu cầu.
+- Xem thông tin thiết bị và mô tả sự cố.
+- Theo dõi thông tin cần thiết trước khi sửa chữa.
+
+### 3.5. AI Suggestions – AI đề xuất
+- Hiển thị các bước sửa chữa được đề xuất.
+- Cho phép xem xét và chỉnh sửa checklist đề xuất.
+- Hỗ trợ kỹ thuật viên tham khảo hướng xử lý.
+
+### 3.6. Profile – Hồ sơ cá nhân
+- Hiển thị thông tin kỹ thuật viên.
+- Xem thông tin tài khoản cá nhân.
+- Cập nhật thông tin cá nhân nếu chức năng được hỗ trợ.
+
+## 4. Công nghệ sử dụng
+
+- HTML: Xây dựng cấu trúc giao diện.
+- CSS: Thiết kế giao diện và bố cục.
+- JavaScript: Xử lý tương tác và chức năng trên trang.
+
+## 5. Cách chạy dự án
+
+Dự án dùng JavaScript module (`import`/`export`) và đọc dữ liệu mẫu bằng `fetch()`, nên **phải chạy qua một máy chủ tĩnh**. Mở trực tiếp file `index.html` bằng `file://` sẽ không tải được dữ liệu và không chạy được module.
+
+Cách chạy bằng VS Code:
+
+1. Mở thư mục dự án bằng Visual Studio Code.
+2. Cài extension **Live Server** (tác giả Ritwick Dey) nếu chưa có.
+3. Bấm chuột phải vào `index.html` → chọn **Open with Live Server**.
+4. Trình duyệt tự mở địa chỉ `http://127.0.0.1:5500/index.html`. Từ menu trái có thể mở 5 trang còn lại.
+
+Cách chạy không cần extension (nếu đã cài Python):
+
+```bash
+python -m http.server 8000
+# sau đó mở http://localhost:8000/index.html
+```
+
+## 6. Cấu trúc thư mục
+
+```text
+FixFlow/
+├── index.html               Trang Tổng quan
+├── queue.html               Trang Hàng đợi
+├── fixing.html              Trang Đang sửa
+├── history.html             Trang Lịch sử sửa chữa
+├── checklist.html           Trang Mẫu checklist
+├── analytics.html           Trang Thống kê
+├── css/
+│   ├── style.css            Giao diện chính + chế độ sáng/tối
+│   └── responsive.css       Giao diện cho màn hình nhỏ
+├── js/
+│   ├── main.js              Khởi động trang, nạp dữ liệu, gọi module theo trang
+│   ├── api.js               Đọc JSON + đọc/ghi localStorage + kho dữ liệu dùng chung
+│   └── modules/
+│       ├── theme.js         Chế độ sáng/tối
+│       ├── utils.js         Hàm dùng chung (thông báo, menu, nhãn mức độ)
+│       ├── dashboard.js     Trang Tổng quan
+│       ├── queue.js         Trang Hàng đợi
+│       ├── repair.js        Trang Đang sửa (checklist, đồng hồ, hoàn thành)
+│       ├── ai-suggestion.js Gợi ý sửa chữa (mô phỏng bằng quy tắc)
+│       ├── history.js       Trang Lịch sử + xuất CSV
+│       ├── checklist.js     Trang Mẫu checklist
+│       └── analytics.js     Trang Thống kê
+├── assets/
+│   └── data/                Dữ liệu mẫu (JSON)
+│       ├── tickets-tong-quan.json
+│       ├── tickets-hang-doi.json
+│       ├── lich-su.json
+│       ├── thong-ke.json
+│       └── checklist.json
+└── docs/                    Tài liệu của bài tập
+```
+
+Dữ liệu người dùng nhập (checklist đã làm, ghi chú, trạng thái ticket, chế độ sáng/tối) được lưu trong `localStorage` của trình duyệt với các khóa `fixflowDuLieuTicket`, `fixflowTicketDangXuLy`, `fixflowGiaoDien`. Các khóa này **giữ nguyên tên** so với phiên bản trước nên dữ liệu đang có vẫn đọc được.
+
+## 7. Phạm vi triển khai
+
+Phần Technician tập trung vào giao diện và các chức năng hỗ trợ kỹ thuật viên xử lý yêu cầu sửa chữa.
+
+Nếu chưa có backend hoặc dịch vụ AI thực tế, dữ liệu và chức năng đề xuất được mô phỏng bằng JavaScript và dữ liệu mẫu.
+
+## 8. Vai trò trong hệ thống
+
+Technician là một trong bốn luồng của FixFlow, bên cạnh:
+- User – Người dùng.
+- Administrator – Quản trị viên.
+- Manager – Quản lý.
 
 
-BÁO CÁO CHI TIẾT SẢN PHẨM BÀN GIAO & NỘI DUNG ĐỀ TÀI BTL-15
-A. DANH SÁCH BÀN GIAO SẢN PHẨM (DELIVERABLES)
-Báo cáo đề tài (PDF): Đã biên soạn đầy đủ Ngữ cảnh, Phát biểu vấn đề, Mục tiêu, Vai trò, Luồng hành trình người dùng, Bảng kiểm kê màn hình và tính năng AI.
-Bản mô phỏng Figma/Canva: Đường liên kết mô phỏng prototype cho toàn bộ các màn hình + Bộ ảnh export đầy đủ.
-Mã nguồn giao diện Frontend: Repository GitHub chung chứa toàn bộ mã nguồn HTML/CSS/JS responsive cho 4 vai trò.
-Dữ liệu Mock / API: File JSON / LocalStorage / MockAPI được tích hợp trực tiếp trong kho mã nguồn.
-Bảng quản lý công việc (Task Board): Bảng Trello/Jira/Notion gồm đủ 5 cột (To Do, In Progress, Review, Done, Verified), gắn tag sinh viên và liên kết commit/PR.
-Video OBS minh chứng: Mỗi màn hình thực tế có 1 video OBS quay góc mặt sinh viên + thao tác giao diện.
-README & Khai báo AI: Đặt tại thư mục gốc repository tuân thủ mẫu Phụ lục E và Phụ lục F.
-B. BẢNG KIỂM KÊ MÀN HÌNH THEO VAI TRÒ (SCREEN INVENTORY)
-STT
-Vai trò
-Tên màn hình
-Thao tác chính / Tính năng CRUD / Tương tác DOM
-1
-Người yêu cầu
-Màn hình Tạo Ticket
-Form nhập thông tin hỏng hóc, đính kèm ảnh, chọn vị trí. Tích hợp AI gợi ý phân loại sự cố & độ ưu tiên.
-2
-Người yêu cầu
-Danh sách Ticket cá nhân
-Bộ lọc tìm kiếm, phân trang, lọc theo trạng thái ticket (Mới, Đang xử lý, Hoàn thành).
-3
-Người yêu cầu
-Chi tiết & Tiến độ Ticket
-Timeline thời gian thực hiển thị tiến độ sửa chữa, nút nghiệm thu và đánh giá 5 sao.
-4
-Kỹ thuật viên
-Bảng công việc (My Tasks)
-Danh sách ticket được giao, sắp xếp theo độ ưu tiên SLA, tìm kiếm nhanh theo mã ticket.
-5
-Kỹ thuật viên
-Cập nhật tiến độ xử lý
-Form ghi chú kỹ thuật, đính kèm ảnh hoàn thành, cập nhật trạng thái "Đang xử lý" -> "Hoàn thành".
-6
-Kỹ thuật viên
-Báo cáo vật tư & Hiệu suất
-Thống kê số lượng ticket đã xử lý, thời gian trung bình, danh sách vật tư đã thay thế.
-7
-Quản lý bảo trì
-Bảng điều phối (Dispatch Dashboard)
-Xem toàn bộ ticket mới, chuyển trạng thái, mở Modal phân công KTV với AI gợi ý.
-8
-Quản lý bảo trì
-Giám sát SLA & Cảnh báo
-Theo dõi đồng hồ đếm ngược SLA, cảnh báo các ticket sắp quá hạn hoặc vi phạm cam kết.
-9
-Quản lý bảo trì
-Báo cáo & Phân tích AI
-Thống kê sự cố theo phòng ban, AI quét cảnh báo các thiết bị bị lỗi lặp lại nhiều lần.
-10
-Quản trị viên
-Quản lý thiết bị (Asset CRUD)
-Thêm mới, chỉnh sửa, xóa/vô hiệu hóa thiết bị, xuất dữ liệu JSON/CSV.
-11
-Quản trị viên
-Cấu hình Taxonomy & SLA
-Thiết lập danh mục sự cố (Điện, IT, Mạng) và thời gian SLA tối đa cho từng mức độ.
-12
-Quản trị viên
-Quản lý người dùng & Phân quyền
-Danh sách người dùng, thay đổi vai trò (Requester, Tech, Manager, Admin).
+---
 
-C. MÔ PHỎNG 3 TÍNH NĂNG AI TRÊN FRONTEND
+* **Figma Design:** [Xem bản thiết kế trên Figma](https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&p=f&t=wgEVbN2wAMDnNZtV-0)
+
+* **Video Demo / Reference (YouTube):** [Xem video trên YouTube](https://www.youtube.com/watch?v=PFMi9wCNk5Y)
+
+* **GitHub Repository:**[Truy cập Mã nguồn trên GitHub](https://github.com/hwqrave/FixFlow)
