@@ -10,6 +10,7 @@
 </head>
 <body data-trang="danh-sach">
 
+
   <aside class="thanh-ben" id="thanh-ben">
     <a class="logo" href="index.html">
       <span class="logo-o">
@@ -28,97 +29,8 @@
       <li><a class="lien-ket-menu dang-chon" href="ticket-cua-toi.html">
         <svg class="bieu-tuong" viewBox="0 0 24 24"><path d="M10 6h11M10 12h11M10 18h11"/><path d="M3 6l1.6 1.6L8 4.2"/><path d="M3 12l1.6 1.6L8 10.2"/><path d="M3 18l1.6 1.6L8 16.2"/></svg>
         Ticket của tôi</a></li>
+    
+      <li><a class="lien-ket-menu" href="trang7.html" aria-label="Thông báo"><svg class="bieu-tuong" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 20a2 2 0 0 1-3.4 0"/></svg>Thông báo<span class="nhan-thong-bao so-0" id="so-thong-bao">0</span></a></li>
+      <li><a class="lien-ket-menu" href="trang5.html"><svg class="bieu-tuong" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg>Hồ sơ</a></li>
+      <li><a class="lien-ket-menu" href="trang6.html"><svg class="bieu-tuong" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.5.9l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.5-.9l-1.7.7-1.4-2.4 1.4-1.1A8 8 0 0 1 7.6 13l-1.8-.4v-2.8l1.8-.3a8 8 0 0 1 .7-1.6L7.2 6.2l2.4-1.4 1.1 1.4a8 8 0 0 1 1.8-.2l.5-1.8h2.8l.3 1.8a8 8 0 0 1 1.5.9l1.7-.7 1.4 2.4-1.4 1.1a8 8 0 0 1 .2 1.8l1.8.5v2.8l-1.8.2a8 8 0 0 1-.1.2z"/></svg>Cài đặt</a></li>
     </ul>
-    <!--
-      Phân hệ Người yêu cầu chỉ hiển thị 3 mục menu: Tổng quan, Tạo Ticket, Ticket của tôi.
-      Các mục Thông báo, Hồ sơ, Cài đặt, Trợ giúp 24/7 đã được ẩn khỏi menu của phân hệ này
-      để không xung đột khi ghép với code của các thành viên khác.
-    -->
-  </aside>
-
-  <div class="khung-chinh">
-    <header class="thanh-tren">
-      <button class="nut-menu" id="nut-menu" aria-label="Mở menu">
-        <svg class="bieu-tuong" viewBox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-      </button>
-      <div class="o-tim-kiem">
-        <svg class="bieu-tuong" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
-        <input id="tim-kiem-toan-bo" type="search" placeholder="Tìm ticket, thiết bị, người dùng...">
-      </div>
-      <div class="phai-thanh-tren">
-        <button class="nut-chuong" id="nut-thong-bao" aria-label="Thông báo">
-          <svg class="bieu-tuong" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 20a2 2 0 0 1-3.4 0"/></svg>
-          <span class="so-thong-bao" id="so-thong-bao-dau">0</span>
-        </button>
-        <div class="thong-tin-nguoi-dung">
-          <span class="anh-dai-dien" id="anh-dai-dien">N</span>
-          <span id="ten-nguoi-dung">Nguyễn Văn A</span>
-        </div>
-      </div>
-    </header>
-
-    <div class="noi-dung">
-      <div style="display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap">
-        <h1 class="tieu-de-trang">Ticket của tôi</h1>
-        <a class="nut nut-chinh" href="tao-ticket.html">Tạo Ticket Mới</a>
-      </div>
-
-      <!-- Bộ lọc -->
-      <div class="luoi-bo-loc">
-        <div class="o-tim-kiem" style="width:100%">
-          <svg class="bieu-tuong" viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.6-3.6"/></svg>
-          <input id="tim-kiem-danh-sach" type="search" placeholder="Tìm kiếm theo mã hoặc tiêu đề...">
-        </div>
-        <select class="o-chon" id="loc-trang-thai">
-          <option value="tat-ca">Trạng thái</option>
-          <option value="Mới">Mới</option>
-          <option value="Chờ nhận">Chờ nhận</option>
-          <option value="Chờ bổ sung">Chờ bổ sung</option>
-          <option value="Đang xử lý">Đang xử lý</option>
-          <option value="Chờ linh kiện">Chờ linh kiện</option>
-          <option value="Hoàn thành">Hoàn thành</option>
-          <option value="Hủy">Hủy</option>
-        </select>
-        <select class="o-chon" id="loc-muc-do">
-          <option value="tat-ca">Mức độ</option>
-          <option value="Thấp">Thấp</option>
-          <option value="Trung bình">Trung bình</option>
-          <option value="Cao">Cao</option>
-          <option value="Khẩn">Khẩn</option>
-        </select>
-        <select class="o-chon" id="loc-thoi-gian">
-          <option value="tat-ca">Thời gian</option>
-          <option value="hom-nay">24 giờ qua</option>
-          <option value="7-ngay">7 ngày qua</option>
-          <option value="30-ngay">30 ngày qua</option>
-        </select>
-        <button class="nut nut-phu" id="nut-dat-lai">Đặt lại</button>
-      </div>
-
-      <!-- Tab -->
-      <div class="hang-tab">
-        <button class="tab dang-chon" data-nhom="tat-ca">Tất cả <span id="so-tat-ca">0</span></button>
-        <button class="tab" data-nhom="dang-xu-ly">Đang xử lý <span id="so-dang-xu-ly-tab">0</span></button>
-        <button class="tab" data-nhom="hoan-thanh">Hoàn thành <span id="so-hoan-thanh-tab">0</span></button>
-      </div>
-
-      <!-- Bảng ticket -->
-      <div class="bang-bao-vo">
-        <table class="bang">
-          <thead>
-            <tr><th>Mã ticket</th><th>Sự cố</th><th>Ưu tiên</th><th>Trạng thái</th><th>SLA</th></tr>
-          </thead>
-          <tbody id="bang-ticket"></tbody>
-        </table>
-      </div>
-
-      <div class="khung-phan-trang">
-        <div id="thong-tin-trang" class="chu-thich"></div>
-        <div class="danh-sach-trang" id="phan-trang"></div>
-      </div>
-    </div>
-  </div>
-
-  <script src="js/app.js"></script>
-</body>
-</html>
