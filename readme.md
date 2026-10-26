@@ -101,5 +101,5 @@ Vai trò: Administrator đóng vai trò trung tâm kết nối cùng các phân 
 User – Người dùng gửi yêu cầu.
 Technician – Kỹ thuật viên xử lý sự cố.
 Manager – Quản lý giám sát và báo cáo.
-Figma Design: Xem thiết kế trên Figma.
-GitHub Repository: Truy cập Mã nguồn trên GitHub.
+Figma Design: https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&t=kWQW3sBJ7VZF1ZPi-0
+GitHub Repository: 
