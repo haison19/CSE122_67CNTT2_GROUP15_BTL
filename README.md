@@ -77,6 +77,10 @@ Dự án sử dụng JavaScript module (`import`/`export`) và nạp dữ liệu
 ```bash
 python -m http.server 8000
 # Sau đó mở trình duyệt truy cập: http://localhost:8000/admin-system-manage.html
+
+---
+
+
 ## 7. Cấu trúc thư mục
 TH2/
 ├── admin-system-manage.html          Trang Tổng quan / Quản lý hệ thống chính
@@ -95,6 +99,10 @@ TH2/
         ├── issue-categories.json     Dữ liệu danh mục lỗi
         ├── sla-settings.json         Dữ liệu cấu hình SLA
         └── users.json                Dữ liệu danh sách người dùng
+
+---
+
+
 ## 8. Phạm vi triển khai & Vai trò hệ thống
 Phạm vi: Phân hệ Administrator tập trung vào giao diện quản trị và xử lý logic phía client. Toàn bộ dữ liệu được quản lý hợp nhất qua unified-data.js kết hợp với file JSON mẫu và localStorage[cite: 4].
 Vai trò: Administrator đóng vai trò trung tâm kết nối cùng các phân hệ khác[cite: 4]:
@@ -103,4 +111,4 @@ Technician – Kỹ thuật viên xử lý sự cố.
 Manager – Quản lý giám sát và báo cáo.
 Figma Design: https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&t=kWQW3sBJ7VZF1ZPi-0
 GitHub Repository: https://github.com/haison19/CSE122_67CNTT2_GROUP15_BTL.git
-Link youtube:https://youtube.com/playlist?list=PLVtZqCVkOqS4&si=q40f5bgLTZG7Oodv
+Link youtube: https://youtube.com/playlist?list=PLVtZqCVkOqS4&si=q40f5bgLTZG7Oodv
