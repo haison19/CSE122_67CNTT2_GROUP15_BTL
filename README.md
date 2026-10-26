@@ -80,7 +80,6 @@ python -m http.server 8000
 
 ---
 
-
 ## 7. Cấu trúc thư mục
 TH2/
 ├── admin-system-manage.html          Trang Tổng quan / Quản lý hệ thống chính
@@ -101,7 +100,6 @@ TH2/
         └── users.json                Dữ liệu danh sách người dùng
 
 ---
-
 
 ## 8. Phạm vi triển khai & Vai trò hệ thống
 Phạm vi: Phân hệ Administrator tập trung vào giao diện quản trị và xử lý logic phía client. Toàn bộ dữ liệu được quản lý hợp nhất qua unified-data.js kết hợp với file JSON mẫu và localStorage[cite: 4].
