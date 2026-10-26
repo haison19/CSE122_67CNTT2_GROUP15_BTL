@@ -1,10 +1,6 @@
 const profileTabs = [...document.querySelectorAll('.profile-tab')];
 const profilePanels = [...document.querySelectorAll('[data-panel]')];
 
-document.querySelectorAll('.app-navigation a[href="#"]').forEach(link => {
-  link.addEventListener('click', event => event.preventDefault());
-});
-
 function showProfileTab(name) {
   profileTabs.forEach(tab => {
     const selected = tab.dataset.tab === name;
@@ -22,16 +18,52 @@ document.querySelector('[data-open-activity]').addEventListener('click', event =
   showProfileTab('activity');
 });
 
-document.getElementById('detailsPanel').addEventListener('submit', event => {
-  event.preventDefault();
-  const data = new FormData(event.currentTarget);
-  const name = String(data.get('name')).trim();
-  const department = String(data.get('department')).trim();
+const PROFILE_STORAGE_KEY = 'fixflow_nguoi_yeu_cau_ho_so_v1';
+const detailsForm = document.getElementById('detailsPanel');
+
+function readSavedProfile() {
+  try {
+    const profile = JSON.parse(localStorage.getItem(PROFILE_STORAGE_KEY) || 'null');
+    return profile && typeof profile === 'object' ? profile : {};
+  } catch {
+    return {};
+  }
+}
+
+function renderProfile(profile) {
+  const name = String(profile.ten || detailsForm.elements.name.value).trim();
+  const email = String(profile.email || detailsForm.elements.email.value).trim();
+  const department = String(profile.department || detailsForm.elements.department.value).trim();
   document.getElementById('profileDisplayName').textContent = name;
   document.getElementById('profileDisplayDepartment').textContent = department;
-  document.getElementById('profileDisplayEmail').textContent = String(data.get('email')).trim();
-  document.getElementById('profileAvatar').textContent = name.split(/\s+/).map(part => part[0]).slice(-2).join('').toUpperCase();
-  document.getElementById('profileFeedback').textContent = 'Thông tin hồ sơ đã được cập nhật.';
+  document.getElementById('profileDisplayEmail').textContent = email;
+  document.getElementById('profileAvatar').textContent = name.split(/\s+/).filter(Boolean).map(part => part[0]).slice(-2).join('').toUpperCase();
+}
+
+const savedProfile = readSavedProfile();
+if (savedProfile.ten) detailsForm.elements.name.value = savedProfile.ten;
+if (savedProfile.email) detailsForm.elements.email.value = savedProfile.email;
+if (savedProfile.department) detailsForm.elements.department.value = savedProfile.department;
+if (savedProfile.phone) detailsForm.elements.phone.value = savedProfile.phone;
+renderProfile(savedProfile);
+
+detailsForm.addEventListener('submit', event => {
+  event.preventDefault();
+  const data = new FormData(event.currentTarget);
+  const profile = {
+    ...readSavedProfile(),
+    ten: String(data.get('name')).trim(),
+    email: String(data.get('email')).trim(),
+    phone: String(data.get('phone')).trim(),
+    department: String(data.get('department')).trim()
+  };
+  try {
+    localStorage.setItem(PROFILE_STORAGE_KEY, JSON.stringify(profile));
+    renderProfile(profile);
+    document.getElementById('profileFeedback').textContent = 'Thông tin hồ sơ đã được lưu và đồng bộ.';
+  } catch {
+    document.getElementById('profileFeedback').textContent = 'Không thể lưu hồ sơ trong bộ nhớ trình duyệt.';
+  }
 });
 
 document.getElementById('passwordPanel').addEventListener('submit', event => {
