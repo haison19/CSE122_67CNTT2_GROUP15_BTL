@@ -672,36 +672,34 @@ function hienThiThongTinNguoiDung() {
 //hello
 
 // ---------- CHE DO SANG / TOI (AP DUNG SOM TRUOC KHI VE KHUNG HINH) ----------
-// Che do SANG la che do mac dinh. Neu nguoi dung da chon "toi" truoc do
-// (luu trong localStorage), dung lai lua chon do. Khoi nay chay ngay khi
-// script.js duoc nap (bang defer trong <head>) de tranh nhay mau.
+// Che do SANG la mac dinh: the <html> KHONG co lop "giao-dien-toi".
+// Che do TOI bat/tat bang classList.toggle("giao-dien-toi", ...).
+// Khoi nay chay ngay khi script.js duoc nap (defer trong <head>) de tranh nhay mau.
 
 (function () {
-  var giaoDien = "sang";
+  var laCheDoToi = false;
   try {
-    var daLuu = localStorage.getItem("fixflowGiaoDien");
-    if (daLuu === "toi" || daLuu === "sang") {
-      giaoDien = daLuu;
-    }
+    laCheDoToi = localStorage.getItem("fixflowGiaoDien") === "toi";
   } catch (loi) {
     // Trinh duyet chan localStorage -> giu mac dinh la che do sang
   }
-  document.documentElement.setAttribute("data-giao-dien", giaoDien);
+  document.documentElement.classList.toggle("giao-dien-toi", laCheDoToi);
 })();
 
 // ---------- 10c. Che do sang / toi ----------
-// Thuoc tinh data-giao-dien tren the <html> da duoc dat som o dau file nay.
+// Lop "giao-dien-toi" tren the <html> da duoc bat/tat som o dau file nay.
 // O day chi doc lai, doi khi bam nut va luu lua chon vao localStorage de cac
 // trang khac dung cung che do.
 
+const LOP_GIAO_DIEN_TOI = "giao-dien-toi";
 const KHOA_GIAO_DIEN = "fixflowGiaoDien";
 const GIAO_DIEN_SANG = "sang";
 const GIAO_DIEN_TOI = "toi";
 
+// Chi co gia tri "toi" moi la che do toi, con lai (chua luu / "sang") la che do sang.
 function docGiaoDienDaLuu() {
   try {
-    const daLuu = localStorage.getItem(KHOA_GIAO_DIEN);
-    if (daLuu === GIAO_DIEN_TOI || daLuu === GIAO_DIEN_SANG) return daLuu;
+    if (localStorage.getItem(KHOA_GIAO_DIEN) === GIAO_DIEN_TOI) return GIAO_DIEN_TOI;
   } catch (loi) {
     // Trinh duyet chan localStorage -> mac dinh che do sang
   }
@@ -709,8 +707,7 @@ function docGiaoDienDaLuu() {
   return GIAO_DIEN_SANG;
 }
 
-function capNhatNutGiaoDien(giaoDien) {
-  const dangToi = giaoDien === GIAO_DIEN_TOI;
+function capNhatNutGiaoDien(dangToi) {
   const nhan = dangToi ? "Chuyển sang chế độ sáng" : "Chuyển sang chế độ tối";
   const cacNut = document.querySelectorAll(".nut-giao-dien");
 
@@ -721,30 +718,32 @@ function capNhatNutGiaoDien(giaoDien) {
   }
 }
 
+// classList.toggle(tenLop, dieuKien): them lop khi dieu kien = true, xoa lop khi false.
 function apDungGiaoDien(giaoDien) {
-  const hopLe = giaoDien === GIAO_DIEN_TOI ? GIAO_DIEN_TOI : GIAO_DIEN_SANG;
-  document.documentElement.setAttribute("data-giao-dien", hopLe);
-  capNhatNutGiaoDien(hopLe);
-  return hopLe;
+  const dangToi = giaoDien === GIAO_DIEN_TOI;
+  document.documentElement.classList.toggle(LOP_GIAO_DIEN_TOI, dangToi);
+  capNhatNutGiaoDien(dangToi);
+  return dangToi ? GIAO_DIEN_TOI : GIAO_DIEN_SANG;
 }
 
 function doiGiaoDien() {
-  const hienTai = document.documentElement.getAttribute("data-giao-dien");
-  const moi = hienTai === GIAO_DIEN_TOI ? GIAO_DIEN_SANG : GIAO_DIEN_TOI;
-  apDungGiaoDien(moi);
+  // Khong truyen dieu kien -> toggle() tu dao trang thai hien tai
+  // va tra ve true/false tuong ung voi che do toi sau khi doi.
+  const dangToi = document.documentElement.classList.toggle(LOP_GIAO_DIEN_TOI);
+  capNhatNutGiaoDien(dangToi);
 
   try {
-    localStorage.setItem(KHOA_GIAO_DIEN, moi);
+    localStorage.setItem(KHOA_GIAO_DIEN, dangToi ? GIAO_DIEN_TOI : GIAO_DIEN_SANG);
   } catch (loi) {
     // Khong luu duoc thi van doi giao dien cho trang hien tai
   }
 
-  hienThongBao(moi === GIAO_DIEN_TOI ? "Đã bật chế độ tối." : "Đã chuyển sang chế độ sáng.");
+  hienThongBao(dangToi ? "Đã bật chế độ tối." : "Đã chuyển sang chế độ sáng.");
 }
 
 function khoiTaoGiaoDien() {
-  const hienTai = document.documentElement.getAttribute("data-giao-dien") || docGiaoDienDaLuu();
-  apDungGiaoDien(hienTai);
+  // Che do da duoc ap dung tu dau file; o day ap dung lai theo lua chon da luu
+  apDungGiaoDien(docGiaoDienDaLuu());
 
   const cacNut = document.querySelectorAll(".nut-giao-dien");
   for (let i = 0; i < cacNut.length; i++) {

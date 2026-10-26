@@ -274,11 +274,11 @@ button {
   display: none;
 }
 
-html[data-giao-dien="toi"] .nut-giao-dien .bieu-tuong-sang {
+html.giao-dien-toi .nut-giao-dien .bieu-tuong-sang {
   display: none;
 }
 
-html[data-giao-dien="toi"] .nut-giao-dien .bieu-tuong-toi {
+html.giao-dien-toi .nut-giao-dien .bieu-tuong-toi {
   display: block;
 }
 
@@ -1697,19 +1697,19 @@ input:disabled {
 
 /* =========================================================
    CHE DO SANG / TOI
-   Bat tat bang thuoc tinh data-giao-dien tren the <html>:
-     <html data-giao-dien="sang">   giao dien sang (mac dinh)
-     <html data-giao-dien="toi">    giao dien toi
-   Script.js (nap bang defer trong <head>) dat thuoc tinh nay som truoc khi
-   ve khung hinh dau tien (tranh nhay mau) va lo phan bam nut
-   va luu lua chon vao localStorage (khoa "fixflowGiaoDien").
+   Bat tat bang lop "giao-dien-toi" tren the <html> (classList.toggle):
+     <html>                        giao dien sang (MAC DINH)
+     <html class="giao-dien-toi">  giao dien toi
+   script.js (nap bang defer trong <head>) bat/tat lop nay ngay khi trang
+   duoc nap (tranh nhay mau) va khi nguoi dung bam nut, dong thoi luu lua
+   chon vao localStorage (khoa "fixflowGiaoDien").
    Che do mac dinh: SANG (khong theo cai dat he dieu hanh).
 
    Chi can dinh nghia lai cac bien mau o :root, khong lap lai style
    cua tung thanh phan -> ca 6 trang tu doi mau theo.
    ========================================================= */
 
-html[data-giao-dien="toi"] {
+html.giao-dien-toi {
   /* Thanh cuon va control mac dinh (select, checkbox...) dung tong toi */
   color-scheme: dark;
 
@@ -1771,31 +1771,31 @@ html[data-giao-dien="toi"] {
 }
 
 /* Vai chi tiet can chinh rieng cho nen toi (do tuong phan cua chu / nut) */
-html[data-giao-dien="toi"] .thanh-ben {
+html.giao-dien-toi .thanh-ben {
   border-right: 1px solid var(--mau-vien);
 }
 
-html[data-giao-dien="toi"] .anh-dai-dien {
+html.giao-dien-toi .anh-dai-dien {
   color: #cfe0ff;
 }
 
-html[data-giao-dien="toi"] .thong-bao {
+html.giao-dien-toi .thong-bao {
   background: #24334a;
 }
 
-html[data-giao-dien="toi"] .nut-do {
+html.giao-dien-toi .nut-do {
   background: #c8402f;
 }
 
-html[data-giao-dien="toi"] .nut-hoan-thanh {
+html.giao-dien-toi .nut-hoan-thanh {
   background: #1f9d57;
 }
 
-html[data-giao-dien="toi"] .nut-hoan-thanh:hover {
+html.giao-dien-toi .nut-hoan-thanh:hover {
   background: #1b8a4b;
 }
 
-html[data-giao-dien="toi"] .nen-mo {
+html.giao-dien-toi .nen-mo {
   background: rgba(0, 0, 0, 0.6);
 }
 
