@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixFlow - Đăng ký tài khoản</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="3.css">
+</head>
+<body class="page">
+
+    <!-- LEFT HERO PANEL -->
+    <div class="hero">
+        <!-- Logo -->
+        <div class="brand">
+            <div class="brand-icon">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+            <span class="brand-name">FixFlow</span>
+        </div>
+
+        <!-- Center Message -->
+        <div class="hero-copy">
+            <div class="hero-icons">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <i class="fa-solid fa-hammer"></i>
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <h1 class="hero-title">
+                Bắt đầu quy trình bảo trì tốt hơn
+            </h1>
+        </div>
+
+        <!-- Quote Card -->
+        <div class="quote-card">
+            <p class="quote">"FixFlow giúp thời gian phản hồi giảm 38%."</p>
+            <div class="quote-author">Phạm Minh Khang · Quản lý vận hành</div>
+        </div>
+    </div>
+
+    <!-- RIGHT REGISTER FORM PANEL -->
+    <div class="register-panel">
+        <div class="register-box">
+            <div>
+                <h2 class="intro-title">Tạo tài khoản FixFlow</h2>
+                <p class="intro-text">Điền thông tin bên dưới để đăng ký tài khoản mới</p>
+            </div>
+
+            <!-- Register Form -->
+            <form id="register-form" class="register-form" novalidate>
+                <div class="two-fields">
+                    <div>
+                        <label class="field-label">Họ tên</label>
+                        <input type="text" placeholder="Nguyễn Văn A" required class="field-input">
+                    </div>
+                    <div>
+                        <label class="field-label">SĐT</label>
+                        <input id="phone" type="tel" inputmode="numeric" placeholder="0912 345 678" required class="field-input">
+                    </div>
+                </div>
+
+                <div>
+                    <label class="field-label">Email</label>
+                    <input type="email" placeholder="a@fixflow.com" required class="field-input">
+                </div>
+
+                <div class="two-fields">
+                    <div>
+                        <label class="field-label">Mã nhân viên</label>
+                        <input type="text" placeholder="NV-1024" required class="field-input">
+                    </div>
+                    <div>
+                        <label class="field-label">Vai trò</label>
+                        <select class="field-input">
+                            <option>Người yêu cầu</option>
+                            <option>Kỹ thuật viên</option>
+                            <option>Quản lý</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div>
+                    <label class="field-label">Mật khẩu</label>
+                    <input id="password" type="password" placeholder="••••••••" required class="field-input">
+                    <div class="password-hint">Mật khẩu mạnh</div>
+                </div>
+
+                <div>
+                    <label class="field-label">Xác nhận</label>
+                    <input id="confirm-password" type="password" placeholder="••••••••" required class="field-input">
+                </div>
+
+                <div class="terms-row">
+                    <input type="checkbox" id="terms" checked required class="terms-check">
+                    <label for="terms" class="terms-label">Đồng ý điều khoản và chính sách bảo mật</label>
+                </div>
+
+                <button type="submit" class="submit-button">
+                    Đăng ký
+                </button>
+            </form>
+
+            <!-- Login Footer -->
+            <div class="login-footer">
+                <span class="footer-text">Đã có tài khoản? </span>
+                <a href="#" class="footer-link">Đăng nhập</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Custom JS File -->
+    <script src="3.js"></script>
+</body>
+</html>
