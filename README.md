@@ -1,194 +1,218 @@
-# FixFlow – Hệ thống quản lý yêu cầu sửa chữa
+# FixFlow · Phân hệ Người yêu cầu
 
-## 1. Giới thiệu dự án
+Website quản lý yêu cầu bảo trì thiết bị (đồ án CSE122). Đây là phân hệ **Người yêu cầu**:
+tạo ticket, theo dõi trạng thái, xem SLA, bình luận, đánh giá, đọc thông báo, hồ sơ và cài đặt.
 
-FixFlow là website mô phỏng hệ thống quản lý yêu cầu sửa chữa thiết bị. Hệ thống hỗ trợ tiếp nhận yêu cầu, phân công công việc, theo dõi quá trình sửa chữa và quản lý kết quả xử lý.
+Toàn bộ chạy **chỉ trên trình duyệt** — không có máy chủ, không có cơ sở dữ liệu, không dùng
+framework hay build tool.
 
-Dự án được thực hiện trong khuôn khổ bài tập lớn môn CSE122.
+---
 
-### 1.1. Mục tiêu dự án
+## 1. Công nghệ sử dụng
 
-- Số hóa quy trình tiếp nhận và xử lý yêu cầu sửa chữa.
-- Giúp người yêu cầu theo dõi tình trạng yêu cầu của mình.
-- Hỗ trợ kỹ thuật viên quản lý công việc và cập nhật tiến độ.
-- Giúp quản trị viên quản lý thông tin và hoạt động của hệ thống.
-- Giúp quản lý theo dõi số liệu và hiệu quả xử lý công việc.
+| Thành phần | Công nghệ |
+| --- | --- |
+| Khung trang | HTML5 |
+| Giao diện | CSS3 (custom properties, Flexbox, Grid, media query) |
+| Logic | JavaScript thuần (ES Modules, ES2020 `async/await`) |
+| Dữ liệu mẫu | JSON tĩnh (`assets/data/*.json`) |
+| Lưu trữ | LocalStorage của trình duyệt |
 
-## 2. Công nghệ sử dụng
+**Không có:** backend, Node.js server, React/Vue/jQuery, Tailwind/Bootstrap, npm/bundler.
 
-- **HTML:** Xây dựng cấu trúc trang web.
-- **CSS:** Thiết kế giao diện, bố cục và hiệu ứng.
-- **JavaScript:** Xử lý sự kiện, tìm kiếm, cập nhật trạng thái và các chức năng nghiệp vụ.
-- **LocalStorage:** Lưu dữ liệu trên trình duyệt nếu được sử dụng.
-- **JSON:** Tổ chức dữ liệu mẫu nếu được sử dụng.
+File `js/api.js` **không phải API mạng**. Tên "api" theo nghĩa *lớp giao tiếp dữ liệu*: mọi module
+gọi dữ liệu qua file này, không tự đọc LocalStorage hay tự fetch JSON. Nhờ đó sau này thay bằng
+API thật thì chỉ sửa một file.
 
-Dự án tập trung vào frontend bằng HTML, CSS và JavaScript thuần, không có backend. Vì vậy, dữ liệu được xử lý phía trình duyệt và chưa có khả năng đồng bộ thực sự giữa nhiều người dùng trên các thiết bị khác nhau.
+---
 
-## 3. Các vai trò trong hệ thống
+## 2. Cấu trúc thư mục
 
-FixFlow mô phỏng bốn vai trò chính:
-
-### 3.1. Người yêu cầu
-
-Người yêu cầu là người gửi yêu cầu sửa chữa khi thiết bị gặp sự cố.
-
-Các chức năng chính:
-
-- Tạo yêu cầu sửa chữa mới.
-- Nhập thông tin thiết bị và mô tả lỗi.
-- Theo dõi trạng thái yêu cầu.
-- Xem thông tin chi tiết yêu cầu.
-- Theo dõi kết quả xử lý khi yêu cầu hoàn thành.
-- Xem lịch sử các yêu cầu đã gửi nếu chức năng được triển khai.
-
-### 3.2. Kỹ thuật viên
-
-Kỹ thuật viên là người tiếp nhận và trực tiếp thực hiện công việc sửa chữa.
-
-Các chức năng chính:
-
-- Xem danh sách yêu cầu đang chờ xử lý.
-- Tìm kiếm và lọc Ticket.
-- Bắt đầu xử lý yêu cầu.
-- Theo dõi thời gian và tiến độ sửa chữa.
-- Sử dụng chức năng AI đề xuất để tham khảo hướng xử lý lỗi.
-- Hoàn thành yêu cầu sau khi sửa chữa.
-- Tra cứu lịch sử công việc đã thực hiện.
-- Xem thông báo và thông tin cá nhân nếu được triển khai.
-
-### 3.3. Quản trị viên
-
-Quản trị viên phụ trách quản lý thông tin và hoạt động của hệ thống.
-
-Các chức năng chính:
-
-- Theo dõi tình hình hoạt động của hệ thống.
-- Quản lý thông tin tài khoản người dùng.
-- Quản lý thông tin kỹ thuật viên.
-- Theo dõi danh sách yêu cầu sửa chữa.
-- Quản lý dữ liệu và trạng thái yêu cầu theo quyền được cấp.
-- Theo dõi thông báo và các thông tin liên quan đến hệ thống.
-
-### 3.4. Quản lý
-
-Quản lý theo dõi tình hình công việc và đánh giá hiệu quả hoạt động sửa chữa.
-
-Các chức năng chính:
-
-- Xem tổng quan hoạt động sửa chữa.
-- Theo dõi số lượng yêu cầu theo trạng thái.
-- Theo dõi công việc của kỹ thuật viên.
-- Xem thống kê và biểu đồ theo thời gian.
-- Theo dõi tiến độ xử lý yêu cầu.
-- Đánh giá tình hình hoàn thành công việc dựa trên dữ liệu thống kê.
-
-## 4. Quy trình nghiệp vụ chính
-
-Quy trình xử lý yêu cầu sửa chữa được mô phỏng như sau:
-
-1. **Người yêu cầu:** Tạo Ticket và cung cấp thông tin về thiết bị, lỗi gặp phải.
-2. **Tiếp nhận:** Ticket được đưa vào danh sách chờ xử lý.
-3. **Kỹ thuật viên:** Xem thông tin Ticket và bắt đầu sửa chữa.
-4. **Xử lý:** Kỹ thuật viên kiểm tra lỗi, thực hiện sửa chữa và có thể tham khảo AI đề xuất.
-5. **Hoàn thành:** Kỹ thuật viên cập nhật kết quả và chuyển Ticket sang trạng thái hoàn thành.
-6. **Lịch sử:** Ticket đã hoàn thành được lưu vào danh sách lịch sử nếu hệ thống triển khai luồng này.
-7. **Quản trị viên:** Theo dõi và quản lý thông tin, dữ liệu hệ thống.
-8. **Quản lý:** Theo dõi thống kê, tiến độ và hiệu quả xử lý công việc.
-
-Quy trình trên mô tả luồng nghiệp vụ tổng quát. Việc phân công Ticket tự động hay thủ công phụ thuộc vào chức năng thực tế của dự án.
-
-## 5. Các chức năng chính của hệ thống
-
-### 5.1. Quản lý yêu cầu sửa chữa
-
-- Tạo và hiển thị Ticket.
-- Theo dõi thông tin thiết bị và mô tả lỗi.
-- Cập nhật trạng thái xử lý.
-- Tra cứu yêu cầu theo thông tin liên quan.
-
-### 5.2. Tìm kiếm, lọc và sắp xếp
-
-- Tìm kiếm Ticket theo từ khóa.
-- Lọc danh sách theo các tiêu chí được hỗ trợ.
-- Sắp xếp danh sách để thuận tiện theo dõi.
-
-### 5.3. Theo dõi tiến độ
-
-- Hiển thị số lượng yêu cầu theo trạng thái.
-- Theo dõi các công việc đang chờ và đang xử lý.
-- Hiển thị lịch sử các yêu cầu đã hoàn thành.
-
-### 5.4. Thống kê và báo cáo
-
-- Tổng hợp số lượng yêu cầu sửa chữa.
-- Theo dõi tiến độ xử lý.
-- Hiển thị biểu đồ thống kê nếu được triển khai.
-
-### 5.5. AI đề xuất
-
-Hỗ trợ kỹ thuật viên tham khảo hướng xử lý lỗi. Nếu chức năng sử dụng các gợi ý được lập trình sẵn bằng JavaScript, đây là tính năng mô phỏng, chưa phải hệ thống AI thực sự được kết nối với mô hình bên ngoài.
-
-## 6. Cách chạy dự án
-
-1. Tải hoặc sao chép mã nguồn FixFlow về máy tính.
-2. Mở thư mục dự án bằng Visual Studio Code.
-3. Mở file `index.html` bằng trình duyệt hoặc sử dụng tiện ích Live Server.
-4. Truy cập giao diện và kiểm tra các chức năng được triển khai.
-
-Cần giữ nguyên cấu trúc thư mục và đường dẫn các file để website hoạt động đúng.
-
-## 7. Cấu trúc thư mục
-
-Cấu trúc tham khảo, cần điều chỉnh theo mã nguồn thực tế:
-
-```text
-FixFlow/
-├── index.html
+```
+.
+├── index.html                  Trang Tổng quan
+├── tao-ticket.html             Trang Tạo Ticket
+├── ticket-cua-toi.html         Trang danh sách Ticket của tôi
+├── chi-tiet-ticket.html        Trang Chi tiết ticket (?id=TK-...)
+├── thong-bao.html              Trang Thông báo (?loai=...)
+├── ho-so.html                  Trang Hồ sơ cá nhân (?tab=...)
+├── cai-dat.html                Trang Cài đặt
+├── README.md
 ├── css/
-│   └── style.css
+│   ├── style.css               Giao diện dùng chung + biến màu + chủ đề tối
+│   └── responsive.css          Toàn bộ media query và kiểu khi in
 ├── js/
-│   ├── main.js
-│   ├── api.js
+│   ├── main.js                 Bộ khởi động (bootstrap) — route theo data-trang
+│   ├── api.js                  Lớp dữ liệu: JSON mẫu + LocalStorage
 │   └── modules/
-├── assets/
-│   └── data/
-└── README.md
+│       ├── storage.js          Đọc/ghi/xóa key LocalStorage, kiểm tra dữ liệu hỏng
+│       ├── utils.js            Hằng số, định dạng ngày/SLA, thông báo nhỏ
+│       ├── layout.js           Thanh bên, thanh trên, hộp thoại, số thông báo chưa đọc
+│       ├── theme.js            Áp chủ đề sáng/tối/hệ thống và cỡ chữ
+│       ├── search.js           Lọc danh sách ticket theo từ khóa
+│       ├── dashboard.js        Trang Tổng quan
+│       ├── ticket-form.js      Form tạo ticket + ảnh đính kèm
+│       ├── ai-suggestion.js    Mô phỏng phân loại sự cố bằng từ khóa
+│       ├── ticket-list.js      Danh sách: bộ lọc, tab, phân trang
+│       ├── ticket-detail.js    Chi tiết: sửa, hủy, bình luận, đánh giá, in
+│       ├── notifications.js    Trang Thông báo: tab lọc + khung chi tiết
+│       ├── profile.js          Trang Hồ sơ: 3 tab, ảnh đại diện
+│       └── settings.js         Trang Cài đặt: lưu chủ đề, toggle, đặt lại dữ liệu
+└── assets/
+    └── data/
+        ├── tickets.json        12 ticket mẫu
+        ├── thong-bao-mau.json  5 thông báo mẫu
+        └── technicians.json    Danh sách kỹ thuật viên + chuyên môn
 ```
 
-- `index.html`: Cấu trúc giao diện chính.
-- `css/`: Chứa các file CSS.
-- `js/main.js`: Khởi chạy và kết nối các chức năng JavaScript.
-- `js/api.js`: Xử lý dữ liệu mô phỏng nếu được sử dụng.
-- `js/modules/`: Chứa các module JavaScript theo chức năng.
-- `assets/data/`: Chứa dữ liệu mẫu nếu có.
-- `README.md`: Giới thiệu dự án và hướng dẫn sử dụng.
+---
 
-## 8. Phạm vi và hạn chế
+## 3. Luồng dữ liệu
 
-- Dự án phục vụ học tập và mô phỏng quy trình quản lý sửa chữa.
-- Chưa xây dựng backend và cơ sở dữ liệu máy chủ.
-- Dữ liệu LocalStorage chỉ được lưu trên trình duyệt hiện tại.
-- Dữ liệu chưa được đồng bộ thực sự giữa nhiều người dùng hoặc thiết bị.
-- Chức năng AI có thể chỉ sử dụng gợi ý được lập trình sẵn.
-- Chức năng đăng nhập, phân quyền và quản lý tài khoản phụ thuộc vào phạm vi triển khai thực tế.
+```
+  HTML (data-trang, id các ô nhập)
+        │
+        ▼
+  main.js ──── gọi ────► api.js ──── đọc/ghi ────► LocalStorage
+        │                    ▲                          (4 key fixflow_nguoi_yeu_cau_*)
+        │                    │
+        │                    └──── fetch ─── assets/data/*.json  (chỉ khi trống)
+        ▼
+  js/modules/*.js ── dùng ──► utils.js / storage.js / theme.js / search.js
+        │
+        └──────── vẽ lại DOM (bảng, thẻ, biểu mẫu) ────────┘
+```
 
-## 9. Hướng phát triển
+Chi tiết một lượt tạo ticket:
 
-- Hoàn thiện các chức năng cho cả bốn vai trò.
-- Bổ sung kiểm tra dữ liệu và xử lý các trường hợp lỗi.
-- Hoàn thiện quy trình kiểm tra lại sau sửa chữa.
-- Nâng cao chức năng tìm kiếm, lọc và sắp xếp.
-- Cải thiện giao diện trên máy tính và thiết bị di động.
-- Có thể phát triển backend và cơ sở dữ liệu để hỗ trợ nhiều người dùng.
-- Nghiên cứu tích hợp AI thực tế để hỗ trợ chẩn đoán lỗi.
+1. `main.js` đọc JSON mẫu qua `api.js` (lần đầu chỉ) → lưu vào LocalStorage.
+2. Người dùng nhập form → `ticket-form.js` gọi `ai-suggestion.js` gợi ý danh mục.
+3. Bấm "Chấp nhận" → `ticket-form.js` gọi `api.js.themTicket()`.
+4. `api.js` ghi qua `storage.js.ghi()` → `localStorage.setItem(...)`.
+5. Trang khác (Tổng quan, Ticket của tôi) đọc lại bằng `api.js.layDanhSachTicket()`.
 
-## 10. Kết luận
+**Không module nào tự gọi `localStorage` trực tiếp** — tất cả đi qua `api.js` → `storage.js`.
 
-FixFlow là dự án mô phỏng hệ thống quản lý yêu cầu sửa chữa, hướng đến việc kết nối quy trình làm việc giữa người yêu cầu, kỹ thuật viên, quản trị viên và quản lý.
+---
 
-Thông qua dự án, nhóm vận dụng kiến thức HTML, CSS và JavaScript để xây dựng giao diện, xử lý dữ liệu và mô phỏng quy trình nghiệp vụ trong một hệ thống quản lý sửa chữa.
+## 4. Khóa LocalStorage
 
+| Khóa | Nội dung |
+| --- | --- |
+| `fixflow_nguoi_yeu_cau_tickets_v1` | Mảng ticket của phân hệ Người yêu cầu |
+| `fixflow_nguoi_yeu_cau_thong_bao_v1` | Mảng thông báo (`loai`: ticket / sla / he-thong) |
+| `fixflow_nguoi_yeu_cau_ho_so_v1` | Hồ sơ: tên, email, mã nhân viên, SĐT, phòng ban, ảnh |
+| `fixflow_nguoi_yeu_cau_cai_dat_v1` | Cài đặt: chủ đề, cỡ chữ, tần suất, các toggle |
 
+Các khóa đều có tiền tố `fixflow_nguoi_yeu_cau_` để **không ghi đè dữ liệu của phân hệ khác**
+trong cùng trình duyệt. Nút "Đặt lại dữ liệu" chỉ xóa đúng 2 khóa ticket và thông báo của phân hệ
+này, không đụng tới khóa `fixflow.unified.*` hay `fixflow.hangDoi` của thành viên khác.
 
-* **Figma Design:** [Xem bản thiết kế trên Figma](https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&p=f&t=wgEVbN2wAMDnNZtV-0)
+---
 
+## 5. Cách chạy
+
+ES Modules bị trình duyệt chặn khi mở bằng `file://`, vì vậy **phải chạy qua máy chủ tĩnh**.
+
+**Cách 1 — Live Server (khuyến nghị)**
+1. Mở thư mục dự án trong VS Code.
+2. Cài extension **Live Server**, bấm **Go Live**.
+3. Vào `http://127.0.0.1:5500/index.html`.
+
+**Cách 2 — Python** (nếu không có VS Code)
+```bash
+cd "duong/dan/thu-muc-project"
+python -m http.server 8000
+# mở http://127.0.0.1:8000/index.html
+```
+
+**Nếu mở trực tiếp bằng đúp chuột (`file://`)**: trang vẫn chạy, nhưng dữ liệu mẫu JSON không nạp
+được (fetch bị chặn). Console sẽ báo rõ: phải chạy qua máy chủ tĩnh. Khi đó danh sách trống, muốn
+dùng thử thì bấm "Đặt lại dữ liệu" ở trang Cài đặt sau khi đã chạy đúng cách.
+
+**Dữ liệu mẫu không bị ghi đè**: `api.js` chỉ nạp JSON khi chưa có dữ liệu trong LocalStorage.
+Tải lại trang nhiều lần vẫn giữ nguyên ticket đã tạo. Muốn quay về trạng thái ban đầu:
+**Cài đặt → Đặt lại dữ liệu** (có hộp thoại xác nhận vì hành động không hoàn tác được).
+
+---
+
+## 6. Chức năng đã kiểm thử
+
+Kiểm thử thủ công trên trình duyệt qua máy chủ tĩnh (`python -m http.server`), console không lỗi:
+
+- [x] Nạp dữ liệu mẫu từ JSON: 12 ticket, 5 thông báo; tải lại không nhân bản dữ liệu.
+- [x] Tạo ticket: chặn form trống (4 thông báo lỗi + focus lỗi đầu tiên), chọn mức độ ưu tiên,
+      kéo-thả/chọn ảnh PNG-JPG (chặn sai định dạng, chặn ảnh > 1,5 MB), phân loại mô phỏng,
+      4 nhánh Chấp nhận / Sửa / Từ chối / Tạo lại, mã ticket tự sinh không trùng (đã tạo thật `TK-2026-013`, `TK-2026-014`).
+- [x] Danh sách: 8 dòng/trang, phân trang, bộ lọc từ khóa + trạng thái + mức độ + thời gian,
+      3 tab đếm số liệu, nút "Đặt lại", ô "Không tìm thấy ticket phù hợp" khi lọc hết.
+- [x] Chi tiết: sửa tiêu đề/mô tả/thiết bị/vị trí/mức độ và giới hạn SLA tính lại theo mức độ mới,
+      bình luận, đánh giá sao (chỉ mở khi ticket **Hoàn thành**), hủy kèm lý do bắt buộc, nút in.
+- [x] Thông báo: 5 tab lọc theo loại, khung chi tiết bên phải kèm link mở ticket,
+      "Đánh dấu đã đọc" cập nhật số ở thanh bên và thanh trên.
+- [x] Hồ sơ: lưu thông tin, ảnh đại diện (PNG/JPG ≤ 1,5 MB), kiểm tra email, tab Mật khẩu mô phỏng,
+      tab Hoạt động lấy từ thông báo, tên sau khi lưu hiển thị ngay ở thanh trên mọi trang.
+- [x] Cài đặt: chủ đề tối áp dụng tức thì và **giữ nguyên sau khi tải lại / sang trang khác**,
+      cỡ chữ lớn, chỉ báo "Thay đổi chưa lưu", hộp thoại xác nhận đặt lại dữ liệu.
+- [x] Responsive: tại 515px thanh bên thu thành menu trượt, nút hamburger hoạt động, bảng cuộn ngang.
+- [x] Console sạch (không error/warning) trên cả 7 trang.
+
+**Chưa kiểm tự động**: dự án không có bộ test. Không kiểm tra đạt chuẩn W3C bằng công cụ,
+chỉ viết HTML theo cấu trúc hợp lệ (doctype, `lang`, `charset`, thẻ đóng đầy đủ, `alt` cho ảnh).
+
+---
+
+## 7. Mô phỏng so với thật
+
+| Hiện tượng | Bản chất |
+| --- | --- |
+| "Phân tích AI" | Đếm từ khóa trong tiêu đề + mô tả bằng JavaScript, tin cậy 55% + 13%/từ khóa, trần 95%. Không gọi mô hình nào. |
+| Phân loại bằng ảnh | **Không có.** Ảnh chỉ lưu kèm ticket dưới dạng data URL. |
+| Đổi mật khẩu | Chỉ kiểm tra biểu mẫu rồi báo kết quả; **mật khẩu không được lưu hay gửi đi đâu**. |
+| "Đăng xuất tất cả thiết bị" | Chỉ là thông báo trên màn hình, không có phiên thật. |
+| Tần suất / bản tin email | Chỉ lưu sở thích, **không có lịch hay email thật**. |
+| Kỹ thuật viên được phân công | Lấy từ `technicians.json`; việc phân công do phân hệ Kỹ thuật viên quyết định. |
+
+Các giới hạn này được ghi ngay trên giao diện để người dùng không hiểu nhầm.
+
+---
+
+## 8. Trả lời câu hỏi vấn đáp
+
+**Vì sao tách `app.js` cũ (1363 dòng) thành nhiều module?**
+Một file chứa logic của cả 4 trang nên mỗi lần sửa một trang phải tìm trong hơn nghìn dòng và
+dễ xung đột khi ghép code các thành viên. Tách theo trang giúp mỗi file ~100–300 dòng, chỉ nạp
+logic của trang đang mở.
+
+**Vì sao `api.js` không phải là API thật?**
+Dự án không được dùng backend. `api.js` là lớp trung gian: module chỉ gọi hàm, không tự đụng
+`localStorage` hay `fetch`. Sau này có server thật thì chỉ thay phần thân các hàm trong `api.js`.
+
+**Vì sao dữ liệu mẫu đặt ở JSON thay vì hard-code trong JS?**
+Để người dùng sửa được dữ liệu mà không đụng code, và để `api.js` nạp bằng `fetch` — cách duy nhất
+ đọc file tĩnh mà không cần build tool.
+
+**Vì sao ticket mẫu dùng `soGioTruoc` thay vì ngày cố định?**
+Nếu ghi ngày tuyệt đối, sau vài tuần mọi SLA đều "Quá hạn" và demo hỏng. Khi nạp, `api.js` đổi
+"X giờ trước" thành mốc ISO tính tại lúc mở trang, nên dữ liệu luôn tươi.
+
+**Vì sao giữ nguyên tên khóa LocalStorage (`_v1`)?**
+Thay khóa sẽ làm mất dữ liệu người dùng đã tạo từ bản trước. Thay vì đổi khóa, `layDanhSachThongBao()`
+bổ sung field thiếu (`loai`, `maTicket`) theo giá trị mặc định khi đọc — gọi là tương thích ngược.
+
+**Vì sao main.js phải là `type="module"` và không còn `onclick="..."`?**
+Phạm vi của module không phải global, nên chuỗi `onclick="tenHam()"` không tìm thấy hàm và báo lỗi.
+Toàn bộ đã chuyển sang `addEventListener`.
+
+**SLA tính thế nào?**
+`laySoGioSLA()`: Khẩn 8h, Cao 72h, Trung bình 96h, Thấp 120h. `hanXuLy = ngayTao + SLA`.
+Còn lại `= hanXuLy - hiện tại`; dưới 12h nhãn đỏ, dưới 36h nhãn vàng. Ticket Hoàn thành hiển thị
+"Đúng hạn"/"Trễ hạn" theo `ngayCapNhat` so với `hanXuLy`.
+
+**Vấn đề gặp khi refactor?**
+Chuỗi `onclick` hỏng trong module; và trang Hồ sơ từng gắn lại sự kiện "Lưu" mỗi lần chuyển tab
+làm hàm chạy nhiều lần — sửa thành nạp giá trị khi chuyển tab, gắn sự kiện một lần lúc khởi tạo.
+
+**Ảnh lớn làm đầy LocalStorage thì sao?**
+Ảnh chuyển thành data URL (~1,3 KB cho ảnh thử), giới hạn 1,5 MB/ảnh; `storage.js.ghi()` bắt lỗi
+hết dung lượng và báo "Không lưu được dữ liệu, bộ nhớ trình duyệt có thể đã đầy."

@@ -1,111 +1,126 @@
 /* =========================================================
-   UTILS.JS - CAC HAM DUNG CHUNG CHO MOI TRANG
-   - hienThongBao: hop thong bao nho o goc man hinh
-   - layLopMucDo / layChuCaiDau: chuyen du lieu thanh chu hien thi
-   - xuLyMenu / dongThanhBen: menu trai va thanh ben tren dien thoai
-   - hienThiThongTinNguoiDung: ten + chu cai dau cua ky thuat vien o thanh tren
+   utils.js - Các hàm tiện ích dùng chung mọi trang
+   Không chứa nghiệp vụ, chỉ định dạng và kiểm tra dữ liệu.
    ========================================================= */
 
-import { tenKyThuatVien, tenVaiTro, layViecHomNay } from "../api.js";
+export const DANH_SACH_MUC_DO = ["Thấp", "Trung bình", "Cao", "Khẩn"];
+export const NHOM_DANG_XU_LY = ["Mới", "Chờ nhận", "Chờ bổ sung", "Đang xử lý", "Chờ linh kiện"];
+export const SO_DONG_MOI_TRANG = 8;
+export const DINH_DANG_ANH = ["image/png", "image/jpeg"];
+export const KICH_THUOC_ANH_TOI_DA = 1.5 * 1024 * 1024; // 1,5 MB
 
-let thoiGianAnThongBao = 0;
-
-// Hien mot dong thong bao ngan o goc man hinh roi tu an sau 2,6 giay
-function hienThongBao(noiDung) {
-  const oThongBao = document.getElementById("thongBao");
-  if (!oThongBao) return;
-
-  oThongBao.textContent = noiDung;
-  oThongBao.classList.add("hien");
-
-  clearTimeout(thoiGianAnThongBao);
-  thoiGianAnThongBao = setTimeout(function () {
-    oThongBao.classList.remove("hien");
-  }, 2600);
+// Thoát ký tự đặc biệt trước khi chèn dữ liệu người dùng vào HTML (chống XSS)
+export function anToan(chuoi) {
+  if (chuoi === null || chuoi === undefined) return "";
+  return String(chuoi)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#39;");
 }
 
-// Doi muc do uu tien (chu) thanh ten lop CSS de to mau cho dung
-function layLopMucDo(mucDo) {
-  if (mucDo === "Khẩn") return "muc-khan";
-  if (mucDo === "Cao") return "muc-cao";
-  if (mucDo === "Trung bình") return "muc-trung-binh";
-  return "muc-thap";
+export function dinhDangNgay(ngayISO) {
+  const d = new Date(ngayISO);
+  if (isNaN(d.getTime())) return "";
+  const ngay = String(d.getDate()).padStart(2, "0");
+  const thang = String(d.getMonth() + 1).padStart(2, "0");
+  return ngay + "/" + thang + "/" + d.getFullYear();
 }
 
-// Lay 2 chu cai dau cua ten (vi du: "Bùi Huy Quân" -> "BQ")
-function layChuCaiDau(ten) {
-  const cacTu = ten.split(" ");
-  const tuDau = cacTu[0];
-  const tuCuoi = cacTu[cacTu.length - 1];
-  return (tuDau.charAt(0) + tuCuoi.charAt(0)).toUpperCase();
+export function dinhDangGio(ngayISO) {
+  const d = new Date(ngayISO);
+  if (isNaN(d.getTime())) return "";
+  return String(d.getHours()).padStart(2, "0") + ":" + String(d.getMinutes()).padStart(2, "0");
 }
 
-// Muc menu chua co trang rieng (vi du "Tro giup 24/7") thi chi hien thong bao
-function xuLyMenu(phanTuMenu) {
-  const tenTrang = phanTuMenu.getAttribute("data-trang");
-  if (tenTrang === "Trợ giúp 24/7") {
-    hienThongBao("Tổng đài hỗ trợ: 1900 0000 (24/7).");
-    return;
+export function dinhDangNgayGio(ngayISO) {
+  return dinhDangGio(ngayISO) + " · " + dinhDangNgay(ngayISO);
+}
+
+// "X giờ trước" / "X ngày trước" - dùng cho trang Thông báo và Hoạt động gần đây
+export function thoiGianTuongDoi(ngayISO) {
+  const d = new Date(ngayISO);
+  if (isNaN(d.getTime())) return "";
+  const soPhut = Math.floor((Date.now() - d.getTime()) / 60000);
+  if (soPhut < 60) return "Vừa xong";
+  const soGio = Math.floor(soPhut / 60);
+  if (soGio < 24) return soGio + " giờ trước";
+  return Math.floor(soGio / 24) + " ngày trước";
+}
+
+// Số giờ SLA theo mức độ ưu tiên (mô phỏng quy định nội bộ)
+export function laySoGioSLA(mucDo) {
+  if (mucDo === "Khẩn") return 8;
+  if (mucDo === "Cao") return 72;
+  if (mucDo === "Trung bình") return 96;
+  return 120;
+}
+
+export function congGio(ngayISO, soGio) {
+  const d = new Date(ngayISO);
+  d.setHours(d.getHours() + soGio);
+  return d.toISOString();
+}
+
+export function truocSoGio(soGio) {
+  const d = new Date();
+  d.setHours(d.getHours() - soGio);
+  return d.toISOString();
+}
+
+// Số giờ còn lại so với hạn xử lý (âm nếu đã quá hạn)
+export function tinhSoGioConLai(ticket) {
+  if (!ticket.hanXuLy) return 0;
+  const han = new Date(ticket.hanXuLy).getTime();
+  return Math.round((han - Date.now()) / 3600000);
+}
+
+// Chuỗi hiển thị cho cột SLA trên bảng, phụ thuộc trạng thái ticket
+export function dinhDangSLA(ticket) {
+  if (ticket.trangThai === "Hủy") return '<span class="nhan nhan-xam">Đã hủy</span>';
+  if (ticket.trangThai === "Hoàn thành") {
+    const dungHan = new Date(ticket.ngayCapNhat).getTime() <= new Date(ticket.hanXuLy).getTime();
+    return dungHan
+      ? '<span class="nhan nhan-xanh-la">Đúng hạn</span>'
+      : '<span class="nhan nhan-vang">Trễ hạn</span>';
   }
-  hienThongBao("Trang " + tenTrang + " sẽ được phát triển trong phiên bản sau.");
+  const gio = tinhSoGioConLai(ticket);
+  if (gio >= 0) {
+    const mau = gio <= 12 ? "nhan-do" : (gio <= 36 ? "nhan-vang" : "nhan-xanh");
+    return '<span class="nhan ' + mau + '" title="Thời gian còn lại theo SLA">' + gio + "h</span>";
+  }
+  return '<span class="nhan nhan-do" title="Đã quá hạn SLA">Quá ' + Math.abs(gio) + "h</span>";
 }
 
-function dongThanhBen() {
-  document.body.classList.remove("mo-thanh-ben");
+// Nhãn màu cho trạng thái ticket
+export function nhanTrangThai(trangThai) {
+  if (trangThai === "Hoàn thành") return "nhan-xanh-la";
+  if (trangThai === "Hủy") return "nhan-xam";
+  if (trangThai === "Chờ bổ sung") return "nhan-vang";
+  if (trangThai === "Mới") return "nhan-xanh";
+  return "nhan-vang";
 }
 
-// Ten va chu cai dai dien cua ky thuat vien o goc thanh tren
-function hienThiThongTinNguoiDung() {
-  const oTen = document.getElementById("tenNguoiDung");
-  if (!oTen) return;
-
-  const tenHienThi = oTen.getAttribute("data-ten-khac") || tenKyThuatVien;
-  oTen.textContent = tenHienThi;
-
-  const oAnh = document.getElementById("anhDaiDien");
-  if (oAnh) {
-    oAnh.textContent = layChuCaiDau(tenHienThi);
-  }
-
-  const oDongTruong = document.getElementById("dongTruong");
-  if (oDongTruong) {
-    oDongTruong.textContent = tenVaiTro;
-  }
+// Nhãn màu cho mức độ ưu tiên
+export function nhanMucDo(mucDo) {
+  if (mucDo === "Khẩn") return "nhan-do";
+  if (mucDo === "Cao") return "nhan-vang";
+  if (mucDo === "Trung bình") return "nhan-xanh";
+  return "nhan-xam";
 }
 
-// Su kien co tren MOI trang: menu trai, thanh ben dien thoai, nut thong bao
-function ganSuKienChung() {
-  // Chi gan cho muc co thuoc tinh data-trang (nut Tro giup 24/7)
-  const danhSachMenu = document.querySelectorAll(".muc-menu[data-trang]");
-  for (let i = 0; i < danhSachMenu.length; i++) {
-    danhSachMenu[i].addEventListener("click", function () {
-      xuLyMenu(this);
-    });
+// Thông báo nhỏ góc màn hình; loai: "thanh-cong" | "loi" | ""
+export function hienThongBao(noiDung, loai) {
+  let o = document.getElementById("thong-bao-nho");
+  if (!o) {
+    o = document.createElement("div");
+    o.id = "thong-bao-nho";
+    document.body.appendChild(o);
   }
-
-  const oNutMenu = document.getElementById("nutMenu");
-  if (oNutMenu) {
-    oNutMenu.addEventListener("click", function () {
-      document.body.classList.toggle("mo-thanh-ben");
-    });
-    document.getElementById("nenPhu").addEventListener("click", dongThanhBen);
-  }
-
-  const oThongBao = document.getElementById("nutThongBao");
-  if (oThongBao) {
-    oThongBao.addEventListener("click", function () {
-      const soViec = layViecHomNay().length;
-      hienThongBao("Hôm nay bạn có " + soViec + " việc cần xử lý.");
-    });
-  }
+  o.className = "thong-bao-nho " + (loai || "");
+  o.textContent = noiDung;
+  o.classList.add("hien");
+  clearTimeout(o.henGio);
+  o.henGio = setTimeout(function () { o.classList.remove("hien"); }, 3500);
 }
-
-export {
-  hienThongBao,
-  layLopMucDo,
-  layChuCaiDau,
-  xuLyMenu,
-  dongThanhBen,
-  hienThiThongTinNguoiDung,
-  ganSuKienChung
-};

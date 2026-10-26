@@ -1,158 +1,42 @@
+/* =========================================================
+   responsive.css - Giao diện theo kích thước màn hình
+   Chỉ chứa media queries; màu sắc và thành phần ở style.css.
+   ========================================================= */
 
-
-@media (max-width: 1280px) {
-  .luoi-hang-doi {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .khung-chi-tiet {
-    position: static;
-  }
-
-  .luoi-3-cot,
-  .luoi-3-cot-hang {
-    grid-template-columns: minmax(0, 1fr);
-  }
+/* ---------- Máy tính bảng / màn hình trung bình ---------- */
+@media (max-width: 1180px) {
+  .luoi-thong-ke { grid-template-columns: repeat(2, 1fr); }
+  .luoi-hai-cot, .luoi-hai-cot.phai-nho, .luoi-cai-dat { grid-template-columns: 1fr; }
 }
 
-
-@media (max-width: 1100px) {
-  .luoi-thong-ke {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .luoi-noi-dung {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .khung-kenh {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  
-  .luoi-2-cot {
-    grid-template-columns: minmax(0, 1fr);
-  }
-}
-
-
-
+/* ---------- Tablet dọc: thu gọn thanh bên thành menu trượt ---------- */
 @media (max-width: 900px) {
-  .thanh-ben {
-    position: fixed;
-    left: -280px;
-    top: 0;
-    z-index: 60;
-    transition: left 0.25s;
-  }
-
-  body.mo-thanh-ben .thanh-ben {
-    left: 0;
-  }
-
-  body.mo-thanh-ben .nen-phu {
-    display: block;
-  }
-
-  .nut-menu {
-    display: flex;
-  }
-
-  .thanh-tren {
-    padding: 0 16px;
-    height: 70px;
-  }
-
-  .ten-nguoi-dung {
-    display: none;
-  }
-
-  .noi-dung {
-    padding: 20px 16px;
-  }
-
-  .loi-chao {
-    font-size: 23px;
-  }
-
-  .ten-trang {
-    font-size: 24px;
-  }
-
-  .khung-loc .o-chon {
-    width: 100%;
-  }
-
-  .khung-loc .nut-de {
-    width: 100%;
-    text-align: center;
-    background: #f2f5f9;
-  }
+  .thanh-ben { transform: translateX(-100%); transition: transform .25s; }
+  .thanh-ben.mo { transform: translateX(0); }
+  .khung-chinh { margin-left: 0; }
+  .nut-menu { display: inline-flex; }
+  .noi-dung { padding: 20px 16px 40px; }
+  .o-tim-kiem { width: 100%; }
+  .luoi-bo-loc { grid-template-columns: 1fr 1fr; }
 }
 
+/* ---------- Điện thoại ---------- */
+@media (max-width: 640px) {
+  .luoi-thong-ke { grid-template-columns: 1fr; }
+  .bang-chao { flex-direction: column; align-items: flex-start; }
+  .hang-hai-o { grid-template-columns: 1fr; }
+  .luoi-bo-loc { grid-template-columns: 1fr; }
+  .thong-tin-nguoi-dung span:last-child { display: none; }
+  .tieu-de-trang { font-size: 24px; }
+  .tieu-de-chao { font-size: 22px; }
+  .dau-trang { align-items: flex-start; }
+  .hang-tab { gap: 14px; overflow-x: auto; }
+  .tab { white-space: nowrap; }
+}
 
-
-@media (max-width: 560px) {
-  .luoi-thong-ke {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .khu-chao {
-    flex-direction: column;
-    align-items: stretch;
-  }
-
-  .chon-trang-thai {
-    justify-content: space-between;
-  }
-
-  .nut-trang-thai {
-    flex: 1;
-  }
-
-  .the {
-    padding: 18px;
-  }
-
-  .dong-viec {
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-
-  .thong-tin-viec {
-    flex-basis: 100%;
-    order: 2;
-  }
-
-  .the-muc-do {
-    margin-left: auto;
-    order: 3;
-  }
-
-  .mui-ten {
-    order: 4;
-  }
-
-  .nhom-che-do {
-    width: 100%;
-  }
-
-  .nut-che-do {
-    flex: 1;
-    justify-content: center;
-  }
-
-  .hang-nut .nut-chinh,
-  .hang-nut .nut-phu,
-  .hang-nut .nut-do,
-  .hang-nut .nut-de {
-    width: 100%;
-    text-align: center;
-    justify-content: center;
-  }
-
-  .khung-vong {
-    flex-direction: column;
-    align-items: flex-start;
-  }
+/* ---------- Khi in ---------- */
+@media print {
+  .thanh-ben, .thanh-tren, .khung-nut, .khung-huy, .nut, .thong-bao-nho, .hang-tab, .chan-luu { display: none !important; }
+  .khung-chinh { margin-left: 0; }
+  .the { border: 0; padding: 0 0 14px; }
 }
