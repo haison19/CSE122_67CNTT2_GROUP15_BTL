@@ -1,131 +1,194 @@
+# FixFlow – Hệ thống quản lý yêu cầu sửa chữa
 
-# FixFlow – Technician
+## 1. Giới thiệu dự án
 
-## 1. Giới thiệu
+FixFlow là website mô phỏng hệ thống quản lý yêu cầu sửa chữa thiết bị. Hệ thống hỗ trợ tiếp nhận yêu cầu, phân công công việc, theo dõi quá trình sửa chữa và quản lý kết quả xử lý.
 
-FixFlow là hệ thống hỗ trợ quản lý các yêu cầu sửa chữa và bảo trì thiết bị.
+Dự án được thực hiện trong khuôn khổ bài tập lớn môn CSE122.
 
-Phần Technician (Kỹ thuật viên) giúp kỹ thuật viên theo dõi công việc, tiếp nhận yêu cầu, thực hiện sửa chữa và cập nhật trạng thái xử lý.
+### 1.1. Mục tiêu dự án
 
-## 2. Đối tượng sử dụng
+- Số hóa quy trình tiếp nhận và xử lý yêu cầu sửa chữa.
+- Giúp người yêu cầu theo dõi tình trạng yêu cầu của mình.
+- Hỗ trợ kỹ thuật viên quản lý công việc và cập nhật tiến độ.
+- Giúp quản trị viên quản lý thông tin và hoạt động của hệ thống.
+- Giúp quản lý theo dõi số liệu và hiệu quả xử lý công việc.
 
-- Kỹ thuật viên bảo trì và sửa chữa thiết bị.
+## 2. Công nghệ sử dụng
 
-## 3. Danh sách 6 trang
+- **HTML:** Xây dựng cấu trúc trang web.
+- **CSS:** Thiết kế giao diện, bố cục và hiệu ứng.
+- **JavaScript:** Xử lý sự kiện, tìm kiếm, cập nhật trạng thái và các chức năng nghiệp vụ.
+- **LocalStorage:** Lưu dữ liệu trên trình duyệt nếu được sử dụng.
+- **JSON:** Tổ chức dữ liệu mẫu nếu được sử dụng.
 
-### 3.1. Dashboard – Tổng quan
-- Hiển thị tổng quan công việc.
-- Thống kê số lượng yêu cầu theo trạng thái.
-- Theo dõi tình hình xử lý công việc.
+Dự án tập trung vào frontend bằng HTML, CSS và JavaScript thuần, không có backend. Vì vậy, dữ liệu được xử lý phía trình duyệt và chưa có khả năng đồng bộ thực sự giữa nhiều người dùng trên các thiết bị khác nhau.
 
-### 3.2. Queue – Hàng đợi
-- Hiển thị danh sách yêu cầu sửa chữa.
-- Tìm kiếm và lọc yêu cầu.
-- Xem thông tin yêu cầu.
-- Cho phép bắt đầu xử lý yêu cầu.
+## 3. Các vai trò trong hệ thống
 
-### 3.3. In Progress – Đang sửa
-- Hiển thị yêu cầu đang được xử lý.
-- Theo dõi tiến độ sửa chữa.
-- Quản lý checklist công việc.
-- Ghi chú quá trình sửa chữa.
-- Cập nhật trạng thái hoàn thành.
+FixFlow mô phỏng bốn vai trò chính:
 
-### 3.4. Repair Details – Chi tiết sửa chữa
-- Hiển thị thông tin chi tiết của yêu cầu.
-- Xem thông tin thiết bị và mô tả sự cố.
-- Theo dõi thông tin cần thiết trước khi sửa chữa.
+### 3.1. Người yêu cầu
 
-### 3.5. AI Suggestions – AI đề xuất
-- Hiển thị các bước sửa chữa được đề xuất.
-- Cho phép xem xét và chỉnh sửa checklist đề xuất.
-- Hỗ trợ kỹ thuật viên tham khảo hướng xử lý.
+Người yêu cầu là người gửi yêu cầu sửa chữa khi thiết bị gặp sự cố.
 
-### 3.6. Profile – Hồ sơ cá nhân
-- Hiển thị thông tin kỹ thuật viên.
-- Xem thông tin tài khoản cá nhân.
-- Cập nhật thông tin cá nhân nếu chức năng được hỗ trợ.
+Các chức năng chính:
 
-## 4. Công nghệ sử dụng
+- Tạo yêu cầu sửa chữa mới.
+- Nhập thông tin thiết bị và mô tả lỗi.
+- Theo dõi trạng thái yêu cầu.
+- Xem thông tin chi tiết yêu cầu.
+- Theo dõi kết quả xử lý khi yêu cầu hoàn thành.
+- Xem lịch sử các yêu cầu đã gửi nếu chức năng được triển khai.
 
-- HTML: Xây dựng cấu trúc giao diện.
-- CSS: Thiết kế giao diện và bố cục.
-- JavaScript: Xử lý tương tác và chức năng trên trang.
+### 3.2. Kỹ thuật viên
 
-## 5. Cách chạy dự án
+Kỹ thuật viên là người tiếp nhận và trực tiếp thực hiện công việc sửa chữa.
 
-Dự án dùng JavaScript module (`import`/`export`) và đọc dữ liệu mẫu bằng `fetch()`, nên **phải chạy qua một máy chủ tĩnh**. Mở trực tiếp file `index.html` bằng `file://` sẽ không tải được dữ liệu và không chạy được module.
+Các chức năng chính:
 
-Cách chạy bằng VS Code:
+- Xem danh sách yêu cầu đang chờ xử lý.
+- Tìm kiếm và lọc Ticket.
+- Bắt đầu xử lý yêu cầu.
+- Theo dõi thời gian và tiến độ sửa chữa.
+- Sử dụng chức năng AI đề xuất để tham khảo hướng xử lý lỗi.
+- Hoàn thành yêu cầu sau khi sửa chữa.
+- Tra cứu lịch sử công việc đã thực hiện.
+- Xem thông báo và thông tin cá nhân nếu được triển khai.
 
-1. Mở thư mục dự án bằng Visual Studio Code.
-2. Cài extension **Live Server** (tác giả Ritwick Dey) nếu chưa có.
-3. Bấm chuột phải vào `index.html` → chọn **Open with Live Server**.
-4. Trình duyệt tự mở địa chỉ `http://127.0.0.1:5500/index.html`. Từ menu trái có thể mở 5 trang còn lại.
+### 3.3. Quản trị viên
 
-Cách chạy không cần extension (nếu đã cài Python):
+Quản trị viên phụ trách quản lý thông tin và hoạt động của hệ thống.
 
-```bash
-python -m http.server 8000
-# sau đó mở http://localhost:8000/index.html
-```
+Các chức năng chính:
 
-## 6. Cấu trúc thư mục
+- Theo dõi tình hình hoạt động của hệ thống.
+- Quản lý thông tin tài khoản người dùng.
+- Quản lý thông tin kỹ thuật viên.
+- Theo dõi danh sách yêu cầu sửa chữa.
+- Quản lý dữ liệu và trạng thái yêu cầu theo quyền được cấp.
+- Theo dõi thông báo và các thông tin liên quan đến hệ thống.
+
+### 3.4. Quản lý
+
+Quản lý theo dõi tình hình công việc và đánh giá hiệu quả hoạt động sửa chữa.
+
+Các chức năng chính:
+
+- Xem tổng quan hoạt động sửa chữa.
+- Theo dõi số lượng yêu cầu theo trạng thái.
+- Theo dõi công việc của kỹ thuật viên.
+- Xem thống kê và biểu đồ theo thời gian.
+- Theo dõi tiến độ xử lý yêu cầu.
+- Đánh giá tình hình hoàn thành công việc dựa trên dữ liệu thống kê.
+
+## 4. Quy trình nghiệp vụ chính
+
+Quy trình xử lý yêu cầu sửa chữa được mô phỏng như sau:
+
+1. **Người yêu cầu:** Tạo Ticket và cung cấp thông tin về thiết bị, lỗi gặp phải.
+2. **Tiếp nhận:** Ticket được đưa vào danh sách chờ xử lý.
+3. **Kỹ thuật viên:** Xem thông tin Ticket và bắt đầu sửa chữa.
+4. **Xử lý:** Kỹ thuật viên kiểm tra lỗi, thực hiện sửa chữa và có thể tham khảo AI đề xuất.
+5. **Hoàn thành:** Kỹ thuật viên cập nhật kết quả và chuyển Ticket sang trạng thái hoàn thành.
+6. **Lịch sử:** Ticket đã hoàn thành được lưu vào danh sách lịch sử nếu hệ thống triển khai luồng này.
+7. **Quản trị viên:** Theo dõi và quản lý thông tin, dữ liệu hệ thống.
+8. **Quản lý:** Theo dõi thống kê, tiến độ và hiệu quả xử lý công việc.
+
+Quy trình trên mô tả luồng nghiệp vụ tổng quát. Việc phân công Ticket tự động hay thủ công phụ thuộc vào chức năng thực tế của dự án.
+
+## 5. Các chức năng chính của hệ thống
+
+### 5.1. Quản lý yêu cầu sửa chữa
+
+- Tạo và hiển thị Ticket.
+- Theo dõi thông tin thiết bị và mô tả lỗi.
+- Cập nhật trạng thái xử lý.
+- Tra cứu yêu cầu theo thông tin liên quan.
+
+### 5.2. Tìm kiếm, lọc và sắp xếp
+
+- Tìm kiếm Ticket theo từ khóa.
+- Lọc danh sách theo các tiêu chí được hỗ trợ.
+- Sắp xếp danh sách để thuận tiện theo dõi.
+
+### 5.3. Theo dõi tiến độ
+
+- Hiển thị số lượng yêu cầu theo trạng thái.
+- Theo dõi các công việc đang chờ và đang xử lý.
+- Hiển thị lịch sử các yêu cầu đã hoàn thành.
+
+### 5.4. Thống kê và báo cáo
+
+- Tổng hợp số lượng yêu cầu sửa chữa.
+- Theo dõi tiến độ xử lý.
+- Hiển thị biểu đồ thống kê nếu được triển khai.
+
+### 5.5. AI đề xuất
+
+Hỗ trợ kỹ thuật viên tham khảo hướng xử lý lỗi. Nếu chức năng sử dụng các gợi ý được lập trình sẵn bằng JavaScript, đây là tính năng mô phỏng, chưa phải hệ thống AI thực sự được kết nối với mô hình bên ngoài.
+
+## 6. Cách chạy dự án
+
+1. Tải hoặc sao chép mã nguồn FixFlow về máy tính.
+2. Mở thư mục dự án bằng Visual Studio Code.
+3. Mở file `index.html` bằng trình duyệt hoặc sử dụng tiện ích Live Server.
+4. Truy cập giao diện và kiểm tra các chức năng được triển khai.
+
+Cần giữ nguyên cấu trúc thư mục và đường dẫn các file để website hoạt động đúng.
+
+## 7. Cấu trúc thư mục
+
+Cấu trúc tham khảo, cần điều chỉnh theo mã nguồn thực tế:
 
 ```text
 FixFlow/
-├── index.html               Trang Tổng quan
-├── queue.html               Trang Hàng đợi
-├── fixing.html              Trang Đang sửa
-├── history.html             Trang Lịch sử sửa chữa
-├── checklist.html           Trang Mẫu checklist
-├── analytics.html           Trang Thống kê
+├── index.html
 ├── css/
-│   ├── style.css            Giao diện chính + chế độ sáng/tối
-│   └── responsive.css       Giao diện cho màn hình nhỏ
+│   └── style.css
 ├── js/
-│   ├── main.js              Khởi động trang, nạp dữ liệu, gọi module theo trang
-│   ├── api.js               Đọc JSON + đọc/ghi localStorage + kho dữ liệu dùng chung
+│   ├── main.js
+│   ├── api.js
 │   └── modules/
-│       ├── theme.js         Chế độ sáng/tối
-│       ├── utils.js         Hàm dùng chung (thông báo, menu, nhãn mức độ)
-│       ├── dashboard.js     Trang Tổng quan
-│       ├── queue.js         Trang Hàng đợi
-│       ├── repair.js        Trang Đang sửa (checklist, đồng hồ, hoàn thành)
-│       ├── ai-suggestion.js Gợi ý sửa chữa (mô phỏng bằng quy tắc)
-│       ├── history.js       Trang Lịch sử + xuất CSV
-│       ├── checklist.js     Trang Mẫu checklist
-│       └── analytics.js     Trang Thống kê
 ├── assets/
-│   └── data/                Dữ liệu mẫu (JSON)
-│       ├── tickets-tong-quan.json
-│       ├── tickets-hang-doi.json
-│       ├── lich-su.json
-│       ├── thong-ke.json
-│       └── checklist.json
-└── docs/                    Tài liệu của bài tập
+│   └── data/
+└── README.md
 ```
 
-Dữ liệu người dùng nhập (checklist đã làm, ghi chú, trạng thái ticket, chế độ sáng/tối) được lưu trong `localStorage` của trình duyệt với các khóa `fixflowDuLieuTicket`, `fixflowTicketDangXuLy`, `fixflowGiaoDien`. Các khóa này **giữ nguyên tên** so với phiên bản trước nên dữ liệu đang có vẫn đọc được.
+- `index.html`: Cấu trúc giao diện chính.
+- `css/`: Chứa các file CSS.
+- `js/main.js`: Khởi chạy và kết nối các chức năng JavaScript.
+- `js/api.js`: Xử lý dữ liệu mô phỏng nếu được sử dụng.
+- `js/modules/`: Chứa các module JavaScript theo chức năng.
+- `assets/data/`: Chứa dữ liệu mẫu nếu có.
+- `README.md`: Giới thiệu dự án và hướng dẫn sử dụng.
 
-## 7. Phạm vi triển khai
+## 8. Phạm vi và hạn chế
 
-Phần Technician tập trung vào giao diện và các chức năng hỗ trợ kỹ thuật viên xử lý yêu cầu sửa chữa.
+- Dự án phục vụ học tập và mô phỏng quy trình quản lý sửa chữa.
+- Chưa xây dựng backend và cơ sở dữ liệu máy chủ.
+- Dữ liệu LocalStorage chỉ được lưu trên trình duyệt hiện tại.
+- Dữ liệu chưa được đồng bộ thực sự giữa nhiều người dùng hoặc thiết bị.
+- Chức năng AI có thể chỉ sử dụng gợi ý được lập trình sẵn.
+- Chức năng đăng nhập, phân quyền và quản lý tài khoản phụ thuộc vào phạm vi triển khai thực tế.
 
-Nếu chưa có backend hoặc dịch vụ AI thực tế, dữ liệu và chức năng đề xuất được mô phỏng bằng JavaScript và dữ liệu mẫu.
+## 9. Hướng phát triển
 
-## 8. Vai trò trong hệ thống
+- Hoàn thiện các chức năng cho cả bốn vai trò.
+- Bổ sung kiểm tra dữ liệu và xử lý các trường hợp lỗi.
+- Hoàn thiện quy trình kiểm tra lại sau sửa chữa.
+- Nâng cao chức năng tìm kiếm, lọc và sắp xếp.
+- Cải thiện giao diện trên máy tính và thiết bị di động.
+- Có thể phát triển backend và cơ sở dữ liệu để hỗ trợ nhiều người dùng.
+- Nghiên cứu tích hợp AI thực tế để hỗ trợ chẩn đoán lỗi.
 
-Technician là một trong bốn luồng của FixFlow, bên cạnh:
-- User – Người dùng.
-- Administrator – Quản trị viên.
-- Manager – Quản lý.
+## 10. Kết luận
+
+FixFlow là dự án mô phỏng hệ thống quản lý yêu cầu sửa chữa, hướng đến việc kết nối quy trình làm việc giữa người yêu cầu, kỹ thuật viên, quản trị viên và quản lý.
+
+Thông qua dự án, nhóm vận dụng kiến thức HTML, CSS và JavaScript để xây dựng giao diện, xử lý dữ liệu và mô phỏng quy trình nghiệp vụ trong một hệ thống quản lý sửa chữa.
 
 
----
 
 * **Figma Design:** [Xem bản thiết kế trên Figma](https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&p=f&t=wgEVbN2wAMDnNZtV-0)
 
-* **Video Demo / Reference (YouTube):** [Xem video trên YouTube](https://www.youtube.com/watch?v=PFMi9wCNk5Y)
-
-* **GitHub Repository:**[Truy cập Mã nguồn trên GitHub](https://github.com/hwqrave/FixFlow)
