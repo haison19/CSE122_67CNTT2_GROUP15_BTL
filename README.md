@@ -7,41 +7,41 @@ Phần Administrator (Quản trị hệ thống) giúp quản trị viên giám 
 ---
 
 ## 2. Đối tượng sử dụng
-- Quản trị viên hệ thống (Administrator / System Admin)[cite: 4].
+- Quản trị viên hệ thống (Administrator / System Admin).
 
 ---
 
 ## 3. Danh sách 5 trang / màn hình chức năng
 
 ### 3.1. Dashboard – Tổng quan hệ thống (`admin-system-manage.html`)
-- Hiển thị các thẻ thống kê tổng quan hệ thống và sức khỏe hoạt động[cite: 4].
-- Theo dõi nhật ký hoạt động gần đây và biểu đồ trạng thái thiết bị (Hoạt động, Bảo trì, Ngừng dùng)[cite: 4].
-- Thống kê tỷ lệ người dùng theo từng vai trò: Nhân viên, Kỹ thuật viên, Quản trị viên[cite: 4].
-- Cung cấp các nút thao tác nhanh hệ thống[cite: 4].
+- Hiển thị các thẻ thống kê tổng quan hệ thống và sức khỏe hoạt động.
+- Theo dõi nhật ký hoạt động gần đây và biểu đồ trạng thái thiết bị (Hoạt động, Bảo trì, Ngừng dùng).
+- Thống kê tỷ lệ người dùng theo từng vai trò: Nhân viên, Kỹ thuật viên, Quản trị viên.
+- Cung cấp các nút thao tác nhanh hệ thống.
 
 ### 3.2. Quản lý Thiết bị (`admin-device-manage.html`)
-- Hiển thị danh sách toàn bộ thiết bị trong hệ thống[cite: 4].
-- Hỗ trợ tìm kiếm, lọc thiết bị theo mã, loại, vị trí và trạng thái[cite: 4].
-- Cho phép thêm mới, cập nhật thông tin và thay đổi trạng thái hoạt động của thiết bị[cite: 4].
+- Hiển thị danh sách toàn bộ thiết bị trong hệ thống.
+- Hỗ trợ tìm kiếm, lọc thiết bị theo mã, loại, vị trí và trạng thái.
+- Cho phép thêm mới, cập nhật thông tin và thay đổi trạng thái hoạt động của thiết bị.
 
 ### 3.3. Quản lý Danh mục Lỗi (`admin-issue-category-manage.html`)
-- Hiển thị và quản lý danh sách các loại/danh mục lỗi chuẩn hóa[cite: 4].
-- Hỗ trợ phân loại sự cố, điều chỉnh tên danh mục, mô tả và cấp độ ảnh hưởng[cite: 4].
+- Hiển thị và quản lý danh sách các loại/danh mục lỗi chuẩn hóa.
+- Hỗ trợ phân loại sự cố, điều chỉnh tên danh mục, mô tả và cấp độ ảnh hưởng.
 
 ### 3.4. Cấu hình SLA (`admin-sla-configure.html`)
-- Thiết lập và quản lý quy định về thời gian phản hồi/xử lý (Service Level Agreement) cho từng mức độ sự cố[cite: 4].
-- Cho phép chỉnh sửa các mốc thời gian tối đa để bảo đảm cam kết chất lượng dịch vụ[cite: 4].
+- Thiết lập và quản lý quy định về thời gian phản hồi/xử lý (Service Level Agreement) cho từng mức độ sự cố.
+- Cho phép chỉnh sửa các mốc thời gian tối đa để bảo đảm cam kết chất lượng dịch vụ.
 
 ### 3.5. Quản lý Người dùng (`users.json` / Tích hợp hệ thống)
-- Quản lý dữ liệu danh sách người dùng và phân quyền tài khoản[cite: 4].
-- Phân loại tài khoản theo vai trò: Nhân viên, Kỹ thuật viên, Quản lý và Quản trị viên[cite: 4].
+- Quản lý dữ liệu danh sách người dùng và phân quyền tài khoản.
+- Phân loại tài khoản theo vai trò: Nhân viên, Kỹ thuật viên, Quản lý và Quản trị viên.
 
 ---
 
 ## 4. Công nghệ sử dụng
-- **HTML5**: Xây dựng cấu trúc giao diện ứng dụng phẳng (dùng các thẻ ngữ nghĩa `<main>`, `<aside>`, `<header>`, `<template>`)[cite: 4].
-- **CSS3**: Thiết kế giao diện responsive và bố cục điều hướng phẳng (`admin-system-manage.css`, `admin-system-manage-responsive.css`)[cite: 4].
-- **JavaScript (ES6 Modules)**: Xử lý logic theo từng module độc lập (`overview.js`, `devices.js`, `issue-categories.js`, `sla-settings.js`, `unified-data.js`)[cite: 4].
+- **HTML5**: Xây dựng cấu trúc giao diện ứng dụng phẳng (dùng các thẻ ngữ nghĩa `<main>`, `<aside>`, `<header>`, `<template>`).
+- **CSS3**: Thiết kế giao diện responsive và bố cục điều hướng phẳng (`admin-system-manage.css`, `admin-system-manage-responsive.css`).
+- **JavaScript (ES6 Modules)**: Xử lý logic theo từng module độc lập (`overview.js`, `devices.js`, `issue-categories.js`, `sla-settings.js`, `unified-data.js`).
 
 ---
 
@@ -66,12 +66,12 @@ Trong quá trình phát triển phân hệ Quản trị hệ thống FixFlow, c�
 ---
 
 ## 6. Cách chạy dự án
-Dự án sử dụng JavaScript module (`import`/`export`) và nạp dữ liệu bằng `fetch()` từ file JSON, nên bắt buộc phải chạy qua Web Server tĩnh[cite: 4].
+Dự án sử dụng JavaScript module (`import`/`export`) và nạp dữ liệu bằng `fetch()` từ file JSON, nên bắt buộc phải chạy qua Web Server tĩnh.
 
 **Cách 1: Chạy bằng Live Server trong VS Code**
-1. Mở thư mục `TH2` bằng Visual Studio Code[cite: 4].
-2. Bấm chuột phải vào `admin-system-manage.html` → chọn **Open with Live Server**[cite: 4].
-3. Trình duyệt tự mở địa chỉ `http://127.0.0.1:5500/admin-system-manage.html`[cite: 4].
+1. Mở thư mục `TH2` bằng Visual Studio Code.
+2. Bấm chuột phải vào `admin-system-manage.html` → chọn **Open with Live Server**.
+3. Trình duyệt tự mở địa chỉ `http://127.0.0.1:5500/admin-system-manage.html`.
 
 **Cách 2: Chạy bằng Python**
 ```bash
@@ -104,11 +104,11 @@ TH2/
 
 ## 8. Phạm vi triển khai & Vai trò hệ thống
 ## 8. Vai trò trong hệ thống
-- Administrator là phân hệ quản trị trung tâm của hệ thống FixFlow, đóng vai trò thiết lập cấu hình nền tảng và kiểm soát toàn bộ dữ liệu hệ thống[cite: 4].
-- Phân hệ này phối hợp chặt chẽ và hoạt động song song với 3 luồng chức năng còn lại[cite: 4]:
-  - **User** – Người dùng tạo và gửi các yêu cầu sửa chữa thiết bị[cite: 4].
-  - **Technician** – Kỹ thuật viên tiếp nhận, xử lý và báo cáo tiến độ khắc phục sự cố[cite: 4].
-  - **Manager** – Quản lý điều phối công việc và xem báo cáo phân tích[cite: 4].
+- Administrator là phân hệ quản trị trung tâm của hệ thống FixFlow, đóng vai trò thiết lập cấu hình nền tảng và kiểm soát toàn bộ dữ liệu hệ thống.
+- Phân hệ này phối hợp chặt chẽ và hoạt động song song với 3 luồng chức năng còn lại:
+  - **User** – Người dùng tạo và gửi các yêu cầu sửa chữa thiết bị.
+  - **Technician** – Kỹ thuật viên tiếp nhận, xử lý và báo cáo tiến độ khắc phục sự cố.
+  - **Manager** – Quản lý điều phối công việc và xem báo cáo phân tích.
 - **Tài nguyên dự án:**
   - **Figma Design**: Xem bản thiết kế giao diện trên Figma(https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&t=kWQW3sBJ7VZF1ZPi-0)
   - **Video Demo / Reference (YouTube)**: Xem video minh họa trên YouTube(https://youtube.com/playlist?list=PLVtZqCVkOqS4&si=q40f5bgLTZG7Oodv)
