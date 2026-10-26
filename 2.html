@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixFlow - Đăng nhập</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="2.css">
+</head>
+<body class="bg-white flex h-screen overflow-hidden">
+
+    <!-- LEFT -->
+    <div class="hero">
+        <div class="flex items-center space-x-3">
+            <div class="logo"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <span class="text-xl font-bold">FixFlow</span>
+        </div>
+        <div class="max-w-md my-auto">
+            <div class="flex space-x-3 text-blue-400 text-xl mb-6">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <i class="fa-solid fa-hammer"></i>
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <h1 class="text-4xl font-extrabold leading-snug">Mọi yêu cầu đều trong tầm kiểm soát</h1>
+        </div>
+        <div class="quote">
+            <p class="text-sm italic mb-2">"FixFlow giúp thời gian phản hồi giảm 38%."</p>
+            <div class="text-xs font-semibold text-slate-400">Phạm Minh Khang · Quản lý vận hành</div>
+        </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="main">
+        <div class="box">
+            <div class="mb-6">
+                <h2 class="text-2xl font-bold text-slate-900 mb-1">Chào mừng trở lại</h2>
+                <p class="text-sm text-slate-500">Đăng nhập để tiếp tục quản lý hệ thống bảo trì</p>
+            </div>
+
+            <form id="login-form" novalidate>
+                <div class="mb-4">
+                    <label>Email</label>
+                    <input id="email" name="email" type="email" placeholder="a@fixflow.com" required class="inp email-example" aria-describedby="email-error">
+                    <small id="email-error" class="field-error" aria-live="polite"></small>
+                </div>
+                <div class="mb-4">
+                    <div class="flex justify-between mb-2">
+                        <label class="mb-0">Mật khẩu</label>
+                        <a href="#" class="text-xs font-semibold text-blue-600 hover:underline">Quên mật khẩu?</a>
+                    </div>
+                    <input type="password" value="password123" required class="inp">
+                </div>
+                <div class="flex items-center space-x-2 mb-4">
+                    <input type="checkbox" id="remember" checked class="w-4 h-4 rounded text-blue-600">
+                    <label for="remember" class="text-sm text-slate-600 cursor-pointer mb-0">Ghi nhớ</label>
+                </div>
+                <button type="submit" class="btn">Đăng nhập</button>
+            </form>
+
+            <div class="divider"><span>hoặc tiếp tục với</span></div>
+
+            <div class="grid grid-cols-2 gap-3">
+                <button class="s-btn"><i class="fa-brands fa-google text-rose-500 mr-2"></i> Google</button>
+                <button class="s-btn"><i class="fa-brands fa-microsoft text-blue-500 mr-2"></i> Microsoft</button>
+            </div>
+
+            <div class="text-center text-sm pt-4">
+                <span class="text-slate-500">Chưa có tài khoản? </span>
+                <a href="3.html" class="font-semibold text-blue-600 hover:underline">Đăng ký ngay</a>
+            </div>
+        </div>
+    </div>
+ <script src="2.js"></script>
+</body>
+</html>

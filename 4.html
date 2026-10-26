@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixFlow - Quên mật khẩu</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="4.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased flex h-screen items-center justify-center overflow-hidden">
+
+    <!-- CARD CONTAINER -->
+    <div class="bg-white p-8 rounded-2xl border border-slate-200/80 shadow-lg w-full max-w-md space-y-6">
+        
+        <!-- Icon Lock -->
+        <div class="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl">
+            <i class="fa-solid fa-lock"></i>
+        </div>
+
+        <!-- Title & Description -->
+        <div>
+            <h1 class="text-xl font-bold text-slate-900 mb-1">Quên mật khẩu?</h1>
+            <p class="text-sm text-slate-500">Nhập email để nhận liên kết đặt lại mật khẩu.</p>
+        </div>
+
+        <!-- Forgot Password Form -->
+        <form class="space-y-4" onsubmit="event.preventDefault(); alert('Đã gửi liên kết đặt lại mật khẩu vào email của bạn!');">
+            <div>
+                <label class="block text-xs font-semibold text-slate-600 uppercase tracking-wider mb-2">Email</label>
+                <input type="email" value="a@fixflow.com" required class="w-full bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition">
+            </div>
+
+            <button type="submit" class="w-full py-3 bg-blue-600 hover:bg-blue-700 text-white font-semibold text-sm rounded-xl shadow-lg shadow-blue-600/30 transition">
+                Gửi link đặt lại
+            </button>
+        </form>
+
+        <!-- Success Alert Badge -->
+        <div class="p-3.5 bg-emerald-50 border border-emerald-200/80 rounded-xl flex items-center space-x-2 text-emerald-800 text-xs font-medium">
+            <i class="fa-solid fa-check text-emerald-600 text-sm"></i>
+            <span>Đã gửi email! Gửi lại sau 00:48</span>
+        </div>
+
+        <!-- Back to Login Link -->
+        <div class="text-center pt-2">
+            <a href="#" class="text-sm font-semibold text-slate-600 hover:text-slate-900 transition flex items-center justify-center space-x-2">
+                <i class="fa-solid fa-arrow-left text-xs"></i>
+                <span>Quay lại đăng nhập</span>
+            </a>
+        </div>
+
+    </div>
+
+    <!-- Custom JS File -->
+    <script src="4.js"></script>
+</body>
+</html>
