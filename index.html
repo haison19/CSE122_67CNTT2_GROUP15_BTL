@@ -10,6 +10,7 @@
 </head>
 <body data-trang="tong-quan">
 
+
   <!-- Thanh bên trái -->
   <aside class="thanh-ben" id="thanh-ben">
     <a class="logo" href="index.html">
@@ -32,13 +33,13 @@
       <li><a class="lien-ket-menu" href="ticket-cua-toi.html">
         <svg class="bieu-tuong" viewBox="0 0 24 24"><path d="M10 6h11M10 12h11M10 18h11"/><path d="M3 6l1.6 1.6L8 4.2"/><path d="M3 12l1.6 1.6L8 10.2"/><path d="M3 18l1.6 1.6L8 16.2"/></svg>
         Ticket của tôi</a></li>
+    
+      <li><a class="lien-ket-menu" href="trang7.html" aria-label="Thông báo"><svg class="bieu-tuong" viewBox="0 0 24 24"><path d="M18 8a6 6 0 1 0-12 0c0 7-3 8-3 8h18s-3-1-3-8"/><path d="M13.7 20a2 2 0 0 1-3.4 0"/></svg>Thông báo<span class="nhan-thong-bao so-0" id="so-thong-bao">0</span></a></li>
+      <li><a class="lien-ket-menu" href="trang5.html"><svg class="bieu-tuong" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M5 21v-2a7 7 0 0 1 14 0v2"/></svg>Hồ sơ</a></li>
+      <li><a class="lien-ket-menu" href="trang6.html"><svg class="bieu-tuong" viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="m19.4 15 .1.1 1.4 1.1-1.4 2.4-1.7-.7a8 8 0 0 1-1.5.9l-.3 1.8h-2.8l-.3-1.8a8 8 0 0 1-1.5-.9l-1.7.7-1.4-2.4 1.4-1.1A8 8 0 0 1 7.6 13l-1.8-.4v-2.8l1.8-.3a8 8 0 0 1 .7-1.6L7.2 6.2l2.4-1.4 1.1 1.4a8 8 0 0 1 1.8-.2l.5-1.8h2.8l.3 1.8a8 8 0 0 1 1.5.9l1.7-.7 1.4 2.4-1.4 1.1a8 8 0 0 1 .2 1.8l1.8.5v2.8l-1.8.2a8 8 0 0 1-.1.2z"/></svg>Cài đặt</a></li>
     </ul>
-    <!--
-      Phân hệ Người yêu cầu chỉ hiển thị 3 mục menu: Tổng quan, Tạo Ticket, Ticket của tôi.
-      Các mục Thông báo, Hồ sơ, Cài đặt, Trợ giúp 24/7 đã được ẩn khỏi menu của phân hệ này
-      để không xung đột khi ghép với code của các thành viên khác.
-    -->
-  </aside>
+</aside>
+
 
   <div class="khung-chinh">
     <!-- Thanh đầu trang -->
@@ -60,91 +61,3 @@
           <span id="ten-nguoi-dung">Nguyễn Văn A</span>
         </div>
       </div>
-    </header>
-
-    <div class="noi-dung">
-      <!-- Lời chào -->
-      <section class="bang-chao">
-        <div>
-          <h1 class="tieu-de-chao" id="loi-chao">Chào buổi sáng, Nguyễn Văn A!</h1>
-          <p class="mo-dau-chao">Theo dõi nhanh các yêu cầu bảo trì thiết bị của bạn.</p>
-        </div>
-        <a class="nut nut-trang" href="tao-ticket.html">Tạo Ticket</a>
-      </section>
-
-      <!-- 4 thẻ thống kê -->
-      <section class="luoi-thong-ke">
-        <div class="the-thong-ke">
-          <div>
-            <div class="nhan-the">Tổng ticket</div>
-            <div class="so-lieu" id="tong-ticket">0</div>
-          </div>
-          <div class="o-bieu-tuong xanh">
-            <svg class="bieu-tuong" viewBox="0 0 24 24"><path d="M5 20V10M12 20V4M19 20v-6"/></svg>
-          </div>
-        </div>
-        <div class="the-thong-ke">
-          <div>
-            <div class="nhan-the">Đang xử lý</div>
-            <div class="so-lieu" id="so-dang-xu-ly">0</div>
-          </div>
-          <div class="o-bieu-tuong vang">
-            <svg class="bieu-tuong" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>
-          </div>
-        </div>
-        <div class="the-thong-ke">
-          <div>
-            <div class="nhan-the">Hoàn thành</div>
-            <div class="so-lieu" id="so-hoan-thanh">0</div>
-          </div>
-          <div class="o-bieu-tuong xanh-la">
-            <svg class="bieu-tuong" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/></svg>
-          </div>
-        </div>
-        <div class="the-thong-ke">
-          <div>
-            <div class="nhan-the">Cần bổ sung</div>
-            <div class="so-lieu" id="so-can-bo-sung">0</div>
-          </div>
-          <div class="o-bieu-tuong do">
-            <svg class="bieu-tuong" viewBox="0 0 24 24"><path d="M12 4l9 16H3z"/><path d="M12 10v4M12 17h.01"/></svg>
-          </div>
-        </div>
-      </section>
-
-      <!-- Ticket gần đây + cột phải -->
-      <section class="luoi-hai-cot">
-        <div class="the">
-          <h2 class="tieu-de-the">Ticket gần đây</h2>
-          <div class="bang-bao-vo">
-            <table class="bang">
-              <thead>
-                <tr><th>Ticket</th><th>Sự cố</th><th>Ưu tiên</th><th>Trạng thái</th><th>SLA</th></tr>
-              </thead>
-              <tbody id="bang-ticket-gan-day"></tbody>
-            </table>
-          </div>
-        </div>
-
-        <div class="cot-phai">
-          <div class="the">
-            <div class="o-bieu-tuong xanh" style="margin-bottom:12px">
-              <svg class="bieu-tuong" viewBox="0 0 24 24"><path d="M12 4v16M4 12h16"/></svg>
-            </div>
-            <h2 class="tieu-de-the">Báo sự cố nhanh</h2>
-            <p class="chu-thich">Hệ thống mô phỏng giúp phân loại và chuyển đúng kỹ thuật viên.</p>
-            <a class="nut nut-chinh" href="tao-ticket.html" style="margin-top:12px">Bắt đầu tạo</a>
-          </div>
-
-          <div class="the">
-            <h2 class="tieu-de-the">Tiến độ ticket</h2>
-            <div id="khung-tien-do"></div>
-          </div>
-        </div>
-      </section>
-    </div>
-  </div>
-
-  <script src="js/app.js"></script>
-</body>
-</html>
