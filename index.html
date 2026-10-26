@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FixFlow · Tổng quan</title>
+
+  <!-- TRANG TONG QUAN (trang chu) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Duong dan CSS/JS deu la tuong doi, tinh tu thu muc goc cua du an -->
+  <!-- main.js khoi dong toan bo FixFlow: nap du lieu mau + goi dung module cua trang.
+       type="module" cho phep dung import/export giua cac file trong js/.
+       Phai chay qua Live Server: trinh duyet chan module va fetch khi mo file:// -->
+  <script type="module" src="js/main.js"></script>
+
+  <link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/responsive.css">
+</head>
+
+<body>
+  <div class="nen-chinh">
+
+    <!-- ============ SIDEBAR (dung chung cho cac trang) ============ -->
+    <aside class="thanh-ben" id="thanhBen">
+      <a class="thuong-hieu" href="index.html">
+        <span class="logo-nen">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+               stroke-linecap="round" stroke-linejoin="round" width="22" height="22">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+        </span>
+        <h1 class="ten-thuong-hieu">FixFlow</h1>
+      </a>
+
+      <p class="dong-truong" id="dongTruong">Kỹ thuật viên</p>
+
+      <nav class="danh-muc">
+        <!-- 6 trang gan bang the <a href>, trang hien tai co class "dang-chon" -->
+        <a class="muc-menu dang-chon" href="index.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/>
+            <rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>
+          </svg>
+          Tổng quan
+        </a>
+
+        <a class="muc-menu" href="queue.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3.5" cy="6" r="1"/><circle cx="3.5" cy="12" r="1"/><circle cx="3.5" cy="18" r="1"/>
+          </svg>
+          Hàng đợi
+        </a>
+
+        <a class="muc-menu" href="fixing.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+          </svg>
+          Đang sửa
+        </a>
+
+        <a class="muc-menu" href="history.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/>
+          </svg>
+          Lịch sử
+        </a>
+
+        <a class="muc-menu" href="checklist.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l2 2 4-4"/><rect x="3" y="4" width="18" height="16" rx="2.5"/>
+          </svg>
+          Checklist
+        </a>
+
+        <a class="muc-menu" href="analytics.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/>
+          </svg>
+          Thống kê
+        </a>
+      </nav>
+
+      <button class="muc-menu tro-giup" data-trang="Trợ giúp 24/7">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <circle cx="12" cy="12" r="9"/><path d="M12 16v-4M12 8h.01"/>
+        </svg>
+        Trợ giúp 24/7
+      </button>
+    </aside>
+
+    <div class="nen-phu" id="nenPhu"></div>
+
+    <!-- ============ KHU NOI DUNG CHINH ============ -->
+    <div class="khu-chinh">
+
+      <header class="thanh-tren">
+        <button class="nut-bieu-tuong nut-menu" id="nutMenu" aria-label="Mở menu">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <path d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+        </button>
+
+        <label class="o-tim-kiem" for="oTimKiem">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+            <circle cx="11" cy="11" r="7"/><path d="M21 21l-4-4"/>
+          </svg>
+          <input type="text" id="oTimKiem" placeholder="Tìm ticket, thiết bị, người dùng...">
+        </label>
+
+        <div class="ben-phai-thanh-tren">
+          <button class="nut-bieu-tuong nut-giao-dien" id="nutGiaoDien" type="button"
+                  aria-label="Chuyển chế độ sáng/tối" aria-pressed="false"
+                  title="Chuyển sang chế độ tối">
+            <svg class="bieu-tuong-sang" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/>
+            </svg>
+            <svg class="bieu-tuong-toi" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="4.2"/>
+              <path d="M12 2.6v2.2M12 19.2v2.2M4.3 4.3l1.6 1.6M18.1 18.1l1.6 1.6M2.6 12h2.2M19.2 12h2.2M4.3 19.7l1.6-1.6M18.1 5.9l1.6-1.6"/>
+            </svg>
+          </button>
+          <button class="nut-bieu-tuong co-cham-do" id="nutThongBao" aria-label="Thông báo">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+              <path d="M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/>
+            </svg>
+          </button>
+          <span class="anh-dai-dien" id="anhDaiDien">BQ</span>
+          <span class="ten-nguoi-dung" id="tenNguoiDung">Bùi Huy Quân</span>
+        </div>
+      </header>
+
+      <main class="noi-dung">
+
+        <section class="khu-chao">
+          <div>
+            <h2 class="loi-chao" id="loiChao">Chào Bùi Huy Quân, sẵn sàng làm việc? 🔧</h2>
+            <p class="dong-chao" id="dongChao">Bạn có 12 việc ưu tiên cần xử lý hôm nay.</p>
+          </div>
+
+          <div class="chon-trang-thai" id="chonTrangThai">
+            <button class="nut-trang-thai dang-chon" data-trang-thai="Rảnh">Rảnh</button>
+            <button class="nut-trang-thai" data-trang-thai="Bận">Bận</button>
+            <button class="nut-trang-thai" data-trang-thai="Không online">Không online</button>
+          </div>
+        </section>
+
+        <section class="luoi-thong-ke">
+          <div class="the-thong-ke">
+            <div>
+              <p class="nhan-the">Chờ nhận</p>
+              <p class="so-the" id="soChoNhan">0</p>
+            </div>
+            <span class="bieu-tuong bieu-tuong-cam">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <path d="M3 13h5l1.5 3h5L16 13h5"/><path d="M5 5h14l2 8v5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1v-5z"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="the-thong-ke">
+            <div>
+              <p class="nhan-the">Đang xử lý</p>
+              <p class="so-the" id="soDangXuLy">0</p>
+            </div>
+            <span class="bieu-tuong bieu-tuong-xanh">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="the-thong-ke">
+            <div>
+              <p class="nhan-the">Hoàn thành tuần</p>
+              <p class="so-the" id="soHoanThanh">0</p>
+            </div>
+            <span class="bieu-tuong bieu-tuong-xanh-la">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"/><path d="M8 12.5l2.5 2.5L16 9.5"/>
+              </svg>
+            </span>
+          </div>
+
+          <div class="the-thong-ke">
+            <div>
+              <p class="nhan-the">Thời gian TB</p>
+              <p class="so-the" id="soThoiGianTB">0h</p>
+            </div>
+            <span class="bieu-tuong bieu-tuong-xam">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <circle cx="12" cy="13" r="8"/><path d="M12 9v4l2.5 2M9 2h6"/>
+              </svg>
+            </span>
+          </div>
+        </section>
+
+        <section class="luoi-noi-dung">
+          <article class="the">
+            <div class="dau-the">
+              <h3 class="tieu-de-the">Việc hôm nay</h3>
+              <span class="nhan-so" id="soViecHomNay">0 ticket</span>
+            </div>
+
+            <ul class="danh-sach-viec" id="danhSachViec"></ul>
+
+            <p class="thong-diep-trong" id="thongDiepTrong" hidden>
+              Không tìm thấy ticket nào phù hợp với từ khóa.
+            </p>
+          </article>
+
+          <article class="the">
+            <h3 class="tieu-de-the">Hiệu suất 8 tuần</h3>
+
+            <div class="bieu-do" id="bieuDo"></div>
+
+            <div class="hang-nhan">
+              <span class="nhan nhan-xanh-la" id="nhanHoanThanh">Hoàn thành 0</span>
+              <span class="nhan nhan-xanh" id="nhanSLA">Đúng SLA 0%</span>
+            </div>
+
+            <p class="ghi-chu">Số liệu minh họa (chưa có dữ liệu lịch sử thực tế).</p>
+          </article>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ============ HOP THOAI CHI TIET TICKET ============ -->
+  <div class="nen-mo" id="nenMo">
+    <div class="hop-thoai" role="dialog" aria-modal="true" aria-labelledby="tieuDeChiTiet">
+      <div class="dau-hop-thoai">
+        <h3 id="tieuDeChiTiet">Chi tiết ticket</h3>
+        <button class="nut-dong" id="nutDongHopThoai" aria-label="Đóng">×</button>
+      </div>
+
+      <dl class="danh-sach-chi-tiet">
+        <div><dt>Giờ hẹn</dt><dd id="ctGio">—</dd></div>
+        <div><dt>Sự cố</dt><dd id="ctTenSuCo">—</dd></div>
+        <div><dt>Thiết bị</dt><dd id="ctThietBi">—</dd></div>
+        <div><dt>Địa điểm</dt><dd id="ctDiaDiem">—</dd></div>
+        <div><dt>Mức độ</dt><dd id="ctMucDo">—</dd></div>
+        <div><dt>Trạng thái</dt><dd id="ctTrangThai">—</dd></div>
+        <div class="rong"><dt>Mô tả</dt><dd id="ctMoTa">—</dd></div>
+      </dl>
+
+      <button class="nut-chinh" id="nutDongDuoi">Đóng</button>
+    </div>
+  </div>
+
+  <div class="thong-bao" id="thongBao"></div>
+
+</body>
+</html>
