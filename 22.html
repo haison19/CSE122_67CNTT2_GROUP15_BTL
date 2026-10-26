@@ -1,0 +1,321 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixFlow - Giám sát SLA</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="22.css">
+</head>
+<body class="bg-slate-50 text-slate-800 antialiased flex h-screen overflow-hidden">
+
+    <!-- SIDEBAR -->
+    <aside class="w-64 bg-[#0B192C] text-slate-300 flex flex-col justify-between shrink-0 select-none">
+        <div>
+            <!-- Logo -->
+            <div class="h-16 flex items-center px-6 space-x-3 border-b border-slate-800">
+                <div class="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center text-white font-bold text-lg shadow-md shadow-blue-500/30">
+                    <i class="fa-solid fa-screwdriver-wrench"></i>
+                </div>
+                <span class="text-xl font-bold tracking-wide text-white">FixFlow</span>
+            </div>
+
+            <!-- Workspace Profile -->
+            <div class="p-4 mx-3 my-3 bg-slate-800/60 rounded-xl border border-slate-700/50 flex items-center space-x-3">
+                <div class="w-9 h-9 rounded-lg bg-indigo-500/20 text-indigo-400 flex items-center justify-center font-semibold text-sm">
+                    TH
+                </div>
+                <div class="overflow-hidden">
+                    <div class="text-xs text-slate-400">Không gian làm việc</div>
+                    <div class="text-sm font-medium text-white truncate">Trường Horizon - Quản lý</div>
+                </div>
+            </div>
+
+            <!-- Nav Menu -->
+            <nav class="px-3 space-y-1 mt-2">
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition">
+                    <i class="fa-solid fa-chart-pie w-5"></i>
+                    <span>Tổng quan</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition">
+                    <i class="fa-solid fa-ticket w-5"></i>
+                    <span>Quản lý Ticket</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition">
+                    <i class="fa-solid fa-clipboard-list w-5"></i>
+                    <span>Phân công</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium bg-blue-600 text-white shadow-lg shadow-blue-600/30 transition">
+                    <i class="fa-solid fa-shield-halved w-5"></i>
+                    <span>Giám sát SLA</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition">
+                    <i class="fa-solid fa-triangle-exclamation w-5"></i>
+                    <span>Phân tích lỗi</span>
+                </a>
+                <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition">
+                    <i class="fa-solid fa-chart-line w-5"></i>
+                    <span>Báo cáo</span>
+                </a>
+            </nav>
+        </div>
+
+        <!-- Footer Sidebar -->
+        <div class="p-4 border-t border-slate-800">
+            <a href="#" class="flex items-center space-x-3 px-3 py-2.5 rounded-lg text-sm font-medium text-slate-400 hover:bg-slate-800 hover:text-white transition">
+                <i class="fa-solid fa-circle-question w-5"></i>
+                <span>Trợ giúp 24/7</span>
+            </a>
+        </div>
+    </aside>
+
+    <!-- MAIN CONTENT WRAPPER -->
+    <div class="flex-1 flex flex-col min-w-0 overflow-hidden">
+        
+        <!-- HEADER -->
+        <header class="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-8 shrink-0">
+            <div class="w-96 relative">
+                <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                <input type="text" placeholder="Tìm ticket, thiết bị, người dùng..." class="w-full bg-slate-50 border border-slate-200 rounded-full pl-10 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition">
+            </div>
+
+            <div class="flex items-center space-x-4">
+                <button class="w-9 h-9 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center text-slate-600 hover:bg-slate-100 transition relative">
+                    <i class="fa-regular fa-bell text-sm"></i>
+                    <span class="absolute top-2 right-2 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <div class="flex items-center space-x-3 pl-2 border-l border-slate-200">
+                    <div class="w-9 h-9 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center font-semibold text-sm">
+                        NV
+                    </div>
+                    <span class="text-sm font-medium text-slate-700">Nguyễn Văn A</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- PAGE CONTENT CONTAINER -->
+        <main class="flex-1 overflow-y-auto p-8 bg-slate-50 space-y-6">
+            
+            <!-- PAGE TITLE & DESCRIPTION -->
+            <div>
+                <h1 class="text-2xl font-bold text-slate-800">Giám sát SLA</h1>
+                <p class="text-sm text-slate-500 mt-0.5">Phát hiện sớm rủi ro và bảo đảm cam kết dịch vụ</p>
+            </div>
+
+            <!-- FILTERS BAR -->
+            <div class="bg-white p-4 rounded-2xl border border-slate-200/80 shadow-sm flex items-center justify-between gap-4">
+                <div class="flex items-center space-x-3 flex-1">
+                    <div class="relative flex-1 max-w-md">
+                        <i class="fa-solid fa-magnifying-glass absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400 text-xs"></i>
+                        <input type="text" placeholder="Tìm kiếm..." class="w-full bg-slate-50 border border-slate-200 rounded-xl pl-9 pr-4 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-blue-500/20">
+                    </div>
+                    <select class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm text-slate-700 focus:outline-none">
+                        <option>Nhóm</option>
+                    </select>
+                    <select class="bg-slate-50 border border-slate-200 rounded-xl px-4 py-2 text-sm text-slate-700 focus:outline-none">
+                        <option>Kỹ thuật viên</option>
+                    </select>
+                    <button class="text-xs font-semibold text-slate-500 hover:text-slate-800 px-2 py-2">Đặt lại</button>
+                </div>
+
+                <div class="flex items-center space-x-1 bg-slate-100 p-1 rounded-xl">
+                    <button class="px-4 py-1.5 bg-blue-600 text-white font-medium text-xs rounded-lg shadow-sm">Hôm nay</button>
+                    <button class="px-4 py-1.5 text-slate-600 font-medium text-xs rounded-lg hover:bg-white/50 transition">7 ngày</button>
+                    <button class="px-4 py-1.5 text-slate-600 font-medium text-xs rounded-lg hover:bg-white/50 transition">30 ngày</button>
+                </div>
+            </div>
+
+            <!-- PERCENTAGE CARDS GRID -->
+            <div class="grid grid-cols-3 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-center space-x-6">
+                    <div class="relative w-20 h-20 flex items-center justify-center shrink-0">
+                        <svg class="w-full h-full transform -rotate-90">
+                            <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="8" class="text-slate-100" fill="transparent"></circle>
+                            <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="8" class="text-emerald-500" fill="transparent" stroke-dasharray="213.6" stroke-dashoffset="23.5"></circle>
+                        </svg>
+                        <span class="absolute text-lg font-bold text-slate-800">89%</span>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-slate-800">Đúng hạn</div>
+                        <div class="text-xs text-slate-400 mt-0.5">Cam kết dịch vụ đạt chuẩn</div>
+                    </div>
+                </div>
+
+                <!-- Card 2 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-center space-x-6">
+                    <div class="relative w-20 h-20 flex items-center justify-center shrink-0">
+                        <svg class="w-full h-full transform -rotate-90">
+                            <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="8" class="text-slate-100" fill="transparent"></circle>
+                            <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="8" class="text-amber-500" fill="transparent" stroke-dasharray="213.6" stroke-dashoffset="196.5"></circle>
+                        </svg>
+                        <span class="absolute text-lg font-bold text-slate-800">8%</span>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-slate-800">Sắp trễ</div>
+                        <div class="text-xs text-slate-400 mt-0.5">Cần ưu tiên xử lý gấp</div>
+                    </div>
+                </div>
+
+                <!-- Card 3 -->
+                <div class="bg-white p-6 rounded-2xl border border-slate-200/80 shadow-sm flex items-center space-x-6">
+                    <div class="relative w-20 h-20 flex items-center justify-center shrink-0">
+                        <svg class="w-full h-full transform -rotate-90">
+                            <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="8" class="text-slate-100" fill="transparent"></circle>
+                            <circle cx="40" cy="40" r="34" stroke="currentColor" stroke-width="8" class="text-rose-600" fill="transparent" stroke-dasharray="213.6" stroke-dashoffset="207.2"></circle>
+                        </svg>
+                        <span class="absolute text-lg font-bold text-slate-800">3%</span>
+                    </div>
+                    <div>
+                        <div class="text-lg font-bold text-slate-800">Đã trễ</div>
+                        <div class="text-xs text-slate-400 mt-0.5">Đã vượt thời gian SLA</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TIMELINE & SLA RULES SECTION -->
+            <div class="grid grid-cols-3 gap-6">
+                
+                <!-- Timeline hôm nay (2 cột) -->
+                <div class="col-span-2 bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 flex flex-col">
+                    <div class="flex items-center justify-between mb-6">
+                        <h2 class="text-base font-bold text-slate-800">Dòng thời gian SLA hôm nay</h2>
+                        <div class="flex space-x-6 text-xs font-semibold text-slate-400">
+                            <span>08:00</span>
+                            <span>12:00</span>
+                            <span>16:00</span>
+                            <span>20:00</span>
+                        </div>
+                    </div>
+
+                    <div class="space-y-4">
+                        <!-- Timeline Row 1 -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-600 w-28 shrink-0">TK-2025-001</span>
+                            <div class="flex-1 mx-4 bg-slate-100 h-6 rounded-lg relative overflow-hidden flex items-center">
+                                <div class="absolute left-0 top-0 bottom-0 bg-amber-500 rounded-lg w-[70%]"></div>
+                            </div>
+                            <span class="text-xs font-medium text-slate-500 w-12 text-right shrink-0">14:00</span>
+                        </div>
+
+                        <!-- Timeline Row 2 -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-600 w-28 shrink-0">TK-2025-014</span>
+                            <div class="flex-1 mx-4 bg-slate-100 h-6 rounded-lg relative overflow-hidden flex items-center">
+                                <div class="absolute left-0 top-0 bottom-0 bg-rose-600 rounded-lg w-[85%]"></div>
+                            </div>
+                            <span class="text-xs font-medium text-slate-500 w-12 text-right shrink-0">09:30</span>
+                        </div>
+
+                        <!-- Timeline Row 3 -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-600 w-28 shrink-0">TK-2025-019</span>
+                            <div class="flex-1 mx-4 bg-slate-100 h-6 rounded-lg relative overflow-hidden flex items-center">
+                                <div class="absolute left-0 top-0 bottom-0 bg-blue-600 rounded-lg w-[45%]"></div>
+                            </div>
+                            <span class="text-xs font-medium text-slate-500 w-12 text-right shrink-0">18:00</span>
+                        </div>
+
+                        <!-- Timeline Row 4 -->
+                        <div class="flex items-center justify-between">
+                            <span class="text-xs font-semibold text-slate-600 w-28 shrink-0">TK-2025-022</span>
+                            <div class="flex-1 mx-4 bg-slate-100 h-6 rounded-lg relative overflow-hidden flex items-center">
+                                <div class="absolute left-0 top-0 bottom-0 bg-blue-600 rounded-lg w-[75%]"></div>
+                            </div>
+                            <span class="text-xs font-medium text-slate-500 w-12 text-right shrink-0">16:30</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quy tắc SLA (1 cột) -->
+                <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 flex flex-col justify-between">
+                    <div>
+                        <h2 class="text-base font-bold text-slate-800 mb-4">Quy tắc SLA</h2>
+                        <div class="space-y-3.5">
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 bg-rose-50 text-rose-600 text-xs font-bold rounded-lg">Khẩn</span>
+                                <span class="text-sm font-bold text-slate-800">4 giờ</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 bg-amber-50 text-amber-600 text-xs font-bold rounded-lg">Cao</span>
+                                <span class="text-sm font-bold text-slate-800">24 giờ</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 bg-blue-50 text-blue-600 text-xs font-bold rounded-lg">Trung bình</span>
+                                <span class="text-sm font-bold text-slate-800">48 giờ</span>
+                            </div>
+                            <div class="flex items-center justify-between">
+                                <span class="px-2.5 py-1 bg-slate-100 text-slate-600 text-xs font-bold rounded-lg">Thấp</span>
+                                <span class="text-sm font-bold text-slate-800">72 giờ</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- BOTTOM TABLE: TICKET CÓ RỦI RO / ĐÃ VI PHẠM -->
+            <div class="bg-white rounded-2xl border border-slate-200/80 shadow-sm p-6 pb-8">
+                <h2 class="text-base font-bold text-slate-800 mb-4">Ticket có rủi ro / đã vi phạm</h2>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-left border-collapse">
+                        <thead>
+                            <tr class="border-b border-slate-100 text-xs font-semibold text-slate-400">
+                                <th class="py-3 px-3">Ticket</th>
+                                <th class="py-3 px-3">Sự cố</th>
+                                <th class="py-3 px-3">KTV</th>
+                                <th class="py-3 px-3">Mức độ</th>
+                                <th class="py-3 px-3">Thời gian</th>
+                                <th class="py-3 px-3">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody class="text-sm divide-y divide-slate-100">
+                            <tr>
+                                <td class="py-3.5 px-3 font-semibold text-blue-600">TK-2025-001</td>
+                                <td class="py-3.5 px-3 text-slate-700">Máy lạnh không mát</td>
+                                <td class="py-3.5 px-3 text-slate-600">Trần Thị B</td>
+                                <td class="py-3.5 px-3"><span class="px-2.5 py-1 bg-amber-50 text-amber-600 text-xs font-semibold rounded-lg">Cao</span></td>
+                                <td class="py-3.5 px-3 text-amber-600 font-medium">Còn 2h 15p</td>
+                                <td class="py-3.5 px-3 font-semibold text-blue-600 hover:underline cursor-pointer text-xs">Nhắc nhở</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3.5 px-3 font-semibold text-blue-600">TK-2025-014</td>
+                                <td class="py-3.5 px-3 text-slate-700">Router mất kết nối</td>
+                                <td class="py-3.5 px-3 text-slate-400 italic">Chưa gán</td>
+                                <td class="py-3.5 px-3"><span class="px-2.5 py-1 bg-rose-50 text-rose-600 text-xs font-semibold rounded-lg">Khẩn</span></td>
+                                <td class="py-3.5 px-3 text-rose-600 font-medium">Đã trễ 35p</td>
+                                <td class="py-3.5 px-3 font-semibold text-blue-600 hover:underline cursor-pointer text-xs">Tái phân công</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3.5 px-3 font-semibold text-blue-600">TK-2025-019</td>
+                                <td class="py-3.5 px-3 text-slate-700">Máy chiếu nhòe màu</td>
+                                <td class="py-3.5 px-3 text-slate-600">Hoàng Nam</td>
+                                <td class="py-3.5 px-3"><span class="px-2.5 py-1 bg-blue-50 text-blue-600 text-xs font-semibold rounded-lg">Trung bình</span></td>
+                                <td class="py-3.5 px-3 text-slate-600 font-medium">Còn 22h</td>
+                                <td class="py-3.5 px-3 font-semibold text-blue-600 hover:underline cursor-pointer text-xs">Nhắc nhở</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3.5 px-3 font-semibold text-blue-600">TK-2025-022</td>
+                                <td class="py-3.5 px-3 text-slate-700">Rò nước máy lạnh</td>
+                                <td class="py-3.5 px-3 text-slate-600">Trần Thị B</td>
+                                <td class="py-3.5 px-3"><span class="px-2.5 py-1 bg-amber-50 text-amber-600 text-xs font-semibold rounded-lg">Cao</span></td>
+                                <td class="py-3.5 px-3 text-amber-600 font-medium">Còn 6h</td>
+                                <td class="py-3.5 px-3 font-semibold text-blue-600 hover:underline cursor-pointer text-xs">Nhắc nhở</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Custom JS File -->
+    <script src="22.js"></script>
+</body>
+</html>
