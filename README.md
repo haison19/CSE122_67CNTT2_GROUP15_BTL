@@ -126,6 +126,6 @@ Technician là một trong bốn luồng của FixFlow, bên cạnh:
 
 * **Figma Design:** [Xem bản thiết kế trên Figma](https://www.figma.com/design/ZSMpHOH5EC4JlVNlwfqSmN/Untitled?node-id=0-1&p=f&t=wgEVbN2wAMDnNZtV-0)
 
-* **Video Demo / Reference (YouTube):** [Xem video trên YouTube](https://www.youtube.com/watch?v=PFMi9wCNk5Y)
+* **Video Demo / Reference (YouTube):** [Xem video trên YouTube](https://www.youtube.com/playlist?list=PLFNl8_VXRO0w)
 
 * **GitHub Repository:**[Truy cập Mã nguồn trên GitHub](https://github.com/hwqrave/FixFlow)
