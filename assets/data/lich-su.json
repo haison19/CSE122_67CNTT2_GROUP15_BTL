@@ -1,0 +1,116 @@
+[
+  {
+    "ma": "TK-2025-045",
+    "thietBi": "Máy lạnh",
+    "danhMuc": "Điện lạnh",
+    "thoiGian": "1.5h",
+    "danhGia": 4,
+    "ketQua": "Đúng SLA",
+    "ngayTruoc": 1,
+    "ghiChu": "Thay tụ quạt dàn lạnh, nạp thêm 150g gas R32. Máy chạy êm, nhiệt độ hạ đều sau 15 phút."
+  },
+  {
+    "ma": "TK-2025-044",
+    "thietBi": "Router WiFi",
+    "danhMuc": "Mạng",
+    "thoiGian": "2h",
+    "danhGia": 5,
+    "ketQua": "Sớm hạn",
+    "ngayTruoc": 2,
+    "ghiChu": "Đổi kênh sóng 5GHz sang kênh 149, cập nhật firmware lên bản 3.4.2. Đã kiểm tra lại toàn bộ phòng 302."
+  },
+  {
+    "ma": "TK-2025-043",
+    "thietBi": "Máy chiếu",
+    "danhMuc": "Trình chiếu",
+    "thoiGian": "2.5h",
+    "danhGia": 4,
+    "ketQua": "Sớm hạn",
+    "ngayTruoc": 3,
+    "ghiChu": "Vệ sinh ống kính và thay cáp HDMI 10m. Màu sắc đã đều, không còn vệt xanh ở góc trái."
+  },
+  {
+    "ma": "TK-2025-042",
+    "thietBi": "Máy in",
+    "danhMuc": "Văn phòng",
+    "thoiGian": "3h",
+    "danhGia": 5,
+    "ketQua": "Đúng SLA",
+    "ngayTruoc": 5,
+    "ghiChu": "Vệ sinh cụm lô sấy, thay hộp mực dự phòng. In thử 20 trang liên tục không bị kẹt giấy."
+  },
+  {
+    "ma": "TK-2025-041",
+    "thietBi": "Máy lạnh",
+    "danhMuc": "Điện lạnh",
+    "thoiGian": "1.5h",
+    "danhGia": 4,
+    "ketQua": "Sớm hạn",
+    "ngayTruoc": 8
+  },
+  {
+    "ma": "TK-2025-040",
+    "thietBi": "Router WiFi",
+    "danhMuc": "Mạng",
+    "thoiGian": "2h",
+    "danhGia": 5,
+    "ketQua": "Sớm hạn",
+    "ngayTruoc": 12,
+    "ghiChu": "Router bị treo do quá tải DHCP, đã đặt lại cấu hình và cấp IP tĩnh cho 4 máy in."
+  },
+  {
+    "ma": "TK-2025-039",
+    "thietBi": "Máy chiếu",
+    "danhMuc": "Trình chiếu",
+    "thoiGian": "2.5h",
+    "danhGia": 4,
+    "ketQua": "Đúng SLA",
+    "ngayTruoc": 18
+  },
+  {
+    "ma": "TK-2025-038",
+    "thietBi": "Máy in",
+    "danhMuc": "Văn phòng",
+    "thoiGian": "3h",
+    "danhGia": 5,
+    "ketQua": "Sớm hạn",
+    "ngayTruoc": 24
+  },
+  {
+    "ma": "TK-2025-037",
+    "thietBi": "Máy lạnh",
+    "danhMuc": "Điện lạnh",
+    "thoiGian": "1.5h",
+    "danhGia": 4,
+    "ketQua": "Sớm hạn",
+    "ngayTruoc": 33
+  },
+  {
+    "ma": "TK-2025-036",
+    "thietBi": "Router WiFi",
+    "danhMuc": "Mạng",
+    "thoiGian": "2h",
+    "danhGia": 5,
+    "ketQua": "Đúng SLA",
+    "ngayTruoc": 41
+  },
+  {
+    "ma": "TK-2025-035",
+    "thietBi": "Máy chiếu",
+    "danhMuc": "Trình chiếu",
+    "thoiGian": "2.5h",
+    "danhGia": 0,
+    "ketQua": "Trễ hạn",
+    "ngayTruoc": 52,
+    "ghiChu": "Chờ linh kiện bóng đèn từ nhà cung cấp nên trễ 1 ngày so với SLA. Đã bàn giao máy tạm cho phòng họp."
+  },
+  {
+    "ma": "TK-2025-034",
+    "thietBi": "Máy in",
+    "danhMuc": "Văn phòng",
+    "thoiGian": "3h",
+    "danhGia": 5,
+    "ketQua": "Sớm hạn",
+    "ngayTruoc": 63
+  }
+]

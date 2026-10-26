@@ -1700,7 +1700,7 @@ input:disabled {
    Bat tat bang lop "giao-dien-toi" tren the <html> (classList.toggle):
      <html>                        giao dien sang (MAC DINH)
      <html class="giao-dien-toi">  giao dien toi
-   script.js (nap bang defer trong <head>) bat/tat lop nay ngay khi trang
+   js/modules/theme.js (duoc main.js import) bat/tat lop nay ngay khi trang
    duoc nap (tranh nhay mau) va khi nguoi dung bam nut, dong thoi luu lua
    chon vao localStorage (khoa "fixflowGiaoDien").
    Che do mac dinh: SANG (khong theo cai dat he dieu hanh).

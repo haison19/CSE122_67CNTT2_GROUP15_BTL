@@ -9,9 +9,11 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700&display=swap" rel="stylesheet">
 
-  <!-- Sua duong dan tu /css/style.css sang tuong doi de chay bang file:// -->
-  <!-- Ap dung che do sang/toi som (chay trong script.js bang defer, khong nhay mau) -->
-  <script src="js/script.js" defer></script>
+  <!-- Duong dan CSS/JS deu la tuong doi, tinh tu thu muc goc cua du an -->
+  <!-- main.js khoi dong toan bo FixFlow: nap du lieu mau + goi dung module cua trang.
+       type="module" cho phep dung import/export giua cac file trong js/.
+       Phai chay qua Live Server: trinh duyet chan module va fetch khi mo file:// -->
+  <script type="module" src="js/main.js"></script>
 
   <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/responsive.css">

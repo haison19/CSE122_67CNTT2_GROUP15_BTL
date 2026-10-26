@@ -54,17 +54,67 @@ Phần Technician (Kỹ thuật viên) giúp kỹ thuật viên theo dõi công 
 
 ## 5. Cách chạy dự án
 
-1. Mở thư mục dự án bằng Visual Studio Code.
-2. Mở file `index.html` bằng trình duyệt.
-3. Có thể sử dụng Live Server để chạy giao diện trong quá trình phát triển.
+Dự án dùng JavaScript module (`import`/`export`) và đọc dữ liệu mẫu bằng `fetch()`, nên **phải chạy qua một máy chủ tĩnh**. Mở trực tiếp file `index.html` bằng `file://` sẽ không tải được dữ liệu và không chạy được module.
 
-## 6. Phạm vi triển khai
+Cách chạy bằng VS Code:
+
+1. Mở thư mục dự án bằng Visual Studio Code.
+2. Cài extension **Live Server** (tác giả Ritwick Dey) nếu chưa có.
+3. Bấm chuột phải vào `index.html` → chọn **Open with Live Server**.
+4. Trình duyệt tự mở địa chỉ `http://127.0.0.1:5500/index.html`. Từ menu trái có thể mở 5 trang còn lại.
+
+Cách chạy không cần extension (nếu đã cài Python):
+
+```bash
+python -m http.server 8000
+# sau đó mở http://localhost:8000/index.html
+```
+
+## 6. Cấu trúc thư mục
+
+```text
+FixFlow/
+├── index.html               Trang Tổng quan
+├── queue.html               Trang Hàng đợi
+├── fixing.html              Trang Đang sửa
+├── history.html             Trang Lịch sử sửa chữa
+├── checklist.html           Trang Mẫu checklist
+├── analytics.html           Trang Thống kê
+├── css/
+│   ├── style.css            Giao diện chính + chế độ sáng/tối
+│   └── responsive.css       Giao diện cho màn hình nhỏ
+├── js/
+│   ├── main.js              Khởi động trang, nạp dữ liệu, gọi module theo trang
+│   ├── api.js               Đọc JSON + đọc/ghi localStorage + kho dữ liệu dùng chung
+│   └── modules/
+│       ├── theme.js         Chế độ sáng/tối
+│       ├── utils.js         Hàm dùng chung (thông báo, menu, nhãn mức độ)
+│       ├── dashboard.js     Trang Tổng quan
+│       ├── queue.js         Trang Hàng đợi
+│       ├── repair.js        Trang Đang sửa (checklist, đồng hồ, hoàn thành)
+│       ├── ai-suggestion.js Gợi ý sửa chữa (mô phỏng bằng quy tắc)
+│       ├── history.js       Trang Lịch sử + xuất CSV
+│       ├── checklist.js     Trang Mẫu checklist
+│       └── analytics.js     Trang Thống kê
+├── assets/
+│   └── data/                Dữ liệu mẫu (JSON)
+│       ├── tickets-tong-quan.json
+│       ├── tickets-hang-doi.json
+│       ├── lich-su.json
+│       ├── thong-ke.json
+│       └── checklist.json
+└── docs/                    Tài liệu của bài tập
+```
+
+Dữ liệu người dùng nhập (checklist đã làm, ghi chú, trạng thái ticket, chế độ sáng/tối) được lưu trong `localStorage` của trình duyệt với các khóa `fixflowDuLieuTicket`, `fixflowTicketDangXuLy`, `fixflowGiaoDien`. Các khóa này **giữ nguyên tên** so với phiên bản trước nên dữ liệu đang có vẫn đọc được.
+
+## 7. Phạm vi triển khai
 
 Phần Technician tập trung vào giao diện và các chức năng hỗ trợ kỹ thuật viên xử lý yêu cầu sửa chữa.
 
 Nếu chưa có backend hoặc dịch vụ AI thực tế, dữ liệu và chức năng đề xuất được mô phỏng bằng JavaScript và dữ liệu mẫu.
 
-## 7. Vai trò trong hệ thống
+## 8. Vai trò trong hệ thống
 
 Technician là một trong bốn luồng của FixFlow, bên cạnh:
 - User – Người dùng.
