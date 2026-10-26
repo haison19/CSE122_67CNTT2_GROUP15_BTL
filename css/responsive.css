@@ -1,0 +1,42 @@
+/* =========================================================
+   responsive.css - Giao diện theo kích thước màn hình
+   Chỉ chứa media queries; màu sắc và thành phần ở style.css.
+   ========================================================= */
+
+/* ---------- Máy tính bảng / màn hình trung bình ---------- */
+@media (max-width: 1180px) {
+  .luoi-thong-ke { grid-template-columns: repeat(2, 1fr); }
+  .luoi-hai-cot, .luoi-hai-cot.phai-nho, .luoi-cai-dat { grid-template-columns: 1fr; }
+}
+
+/* ---------- Tablet dọc: thu gọn thanh bên thành menu trượt ---------- */
+@media (max-width: 900px) {
+  .thanh-ben { transform: translateX(-100%); transition: transform .25s; }
+  .thanh-ben.mo { transform: translateX(0); }
+  .khung-chinh { margin-left: 0; }
+  .nut-menu { display: inline-flex; }
+  .noi-dung { padding: 20px 16px 40px; }
+  .o-tim-kiem { width: 100%; }
+  .luoi-bo-loc { grid-template-columns: 1fr 1fr; }
+}
+
+/* ---------- Điện thoại ---------- */
+@media (max-width: 640px) {
+  .luoi-thong-ke { grid-template-columns: 1fr; }
+  .bang-chao { flex-direction: column; align-items: flex-start; }
+  .hang-hai-o { grid-template-columns: 1fr; }
+  .luoi-bo-loc { grid-template-columns: 1fr; }
+  .thong-tin-nguoi-dung span:last-child { display: none; }
+  .tieu-de-trang { font-size: 24px; }
+  .tieu-de-chao { font-size: 22px; }
+  .dau-trang { align-items: flex-start; }
+  .hang-tab { gap: 14px; overflow-x: auto; }
+  .tab { white-space: nowrap; }
+}
+
+/* ---------- Khi in ---------- */
+@media print {
+  .thanh-ben, .thanh-tren, .khung-nut, .khung-huy, .nut, .thong-bao-nho, .hang-tab, .chan-luu { display: none !important; }
+  .khung-chinh { margin-left: 0; }
+  .the { border: 0; padding: 0 0 14px; }
+}
