@@ -21,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
         }
 
         clearEmailError();
-        location.href = 'dashboard.html';
+        location.href = '20.html';
     });
 
     email.addEventListener('input', () => {
