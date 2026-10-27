@@ -1,0 +1,256 @@
+body {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.page {
+    display: flex;
+    height: 100vh;
+    overflow: hidden;
+    background: #fff;
+    color: #1e293b;
+}
+
+.hero {
+    position: relative;
+    display: flex;
+    flex: 0 0 50%;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 3rem;
+    color: #fff;
+    background: #0B192C;
+    user-select: none;
+}
+
+.register-panel {
+    display: flex;
+    flex: 0 0 50%;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    padding: 3rem;
+}
+
+.brand {
+    display: flex;
+    align-items: center;
+    gap: .75rem;
+}
+
+.brand-icon {
+    display: flex;
+    width: 2.25rem;
+    height: 2.25rem;
+    align-items: center;
+    justify-content: center;
+    border-radius: .75rem;
+    background: #2563eb;
+    color: #fff;
+    font-size: 1.125rem;
+    font-weight: 700;
+    box-shadow: 0 10px 15px -3px rgb(59 130 246 / .3);
+}
+
+.brand-name {
+    font-size: 1.25rem;
+    font-weight: 700;
+    letter-spacing: .025em;
+}
+
+.hero-copy {
+    max-width: 28rem;
+    margin: auto 0;
+}
+
+.hero-icons {
+    display: flex;
+    gap: .75rem;
+    margin-bottom: 1.5rem;
+    color: #60a5fa;
+    font-size: 1.25rem;
+}
+
+.hero-title {
+    font-size: 2.25rem;
+    font-weight: 800;
+    letter-spacing: -.025em;
+    line-height: 1.375;
+}
+
+.quote-card {
+    padding: 1.25rem;
+    border: 1px solid rgb(51 65 85 / .6);
+    border-radius: 1rem;
+    background: rgb(30 41 59 / .5);
+    backdrop-filter: blur(4px);
+}
+
+.quote {
+    margin-bottom: .5rem;
+    color: #e2e8f0;
+    font-size: .875rem;
+    font-style: italic;
+}
+
+.quote-author {
+    color: #94a3b8;
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.register-box {
+    width: 100%;
+    max-width: 32rem;
+}
+
+.intro-title {
+    margin-bottom: .25rem;
+    color: #0f172a;
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.intro-text {
+    margin-bottom: 1.25rem;
+    color: #64748b;
+    font-size: .875rem;
+}
+
+.register-form {
+    display: grid;
+    gap: 1rem;
+}
+
+.two-fields {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1rem;
+}
+
+.field-label {
+    display: block;
+    margin-bottom: .5rem;
+    color: #475569;
+    font-size: .75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: .05em;
+}
+
+.field-input {
+    box-sizing: border-box;
+    width: 100%;
+    padding: .75rem 1rem;
+    border: 1px solid #e2e8f0;
+    border-radius: .75rem;
+    background: #f8fafc;
+    color: #1e293b;
+    font-size: .875rem;
+    transition: .2s;
+}
+
+.field-input:focus {
+    border-color: #3b82f6;
+    outline: 2px solid rgb(59 130 246 / .2);
+}
+
+.field-input::placeholder {
+    color: #cbd5e1;
+    opacity: 1;
+}
+
+.field-input.is-invalid {
+    border-color: #dc2626;
+    box-shadow: 0 0 0 3px rgb(220 38 38 / .12);
+}
+
+.field-error {
+    display: block;
+    margin-top: .35rem;
+    color: #dc2626;
+    font-size: .8rem;
+}
+
+.password-hint {
+    margin-top: .375rem;
+    color: #059669;
+    font-size: .75rem;
+    font-weight: 600;
+}
+
+.terms-row {
+    display: flex;
+    align-items: center;
+    gap: .5rem;
+    padding-top: .25rem;
+}
+
+.terms-check {
+    width: 1rem;
+    height: 1rem;
+    accent-color: #2563eb;
+}
+
+.terms-check.is-invalid {
+    outline: 2px solid #dc2626;
+    outline-offset: 2px;
+}
+
+.terms-label {
+    margin: 0;
+    color: #475569;
+    font-size: .875rem;
+    font-weight: 400;
+    text-transform: none;
+    cursor: pointer;
+    user-select: none;
+}
+
+.submit-button {
+    width: 100%;
+    padding: .75rem;
+    border: 0;
+    border-radius: .75rem;
+    background: #2563eb;
+    color: #fff;
+    font-size: .875rem;
+    font-weight: 600;
+    box-shadow: 0 10px 15px -3px rgb(37 99 235 / .3);
+    transition: .2s;
+    cursor: pointer;
+}
+
+.submit-button:hover {
+    background: #1d4ed8;
+}
+
+.login-footer {
+    padding-top: .5rem;
+    text-align: center;
+}
+
+.footer-text {
+    color: #64748b;
+    font-size: .875rem;
+}
+
+.footer-link {
+    color: #2563eb;
+    font-size: .875rem;
+    font-weight: 600;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .hero {
+        display: none;
+    }
+
+    .register-panel {
+        flex-basis: 100%;
+        padding: 1.5rem;
+    }
+}
