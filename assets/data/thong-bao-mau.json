@@ -1,7 +1,0 @@
-[
-  { "noiDung": "Ticket đã được tiếp nhận", "loai": "ticket", "soGioTruoc": 1, "daDoc": false, "soThuTuTicket": 3 },
-  { "noiDung": "SLA sắp đến hạn", "loai": "sla", "soGioTruoc": 2, "daDoc": false, "soThuTuTicket": 3 },
-  { "noiDung": "Bình luận mới", "loai": "ticket", "soGioTruoc": 3, "daDoc": false, "soThuTuTicket": 1 },
-  { "noiDung": "Ticket đã hoàn thành", "loai": "ticket", "soGioTruoc": 4, "daDoc": true, "soThuTuTicket": 4 },
-  { "noiDung": "Cập nhật hệ thống", "loai": "he-thong", "soGioTruoc": 5, "daDoc": true, "soThuTuTicket": 0 }
-]
