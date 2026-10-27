@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FixFlow - Đăng nhập</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="2.css">
+</head>
+<body class="bg-white flex h-screen overflow-hidden">
+
+    <!-- LEFT -->
+    <div class="hero">
+        <div class="flex items-center space-x-3">
+            <div class="logo"><i class="fa-solid fa-screwdriver-wrench"></i></div>
+            <span class="text-xl font-bold">FixFlow</span>
+        </div>
+        <div class="max-w-md my-auto">
+            <div class="flex space-x-3 text-blue-400 text-xl mb-6">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+                <i class="fa-solid fa-hammer"></i>
+                <i class="fa-solid fa-gear"></i>
+            </div>
+            <h1 class="text-4xl font-extrabold leading-snug">Mọi yêu cầu đều trong tầm kiểm soát</h1>
+        </div>
+        <div class="quote">
+            <p class="text-sm italic mb-2">"FixFlow giúp thời gian phản hồi giảm 38%."</p>
+            <div class="text-xs font-semibold text-slate-400">Phạm Minh Khang · Quản lý vận hành</div>
+        </div>
+    </div>
+
+    <!-- RIGHT -->
+    <div class="main">
+        <div class="box">
+            <section class="auth-view" data-auth-view="login" data-page-title="FixFlow - Đăng nhập">
+                <div class="mb-6">
+                    <h2 class="text-2xl font-bold text-slate-900 mb-1">Chào mừng trở lại</h2>
+                    <p class="text-sm text-slate-500">Đăng nhập để tiếp tục quản lý hệ thống bảo trì</p>
+                </div>
+
+                <form id="login-form" novalidate>
+                    <div class="mb-4">
+                        <label for="email">Email</label>
+                        <input id="email" name="email" type="email" placeholder="a@fixflow.com" required class="inp email-example" aria-describedby="email-error">
+                        <small id="email-error" class="field-error" aria-live="polite"></small>
+                    </div>
+                    <div class="mb-4">
+                        <div class="flex justify-between mb-2">
+                            <label for="password" class="mb-0">Mật khẩu</label>
+                            <button type="button" class="auth-link" data-auth-target="forgot">Quên mật khẩu?</button>
+                        </div>
+                        <input id="password" name="password" type="password" placeholder="Nhập mật khẩu" required class="inp" aria-describedby="password-error">
+                        <small id="password-error" class="field-error" aria-live="polite"></small>
+                    </div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <input type="checkbox" id="remember" checked class="w-4 h-4 rounded text-blue-600">
+                        <label for="remember" class="text-sm text-slate-600 cursor-pointer mb-0">Ghi nhớ</label>
+                    </div>
+                    <button type="submit" class="btn">Đăng nhập</button>
+                </form>
+
+                <div class="divider"><span>hoặc tiếp tục với</span></div>
+                <div class="grid grid-cols-2 gap-3">
+                    <button type="button" class="s-btn"><i class="fa-brands fa-google text-rose-500 mr-2"></i> Google</button>
+                    <button type="button" class="s-btn"><i class="fa-brands fa-microsoft text-blue-500 mr-2"></i> Microsoft</button>
+                </div>
+                <div class="text-center text-sm pt-4">
+                    <span class="text-slate-500">Chưa có tài khoản? </span>
+                    <button type="button" class="auth-link" data-auth-target="register">Đăng ký ngay</button>
+                </div>
+            </section>
+
+            <section class="auth-view" data-auth-view="register" data-page-title="FixFlow - Tạo tài khoản" hidden>
+                <div class="auth-heading">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-1">Tạo tài khoản FixFlow</h2>
+                        <p class="text-sm text-slate-500">Điền thông tin để bắt đầu sử dụng</p>
+                    </div>
+                    <button type="button" class="auth-link" data-auth-target="login">Đăng nhập</button>
+                </div>
+
+                <form id="register-form" class="auth-form" novalidate>
+                    <div class="auth-two-fields">
+                        <div>
+                            <label for="register-name">Họ tên</label>
+                            <input id="register-name" type="text" placeholder="Nguyễn Văn A" required class="inp field-input">
+                        </div>
+                        <div>
+                            <label for="phone">Số điện thoại</label>
+                            <input id="phone" type="tel" inputmode="numeric" placeholder="0912345678" required class="inp field-input">
+                        </div>
+                    </div>
+                    <div>
+                        <label for="register-email">Email</label>
+                        <input id="register-email" type="email" placeholder="a@fixflow.com" required class="inp field-input">
+                    </div>
+                    <div class="auth-two-fields">
+                        <div>
+                            <label for="employee-id">Mã nhân viên</label>
+                            <input id="employee-id" type="text" placeholder="NV-1024" required class="inp field-input">
+                        </div>
+                        <div>
+                            <label for="register-role">Vai trò</label>
+                            <select id="register-role" class="inp field-input">
+                                <option>Người yêu cầu</option>
+                                <option>Kỹ thuật viên</option>
+                                <option>Quản lý</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div>
+                        <label for="register-password">Mật khẩu</label>
+                        <input id="register-password" type="password" placeholder="Tạo mật khẩu" required class="inp field-input">
+                    </div>
+                    <div>
+                        <label for="confirm-password">Xác nhận mật khẩu</label>
+                        <input id="confirm-password" type="password" placeholder="Nhập lại mật khẩu" required class="inp field-input">
+                    </div>
+                    <div class="auth-terms">
+                        <input type="checkbox" id="terms" checked required>
+                        <label for="terms">Đồng ý điều khoản và chính sách bảo mật</label>
+                    </div>
+                    <button type="submit" class="btn">Tạo tài khoản</button>
+                </form>
+            </section>
+
+            <section class="auth-view" data-auth-view="forgot" data-page-title="FixFlow - Khôi phục mật khẩu" hidden>
+                <div class="auth-heading">
+                    <div>
+                        <h2 class="text-2xl font-bold text-slate-900 mb-1">Khôi phục mật khẩu</h2>
+                        <p class="text-sm text-slate-500">Nhập email để nhận hướng dẫn đặt lại mật khẩu.</p>
+                    </div>
+                    <button type="button" class="auth-link" data-auth-target="login">Quay lại</button>
+                </div>
+                <form id="forgot-password-form" novalidate>
+                    <div class="mb-4">
+                        <label for="forgot-email">Email</label>
+                        <input id="forgot-email" type="email" placeholder="a@fixflow.com" required class="inp">
+                        <small id="forgot-error" class="field-error" aria-live="polite"></small>
+                    </div>
+                    <button type="submit" class="btn">Gửi hướng dẫn</button>
+                    <p id="forgot-success" class="auth-success" role="status" hidden>Nếu email tồn tại trong hệ thống, hướng dẫn khôi phục sẽ được gửi đến bạn.</p>
+                </form>
+            </section>
+        </div>
+    </div>
+ <script src="2.js"></script>
+ <script src="3.js?v=register-password-fix"></script>
+</body>
+</html>
